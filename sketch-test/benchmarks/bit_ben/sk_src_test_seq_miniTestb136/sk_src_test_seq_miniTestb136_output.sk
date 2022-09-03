@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb136.sk:6*/
+
+void sk (bit a, bit b, bit c, bit d, ref bit _out)  implements pbe_sk
+{
+  _out = 0;
+  _out = 1 & (((a & c) & b) & d);
+  return;
+}
+/*sk_src_..stb136.sk:2*/
+
+void test (bit a, bit b, bit c, bit d, ref bit _out)/*sk_src_..stb136.sk:2*/
+{
+  _out = 0;
+  _out = (a & b) & (c & d);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

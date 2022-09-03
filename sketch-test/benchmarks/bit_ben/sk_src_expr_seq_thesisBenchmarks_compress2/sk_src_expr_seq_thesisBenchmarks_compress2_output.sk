@@ -1,0 +1,61 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..press2.sk:3*/
+
+void compress (bit[8] x, bit[8] m, ref bit[8] _out)/*sk_src_..press2.sk:3*/
+{
+  _out = ((bit[8])0);
+  _out = ((bit[8])0);
+  int i = 0;
+  for(int j = 0; j < 8; j = j + 1)/*Canonical*/
+  {
+    if(m[j])/*sk_src_..press2.sk:7*/
+    {
+      _out[i] = x[j];
+      i = i + 1;
+    }
+  }
+  return;
+}
+/*sk_src_..press2.sk:37*/
+
+void fast (bit[8] x_0, bit[8] m_1, ref bit[8] _out)  implements pbe_fast
+{
+  _out = ((bit[8])0);
+  bit[8] x = x_0;
+  x = x_0 & m_1;
+  bit[8] mk = (!(m_1)) << 0;
+  bit[8] mp_s1 = ((bit[8])0);
+  mp_s1[0] = mk[0];
+  for(int i = 1; i < 8; i = i + 1)/*Canonical*/
+  {
+    mp_s1[i] = (mk[i]) ^ (mp_s1[i - 1]);
+  }
+  bit[8] mv = mp_s1 & m_1;
+  bit[8] t = m_1 & mv;
+  bit[8] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[8] t_0 = x & mv;
+  bit[8] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[8] mp_s1_0 = ((bit[8])0);
+  mp_s1_0[0] = mk[0];
+  for(int i_0 = 1; i_0 < 8; i_0 = i_0 + 1)/*Canonical*/
+  {
+    mp_s1_0[i_0] = (mk[i_0]) ^ (mp_s1_0[i_0 - 1]);
+  }
+  mv = mp_s1_0 & m_s3;
+  bit[8] t_1 = m_s3 & mv;
+  bit[8] t_2 = x_s5 & mv;
+  bit[8] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[8] mp_s1_1 = ((bit[8])0);
+  mp_s1_1[0] = mk[0];
+  for(int i_1 = 1; i_1 < 8; i_1 = i_1 + 1)/*Canonical*/
+  {
+    mp_s1_1[i_1] = (mk[i_1]) ^ (mp_s1_1[i_1 - 1]);
+  }
+  mv = mp_s1_1 & ((m_s3 ^ t_1) | (t_1 >> 2));
+  bit[8] t_3 = x_s5_0 & mv;
+  _out = (x_s5_0 ^ t_3) | (t_3 >> 4);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,25 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb168.sk:1*/
+
+void ONE (int in, ref bit _out)/*sk_src_..stb168.sk:1*/
+{
+  _out = 0;
+  _out = 1;
+  return;
+}
+/*sk_src_..stb168.sk:5*/
+
+void test (int in, ref bit _out)  implements pbe_test
+{
+  _out = 0;
+  int n;
+  n = in;
+  if(1 && (in == in))/*sk_src_..stb168.sk:7*/
+  {
+    n = in + 1;
+  }
+  assert (n == (in + 1)); //Assert at sk_src_..stb168.sk:15 (2)
+  _out = 1;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

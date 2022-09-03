@@ -1,0 +1,341 @@
+Test failed /sketch_test/benchmarks/miniTest20/miniTest20_pbe.sk for 1 times
+====== Begin Test miniTest20 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,0,0}) == 0);
+    assert (pbe_reverseSketch({0,1,0,0,1}) == 1);
+    assert (pbe_reverseSketch({1,1,1,1,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest20 ======
+Test failed /sketch_test/benchmarks/miniTest18/miniTest18_pbe.sk for 1 times
+====== Begin Test miniTest18 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,1}) == 1);
+    assert (pbe_reverseSketch({0,1,1,0}) == 1);
+    assert (pbe_reverseSketch({0,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest18 ======
+Test failed /sketch_test/benchmarks/miniTest14/miniTest14_pbe.sk for 1 times
+====== Begin Test miniTest14 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,0,1}) == 0);
+    assert (pbe_reverseSketch({0,1,1,0}) == 1);
+    assert (pbe_reverseSketch({0,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest14 ======
+Test failed /sketch_test/benchmarks/miniTest15/miniTest15_pbe.sk for 1 times
+====== Begin Test miniTest15 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,1}) == 1);
+    assert (pbe_reverseSketch({1,1,0,0}) == 0);
+    assert (pbe_reverseSketch({0,0,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest15 ======
+Test failed /sketch_test/benchmarks/miniTest16/miniTest16_pbe.sk for 1 times
+====== Begin Test miniTest16 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,1}) == {0,0,0,1});
+    assert (pbe_reverseSketch({1,1,1,0}) == {0,1,1,0});
+    assert (pbe_reverseSketch({0,0,1,1}) == {0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest16 ======
+Test failed /sketch_test/benchmarks/miniTest13/miniTest13_pbe.sk for 1 times
+====== Begin Test miniTest13 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,0,1}) == 1);
+    assert (pbe_reverseSketch({1,0,1,0,1}) == 0);
+    assert (pbe_reverseSketch({1,1,0,1,1}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest13 ======
+Test failed /sketch_test/benchmarks/miniTest2/miniTest2_pbe.sk for 1 times
+====== Begin Test miniTest2 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,0}) == 0);
+    assert (pbe_reverseSketch({0,0,1,1}) == 0);
+    assert (pbe_reverseSketch({1,0,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest2 ======
+Test failed /sketch_test/benchmarks/miniTest3/miniTest3_pbe.sk for 1 times
+====== Begin Test miniTest3 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_simple({1,0,1,1,1,0,0,1,0,1,0,1}) == {0,0,0,0});
+    assert (pbe_simple({0,1,1,1,1,0,1,0,0,0,1,1}) == {1,0,0,0});
+    assert (pbe_simple({0,1,1,0,1,1,0,0,1,1,1,1}) == {1,0,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest3 ======
+Test failed /sketch_test/benchmarks/miniTest32/miniTest32_pbe.sk for 1 times
+====== Begin Test miniTest32 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,0}) == 1);
+    assert (pbe_miniTestSK({1,0,1,1}) == 1);
+    assert (pbe_miniTestSK({0,0,1,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest32 ======
+Test failed /sketch_test/benchmarks/miniTest10/miniTest10_pbe.sk for 1 times
+====== Begin Test miniTest10 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,1}) == 0);
+    assert (pbe_reverseSketch({1,0,0,0}) == 0);
+    assert (pbe_reverseSketch({0,0,1,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest10 ======
+Test failed /sketch_test/benchmarks/miniTest24/miniTest24_pbe.sk for 1 times
+====== Begin Test miniTest24 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_testSK({1,0,0,1}) == 1);
+    assert (pbe_testSK({0,0,0,0}) == 0);
+    assert (pbe_testSK({0,1,1,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest24 ======
+Test failed /sketch_test/benchmarks/miniTest39/miniTest39_pbe.sk for 1 times
+====== Begin Test miniTest39 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,0,1}) == {0,1,0,1});
+    assert (pbe_miniTestSK({1,0,1,1}) == {0,1,1,1});
+    assert (pbe_miniTestSK({1,1,0,0}) == {0,0,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest39 ======
+Test failed /sketch_test/benchmarks/miniTest26/miniTest26_pbe.sk for 1 times
+====== Begin Test miniTest26 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,0}) == {1,0,0});
+    assert (pbe_miniTestSK({1,1,1}) == {0,1,1});
+    assert (pbe_miniTestSK({0,0,1}) == {1,0,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest26 ======
+Test failed /sketch_test/benchmarks/miniTest12/miniTest12_pbe.sk for 1 times
+====== Begin Test miniTest12 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,0}) == 0);
+    assert (pbe_reverseSketch({0,1,1,1}) == 1);
+    assert (pbe_reverseSketch({1,0,1,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest12 ======
+Test failed /sketch_test/benchmarks/miniTest37/miniTest37_pbe.sk for 1 times
+====== Begin Test miniTest37 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,1,1}) == 1);
+    assert (pbe_miniTestSK({0,0,0,1}) == 0);
+    assert (pbe_miniTestSK({1,1,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest37 ======
+Test failed /sketch_test/benchmarks/miniTest31/miniTest31_pbe.sk for 1 times
+====== Begin Test miniTest31 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,0}) == 0);
+    assert (pbe_miniTestSK({1,1,0,1}) == 1);
+    assert (pbe_miniTestSK({0,0,0,0}) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTest31 ======
+Test failed /sketch_test/benchmarks/miniTest19/miniTest19_pbe.sk for 1 times
+====== Begin Test miniTest19 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,0}) == {1,0,0,0});
+    assert (pbe_reverseSketch({1,1,1,1}) == {0,1,1,1});
+    assert (pbe_reverseSketch({1,0,1,1}) == {0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest19 ======
+Test failed /sketch_test/benchmarks/miniTest34/miniTest34_pbe.sk for 1 times
+====== Begin Test miniTest34 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,1,1}) == 1);
+    assert (pbe_miniTestSK({1,1,0,1}) == 0);
+    assert (pbe_miniTestSK({0,0,1,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest34 ======
+Test failed /sketch_test/benchmarks/miniTest36/miniTest36_pbe.sk for 1 times
+====== Begin Test miniTest36 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,1,1,0}) == 1);
+    assert (pbe_miniTestSK({1,1,0,1}) == 0);
+    assert (pbe_miniTestSK({1,0,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest36 ======
+Test failed /sketch_test/benchmarks/miniTest17/miniTest17_pbe.sk for 1 times
+====== Begin Test miniTest17 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,1,1}) == {1,0,1,1,0});
+    assert (pbe_reverseSketch({0,1,0,0}) == {0,1,0,0,0});
+    assert (pbe_reverseSketch({0,1,1,1}) == {0,1,1,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest17 ======
+Test failed /sketch_test/benchmarks/miniTest38/miniTest38_pbe.sk for 1 times
+====== Begin Test miniTest38 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,1,0},{0,1}) == {0,0,1,0});
+    assert (pbe_miniTestSK({1,1,1,0},{0,1}) == {1,1,1,0});
+    assert (pbe_miniTestSK({1,1,1,0},{0,0}) == {1,1,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest38 ======
+Test failed /sketch_test/benchmarks/miniTest33/miniTest33_pbe.sk for 1 times
+====== Begin Test miniTest33 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,0,0}) == {1,1,1,0});
+    assert (pbe_miniTestSK({0,0,1,0}) == {0,0,1,0});
+    assert (pbe_miniTestSK({0,0,0,1}) == {0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest33 ======
+Test failed /sketch_test/benchmarks/miniTest35/miniTest35_pbe.sk for 1 times
+====== Begin Test miniTest35 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,0,1}) == 0);
+    assert (pbe_miniTestSK({0,0,1,0}) == 1);
+    assert (pbe_miniTestSK({0,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest35 ======
+Test failed /sketch_test/benchmarks/miniTest1/miniTest1_pbe.sk for 1 times
+====== Begin Test miniTest1 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,1,0}) == 0);
+    assert (pbe_reverseSketch({0,1,1,0}) == 0);
+    assert (pbe_reverseSketch({1,0,0,0}) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTest1 ======
+Test failed /sketch_test/benchmarks/miniTest30/miniTest30_pbe.sk for 1 times
+====== Begin Test miniTest30 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,0,0}) == 0);
+    assert (pbe_miniTestSK({0,1,0,1}) == 0);
+    assert (pbe_miniTestSK({1,0,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest30 ======
+Test failed /sketch_test/benchmarks/miniTest22/miniTest22_pbe.sk for 1 times
+====== Begin Test miniTest22 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,0,0}) == 0);
+    assert (pbe_reverseSketch({0,0,1,0}) == 1);
+    assert (pbe_reverseSketch({1,1,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest22 ======
+Test failed /sketch_test/benchmarks/miniTest28/miniTest28_pbe.sk for 1 times
+====== Begin Test miniTest28 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,1}) == {0,1,1});
+    assert (pbe_miniTestSK({0,0,1}) == {1,0,1});
+    assert (pbe_miniTestSK({0,1,1}) == {1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest28 ======
+Test failed /sketch_test/benchmarks/miniTest29/miniTest29_pbe.sk for 1 times
+====== Begin Test miniTest29 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,1,0}) == {1,0,1});
+    assert (pbe_miniTestSK({0,1,1}) == {1,0,1});
+    assert (pbe_miniTestSK({0,0,0}) == {1,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest29 ======
+Test failed /sketch_test/benchmarks/miniTest23/miniTest23_pbe.sk for 1 times
+====== Begin Test miniTest23 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,0}) == {0,0,0});
+    assert (pbe_miniTestSK({1,1,0}) == {1,1,0});
+    assert (pbe_miniTestSK({1,0,0}) == {0,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest23 ======
+Test failed /sketch_test/benchmarks/miniTest11/miniTest11_pbe.sk for 1 times
+====== Begin Test miniTest11 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,0,1}) == 0);
+    assert (pbe_reverseSketch({0,0,0,1}) == 0);
+    assert (pbe_reverseSketch({1,0,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest11 ======
+Test failed /sketch_test/benchmarks/miniTest21/miniTest21_pbe.sk for 1 times
+====== Begin Test miniTest21 ======
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,1},{0,0,1}) == 1);
+    assert (pbe_reverseSketch({1,0,1},{0,1,0}) == 0);
+    assert (pbe_reverseSketch({1,0,1},{1,0,0}) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTest21 ======

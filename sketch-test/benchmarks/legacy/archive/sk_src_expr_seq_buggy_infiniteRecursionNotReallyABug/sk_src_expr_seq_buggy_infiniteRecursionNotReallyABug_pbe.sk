@@ -1,0 +1,28 @@
+int W = 8;
+
+bit[W] countBits(bit[W] in)
+{
+	bit[W] ret=0;
+	bit[W] tmp=0;	tmp[0] = 1;
+	for(int i=0;i<W;i++){
+		if(in[i])
+			ret=ret+tmp;
+	}
+	return ret;
+}
+
+
+
+bit[W] pbe_countSketch3 (bit[W] in) 
+{
+	return count(in);
+}
+	
+
+generator bit[W] count(bit[W] in) { /* automatically rewritten */
+	bit[W] m={*};
+	in = (in & m) + (in>>?? & m);
+	return ?? ? in : count(in);
+}
+
+

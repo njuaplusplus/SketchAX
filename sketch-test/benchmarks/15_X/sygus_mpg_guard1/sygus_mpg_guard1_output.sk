@@ -1,0 +1,34 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sygus_m..guard1.sk:3*/
+
+void select (int[3] input, ref int _out)/*sygus_m..guard1.sk:3*/
+{
+  _out = 0;
+  if(((input[0]) + (input[1])) >= 1)/*sygus_m..guard1.sk:4*/
+  {
+    _out = (input[0]) + (input[1]);
+    return;
+  }
+  else
+  {
+    _out = (input[0]) - (input[1]);
+    return;
+  }
+}
+/*sygus_m..guard1.sk:11*/
+
+void selectSK0 (int[3] input, ref int _out)  implements pbe_selectSK0
+{
+  _out = 0;
+  if(((input[1]) + (input[2])) >= 0)/*sygus_m..guard1.sk:12*/
+  {
+    _out = ((input[0]) + (input[1])) - 0;
+    return;
+  }
+  else
+  {
+    _out = (((22 * (input[0])) + (28 * (input[1]))) + 19) - 21;
+    return;
+  }
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,16 @@
+void transposeSK0 (int[9] input1, ref int[9] _out)  implements transposeSK1
+{
+  _out = ((int[9])0);
+  _out = ((int[9])0);
+  _out[4] = input1[4];
+  _out[7] = input1[5];
+  _out[2] = input1[6];
+  _out[5] = input1[8];
+  _out[6] = input1[2];
+  _out[8] = input1[8];
+  _out[0] = input1[0];
+  _out[1] = input1[3];
+  _out[3] = input1[1];
+  _out[5] = input1[7];
+  return;
+}

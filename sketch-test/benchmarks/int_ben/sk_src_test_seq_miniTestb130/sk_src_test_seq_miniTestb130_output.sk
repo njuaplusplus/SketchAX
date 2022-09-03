@@ -1,0 +1,27 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb130.sk:6*/
+
+void foo (ref int a, ref int b, int x1, int x2)/*sk_src_..stb130.sk:6*/
+{
+  a = x1;
+  return;
+}
+/*sk_src_..stb130.sk:19*/
+
+void sketch (int i, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  _out = 0;
+  int y = 0;
+  foo(_out, y, i, 5);
+  return;
+}
+/*sk_src_..stb130.sk:2*/
+
+void spec (int i, ref int _out)/*sk_src_..stb130.sk:2*/
+{
+  _out = 0;
+  _out = i;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

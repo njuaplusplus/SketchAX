@@ -1,0 +1,21 @@
+int N = 8;
+
+int select(int[N] input, int n){
+    if (n >= N) return -1;
+    return input[n];
+}
+
+int pbe_selectSK0 (int[N] input, int n)  {
+    if (n >= N) return -1;
+    int output =  ??-??;
+
+    int i = 0;
+    repeat(??) {
+        if (i == n) output = input[??] + ?? - ??;
+        i += ??;
+    }
+
+    return output;
+}
+
+

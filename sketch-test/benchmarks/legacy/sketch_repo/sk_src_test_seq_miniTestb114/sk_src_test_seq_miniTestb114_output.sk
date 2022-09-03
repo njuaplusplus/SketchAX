@@ -1,0 +1,11 @@
+void rest (int in, ref int _out)  implements pbe_rest
+{
+  _out = 0;
+  Queue@ANONYMOUS q_s1 = null;
+  newQueue(q_s1);
+  Node@ANONYMOUS _out_s3 = null;
+  newNode(5, _out_s3);
+  q_s1.head = _out_s3;
+  _out = (q_s1.head.val) + in;
+  return;
+}

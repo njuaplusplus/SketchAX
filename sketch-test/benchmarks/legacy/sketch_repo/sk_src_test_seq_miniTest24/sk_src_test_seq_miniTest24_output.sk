@@ -1,0 +1,6 @@
+void testSK (bit[4] in, ref bit _out)  implements pbe_testSK
+{
+  _out = 0;
+  _out = in[3];
+  return;
+}

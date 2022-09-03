@@ -1,0 +1,64 @@
+//@Description Sketch of a merge sort implementation.
+/**
+ * This example provides a nice case study of the use of generators to produce 
+ * complicated expressions. The generator exprBoolG is a high-order generator that
+ * takes as a parameter a generator that produces operands, and generates an expression involving 
+ * conjunctions and disjunctions of comparisons of those operands.  
+ * 
+ * 
+ */
+
+include "generators.skh";
+pragma options "--bnd-inline-amnt 3 --bnd-inbits 3"; 
+
+int[N] MergeSort1([int N], int[N] input) {
+   int[N] output=0;
+   if(N>1){ 
+      int No2a = N/2; int No2b = N-No2a;      
+      int[No2a] firstHalf = input[0::No2a];
+      int[No2b] secondHalf = input[No2a::No2b];
+      firstHalf = MergeSort1( firstHalf);
+      secondHalf = MergeSort1( secondHalf);
+      int x=0;
+      int y=0; 
+      generator int chose(ref int choice){
+         choice = ??;
+         if(choice==0){ return firstHalf[x]; }
+         if(choice==1){ return secondHalf[y]; }
+         if(choice==2){ return N; }
+         if(choice==3){ return No2a; }
+         if(choice==4){ return No2b; }
+         if(choice==5){ return x; }
+         if(choice==6){ return y; }
+         assert choice <=6;
+      }
+      for(int i=0; i<N; ++i){         
+         if(exprBoolG(chose, {})){
+            output[i] = firstHalf[x]; x = x+1;
+         }else{
+            output[i] = secondHalf[y]; y = y+1;
+         }
+      }
+   }else{
+      output = input;   
+   }
+   return output;
+}
+
+harness void constraints() {
+//     assert MergeSort1({1,2,3,4,5,6}) == {1,2,3,4,5,6};
+//     assert MergeSort1({7,12,13,23,35,95}) == {7,12,13,23,35,95};
+//     assert MergeSort1({2,4,5,6,7,9}) == {2,4,5,6,7,9};
+
+    assert MergeSort1({29}) == {29};
+    assert MergeSort1({13,22}) == {13,22};
+    assert MergeSort1({13,22,19,9}) == {9,13,19,22};
+    assert MergeSort1({11,0,22,28}) == {0,11,22,28};
+    assert MergeSort1({11,14,28,5,8}) == {5,8,11,14,28};
+    assert MergeSort1({21,10,24,0,11,26}) == {0,10,11,21,24,26};
+    assert MergeSort1({14,22,17,27,24,26}) == {14,17,22,24,26,27};
+    assert MergeSort1({17,10,12,24,1,23,22}) == {1,10,12,17,22,23,24};
+    assert MergeSort1({3,24,15,25,5,26,17}) == {3,5,15,17,24,25,26};
+    assert MergeSort1({25,28,13,8,20,24,11,1}) == {1,8,11,13,20,24,25,28};
+}
+

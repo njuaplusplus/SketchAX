@@ -1,0 +1,14 @@
+void addSK0 (int[4] input1, int[4] input2, ref int[4] _out)  implements pbe_addSK0
+{
+  _out = ((int[4])0);
+  _out = ((int[4])0);
+  _out[1] = (input1[1]) + (input2[1]);
+  _out[2] = (input1[2]) + (input2[1]);
+  _out[0] = (input1[0]) + (input2[1]);
+  _out[2] = (input1[2]) + (input2[2]);
+  _out[3] = (input1[3]) + (input2[3]);
+  _out[0] = (input1[0]) + (input2[1]);
+  _out[0] = (input1[3]) + (input2[0]);
+  _out[0] = (input1[0]) + (input2[0]);
+  return;
+}

@@ -1,0 +1,50 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb430.sk:24*/
+
+void Sk (int[4] a, ref bit _out)  implements pbe_Sk
+{
+  _out = 0;
+  int[4] tmp = {3,7,0,1};
+  bit _out_s1 = 0;
+  StrEquals(4, a, 4, tmp, _out_s1);
+  _out = _out_s1;
+  return;
+}
+/*sk_src_..stb430.sk:4*/
+
+void StrEquals (int n1, char[n1] c1, int n2, char[n2] c2, ref bit _out)/*sk_src_..stb430.sk:4*/
+{
+  _out = 0;
+  for(int i = 0; i < n1; i = i + 1)/*Canonical*/
+  {
+    if(i >= n2)/*sk_src_..stb430.sk:6*/
+    {
+      _out = 0;
+      return;
+    }
+    if((c1[i]) == 0)/*sk_src_..stb430.sk:9*/
+    {
+      _out = (c2[i]) == 0;
+      return;
+    }
+    if((c2[i]) != (c1[i]))/*sk_src_..stb430.sk:12*/
+    {
+      _out = 0;
+      return;
+    }
+  }
+  _out = 1;
+  return;
+}
+/*sk_src_..stb430.sk:19*/
+
+void foo (int[4] a, ref bit _out)/*sk_src_..stb430.sk:19*/
+{
+  _out = 0;
+  int[3] ab = {3,7,0};
+  bit _out_s3 = 0;
+  StrEquals(4, a, 3, ab, _out_s3);
+  _out = _out_s3;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

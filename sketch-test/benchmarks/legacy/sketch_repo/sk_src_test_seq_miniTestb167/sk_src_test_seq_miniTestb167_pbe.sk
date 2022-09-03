@@ -1,0 +1,14 @@
+bit ONE(int in){
+	return 1;	
+}
+
+bit pbe_test(int in) {
+	int n = 	in;
+	if(?? && n == in){
+		int q = n;
+		q = q;
+		n = q+1;	
+	}
+	assert n == in+1;
+	return 1;
+}

@@ -1,0 +1,23 @@
+void sum4LessSK0 (int[4] in, int v, ref int _out)  implements sum4LessSK1
+{
+  _out = 0;
+  _out = 0;
+  if((in[0]) < v)/*sum4Less.sk:19*/
+  {
+    _out = in[0];
+  }
+  if((in[2]) < v)/*sum4Less.sk:19*/
+  {
+    _out = _out + (in[2]);
+  }
+  if((in[1]) < v)/*sum4Less.sk:19*/
+  {
+    _out = _out + (in[1]);
+  }
+  if((in[3]) < v)/*sum4Less.sk:19*/
+  {
+    _out = _out + (in[3]);
+  }
+  return;
+}
+

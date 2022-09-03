@@ -1,0 +1,55 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sygus_max8.sk:14*/
+
+void maxSketch0 (int[8] a, ref int _out)  implements pbe_maxSketch0
+{
+  _out = 0;
+  assume (1): "Assume at sygus_max8.sk:15"; //Assume at sygus_max8.sk:15
+  _out = a[0];
+  if(_out < (a[5]))/*sygus_max8.sk:18*/
+  {
+    _out = a[5];
+  }
+  if(_out < (a[3]))/*sygus_max8.sk:18*/
+  {
+    _out = a[3];
+  }
+  if(_out <= (a[2]))/*sygus_max8.sk:18*/
+  {
+    _out = a[2];
+  }
+  if(_out <= (a[6]))/*sygus_max8.sk:18*/
+  {
+    _out = a[6];
+  }
+  if(_out < (a[1]))/*sygus_max8.sk:18*/
+  {
+    _out = a[1];
+  }
+  if(_out < (a[4]))/*sygus_max8.sk:18*/
+  {
+    _out = a[4];
+  }
+  if(_out < (a[7]))/*sygus_max8.sk:18*/
+  {
+    _out = a[7];
+  }
+  return;
+}
+/*sygus_max8.sk:3*/
+
+void maxSpec (int[8] a, ref int _out)/*sygus_max8.sk:3*/
+{
+  _out = 0;
+  assume (1): "Assume at sygus_max8.sk:4"; //Assume at sygus_max8.sk:4
+  _out = a[0];
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    if(_out < (a[i]))/*sygus_max8.sk:7*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

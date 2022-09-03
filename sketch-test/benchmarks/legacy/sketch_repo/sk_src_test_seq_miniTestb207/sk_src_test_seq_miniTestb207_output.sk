@@ -1,0 +1,8 @@
+void sketch (bit[2] in, ref bit[4] _out)  implements pbe_sketch
+{
+  _out = ((bit[4])0);
+  bit[4] _out_s1 = {0,0,0,0};
+  tutu(in, 2, _out_s1);
+  _out = _out_s1;
+  return;
+}

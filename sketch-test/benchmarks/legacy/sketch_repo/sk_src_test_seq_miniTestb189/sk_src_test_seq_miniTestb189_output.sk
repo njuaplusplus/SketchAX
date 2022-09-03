@@ -1,0 +1,9 @@
+void sketch (int x, int y, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  _out = 0;
+  _out = y;
+  _out = y + x;
+  _out = _out * 2;
+  return;
+}

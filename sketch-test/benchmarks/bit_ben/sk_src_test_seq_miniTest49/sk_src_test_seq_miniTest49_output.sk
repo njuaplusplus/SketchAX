@@ -1,0 +1,28 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test49.sk:20*/
+
+void reverse (bit[4] in, ref bit[4] _out)/*sk_src_..Test49.sk:20*/
+{
+  _out = ((bit[4])0);
+  int[16] tmp = {3,4,5,6,7,8,9,10,11,12,13,14,15,0,1,2};
+  int v_0 = tmp[((int)in)];
+  bit[4] _out_s1 = ((bit[4])0);
+  int v = v_0;
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    _out_s1[i] = (v % 2) > 0;
+    v = v / 2;
+  }
+  _out = _out_s1;
+  return;
+}
+/*sk_src_..Test49.sk:14*/
+
+void reverseSketch (bit[4] in, ref bit[4] _out)  implements pbe_reverseSketch
+{
+  _out = ((bit[4])0);
+  bit[4] tmp = {1,1,0,0};
+  _out = in + tmp;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

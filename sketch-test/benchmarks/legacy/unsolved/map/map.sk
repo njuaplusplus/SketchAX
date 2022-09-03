@@ -1,0 +1,17 @@
+int[n] map(int n, int[n] arr, fun f) {
+    int[n] output = arr;
+    for (int i=0; i<n; ++i) {
+        output[i] = f(output[i]);
+    }
+    return output;
+}
+
+
+int[n] mapSketch(int n, int[n] arr, fun f) implements map {
+    int[n] output = {| ?? | arr |};
+    for (int i=??; i<n; ++i) {
+        output[{| ?? | i |}] = f(output[i]);
+    }
+    return output;
+}
+

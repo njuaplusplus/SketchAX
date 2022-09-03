@@ -1,0 +1,19 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..iTest6.sk:7*/
+
+void reverse (bit[4] in, ref bit[4] _out)/*sk_src_..iTest6.sk:7*/
+{
+  _out = ((bit[4])0);
+  bit[4] tmp = {0,1,0,0};
+  _out = (in + tmp) + in;
+  return;
+}
+/*sk_src_..iTest6.sk:3*/
+
+void reverseSketch (bit[4] in, ref bit[4] _out)  implements pbe_reverseSketch
+{
+  _out = ((bit[4])0);
+  _out = (in + ({0,1,0,0})) + in;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

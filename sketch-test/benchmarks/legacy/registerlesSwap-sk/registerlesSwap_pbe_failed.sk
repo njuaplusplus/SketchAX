@@ -1,0 +1,33 @@
+//@Description Sketch to swap two bit arrays without using extra storage.
+
+int W = 8;
+
+bit[2*W] swapSK1(bit[W] x, bit[W] y) {
+
+    repeat(3){
+        if(??){ x = x ^ y; }
+        if(??){ y = x ^ y; }
+        if(??){ x = x; }
+        if(??){ y = y; }
+    }
+
+    bit[2*W] out = 0;
+    out[0::W] = x;
+    out[W::W] = y;
+    return out;
+}
+
+
+harness void constraints(int[W] indx, int[W] indy){
+    bit[W] x1 = {1,0,0,0,0,0,0,0};
+    bit[W] y1 = {1,0,0,0,0,0,0,0};
+    assert swapSK1(x1, y1) == {1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0};
+
+    bit[W] x2 = {1,1,0,0,0,0,0,0};
+    bit[W] y2 = {1,1,0,0,0,0,0,0};
+    assert swapSK1(x2, y2) == {1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0};
+
+    bit[W] x3 = {1,1,1,0,0,0,0,0};
+    bit[W] y3 = {1,1,1,0,0,0,0,0};
+    assert swapSK1(x3, y3) == {1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0};
+}

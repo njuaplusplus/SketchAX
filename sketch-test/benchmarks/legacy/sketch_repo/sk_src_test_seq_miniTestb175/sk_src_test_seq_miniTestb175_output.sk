@@ -1,0 +1,6 @@
+void test (int[5] in, ref bit _out)  implements pbe_test
+{
+  _out = 0;
+  _out = 1;
+  return;
+}

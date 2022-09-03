@@ -1,0 +1,31 @@
+char[N] reverseSketch1(int N, char[N] str) {
+    for (int i=0; i<N/??; i++) {
+        char tmp = {| i | N | str[i+??] |};
+        str[i+??] = str[N-i-??];
+        str[N-i-??] = tmp;
+    }
+    return str;
+}
+
+harness void constraints() {
+    assert_all_rotations(1, {'1'}, {'1'});
+    assert_all_rotations(2, {'1','1'}, {'1', '1'});
+    assert_all_rotations(3, {'1','2','1'}, {'1', '2', '1'});
+    assert_all_rotations(4, {'1','2','2','1'}, {'1', '2', '2', '1'});
+}
+
+void assert_all_rotations(int N, char[N] x, char[N] y) {
+    assert reverseSketch1(N, x) == y;
+    for (int i=1; i<N; i++) {
+        int t = x[N-1];
+        x[1::N-1] = x[0::N-1];
+        x[0] = t;
+
+        t = y[0];
+        y[0::N-1] = y[1::N-1];
+        y[N-1] = t;
+
+        assert reverseSketch1(N, x) == y;
+    }
+}
+

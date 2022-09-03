@@ -1,0 +1,13 @@
+void test (int in, ref bit _out)  implements pbe_test
+{
+  _out = 0;
+  int n;
+  n = in;
+  if(1 && (in == in))/*sk_src_..stb167.sk:7*/
+  {
+    n = in + 1;
+  }
+  assert (n == (in + 1)); //Assert at sk_src_..stb167.sk:12 (2)
+  _out = 1;
+  return;
+}

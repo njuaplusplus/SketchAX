@@ -1,0 +1,20 @@
+int N = 8;
+
+int select(int[N] input){
+    return input[0] + input[3];
+}
+
+generator int gen(int[N] a, int bnd) {
+    if (??) return ??;
+    if (??) return a[??];
+    // if (??) return gen(a, bnd-1) - gen(a, bnd-1);
+    if (??) return gen(a, bnd-1) + gen(a, bnd-1);
+    // if (??) return gen(a, bnd-1) * gen(a, bnd-1);
+    // if (??) return gen(a, bnd-1) / gen(a, bnd-1);
+}
+
+int pbe_selectSK0 (int[N] input)  {
+    return gen(input, 3);
+}
+
+

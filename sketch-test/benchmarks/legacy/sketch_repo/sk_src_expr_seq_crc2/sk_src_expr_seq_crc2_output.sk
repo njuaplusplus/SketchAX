@@ -1,0 +1,61 @@
+void remainderOpt (bit[16] in, ref bit[8] _out)  implements pbe_remainderOpt
+{
+  _out = ((bit[8])0);
+  bit[8] poly = ((bit[8])0);
+  poly[7] = 1;
+  poly[6] = 1;
+  poly[5] = 1;
+  _out = ((bit[8])0);
+  bit[2] c1 = {0,1};
+  bit[2] c2 = {1,0};
+  bit[2] c3 = {1,1};
+  bit[8] t1 = {0,0,0,0,0,1,1,1};
+  bit[8] t2 = {0,0,0,0,1,1,1,0};
+  bit[8] t3 = {0,0,0,0,1,0,0,1};
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    bit[2] tmp = {0,0};
+    for(int j = 0; j < 2; j = j + 1)/*Canonical*/
+    {
+      tmp[j] = (in[(i * 2) + j]) ^ (_out[j]);
+    }
+    _out = _out >> 2;
+    bit[2] in_0 = tmp ^ c1;
+    bit _out_s1 = 1;
+    for(int i_0 = 0; i_0 < 2; i_0 = i_0 + 1)/*Canonical*/
+    {
+      _out_s1 = _out_s1 & (!(in_0[i_0]));
+    }
+    if(_out_s1)/*sk_src_..q_crc2.sk:40*/
+    {
+      _out = _out ^ t1;
+    }
+    else
+    {
+      bit[2] in_1 = tmp ^ c2;
+      bit _out_s3 = 1;
+      for(int i_1 = 0; i_1 < 2; i_1 = i_1 + 1)/*Canonical*/
+      {
+        _out_s3 = _out_s3 & (!(in_1[i_1]));
+      }
+      if(_out_s3)/*sk_src_..q_crc2.sk:41*/
+      {
+        _out = _out ^ t2;
+      }
+      else
+      {
+        bit[2] in_2 = tmp ^ c3;
+        bit _out_s5 = 1;
+        for(int i_2 = 0; i_2 < 2; i_2 = i_2 + 1)/*Canonical*/
+        {
+          _out_s5 = _out_s5 & (!(in_2[i_2]));
+        }
+        if(_out_s5)/*sk_src_..q_crc2.sk:42*/
+        {
+          _out = _out ^ t3;
+        }
+      }
+    }
+  }
+  return;
+}

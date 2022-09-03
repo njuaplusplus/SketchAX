@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sygus_m..plane3.sk:3*/
+
+void select (int[3] input, ref int _out)/*sygus_m..plane3.sk:3*/
+{
+  _out = 0;
+  _out = ((5 * (input[0])) + (5 * (input[1]))) + 5;
+  return;
+}
+/*sygus_m..plane3.sk:7*/
+
+void selectSK0 (int[3] input, ref int _out)  implements pbe_selectSK0
+{
+  _out = 0;
+  _out = (((5 * (input[1])) + (5 * (input[0]))) + 30) - 25;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

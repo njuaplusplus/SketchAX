@@ -1,0 +1,70 @@
+======= Begin Example ======
+int_list_3
+int
+{3,2,8} => 4
+{4,10,4} => 5
+{4,5,0} => 5
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{7,8,5} => 8
+{1,5,8} => 2
+{8,0,0} => 9
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{9,9,0} => 10
+{2,10,8} => 3
+{10,4,1} => 11
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{6,3,7} => 7
+{5,1,4} => 6
+{2,6,3} => 3
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{9,0,4} => 10
+{3,10,1} => 4
+{3,6,2} => 4
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{1,4,10} => 2
+{0,4,0} => 5
+{9,2,6} => 10
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{6,9,2} => 7
+{2,1,2} => 3
+{2,9,8} => 3
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{9,0,8} => 10
+{0,2,3} => 1
+{8,4,4} => 9
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{5,9,3} => 6
+{3,2,5} => 4
+{3,7,0} => 4
+======= End Example ======
+======= Begin Example ======
+int_list_3
+int
+{0,3,3} => 1
+{6,0,3} => 7
+{8,10,1} => 9
+======= End Example ======

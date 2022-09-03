@@ -1,0 +1,16 @@
+void miniTestSK (bit[4] in, ref bit _out)  implements pbe_miniTestSK
+{
+  _out = 0;
+  bit x = 0;
+  if(in[0])/*sk_src_..Test31.sk:14*/
+  {
+    x = ((in[2]) & 1) | 0;
+  }
+  else
+  {
+    x = 1;
+  }
+  assert ((in[0]) || x); //Assert at sk_src_..Test31.sk:19 (1)
+  _out = in[x];
+  return;
+}

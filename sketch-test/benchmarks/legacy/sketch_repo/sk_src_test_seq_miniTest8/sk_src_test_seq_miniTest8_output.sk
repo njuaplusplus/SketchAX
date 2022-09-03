@@ -1,0 +1,17 @@
+void reverseSketch (bit[4] in, ref bit[4] _out)  implements pbe_reverseSketch
+{
+  _out = ((bit[4])0);
+  bit[4] tmp = {1,1,0,0};
+  bit[4] in1 = in;
+  bit[4] _out_s1 = ((bit[4])0);
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    if((tmp[i]) == 1)/*sk_src_..iTest8.sk:5*/
+    {
+      _out_s1 = _out_s1 + in1;
+    }
+    in1 = in1 << 1;
+  }
+  _out = _out_s1;
+  return;
+}

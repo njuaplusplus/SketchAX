@@ -1,0 +1,17 @@
+bit miniTest(bit[4] in) {
+	bit tmp = !in[0];
+  return in[tmp];
+}
+
+
+bit pbe_miniTestSK (bit[4] in) {
+	bit x;
+	if(in[0]){
+		x = in[??] {|}  ??;
+	}else{
+		x = in[??] {|} ??;
+	}
+	assert x == !in[0];
+    return in[x];
+}
+

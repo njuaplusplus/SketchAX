@@ -1,0 +1,39 @@
+pragma options "--bnd-unroll-amnt 20";
+
+int W = 8;
+
+bit[2*W] sketch1(bit[W] x, bit[W] y) {
+  // Idea: It should be possible to shift all of the bits "in parallel"
+  // using only log2(W) shifts.
+  bit[2*W] x2 = x;
+  int pt = 4*W;
+  repeat(??) {
+    int t = ??;
+    // Shift some of the bits, and mask out their original positions.
+    x2 = (x2 | (x2 << t)) & ??;
+    assert t < pt; pt = t;
+  }
+
+  bit[2*W] y2 = y;
+  repeat(??) {
+    // Shift some of the bits, and mask out their original positions.
+    y2 = (y2 | (y2 << ??)) & ??;
+  }
+
+  return x2 | (y2 << 1);
+}
+
+// harness void constraints(int[W] ind) {
+//     assert sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})
+//                 == {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0};
+// 
+//     assert sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})
+//                 == {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1};
+// 
+//     assert sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0})
+//                 == {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0};
+// 
+//     assert sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},{0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})
+//                 == {1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1};
+// }
+// 

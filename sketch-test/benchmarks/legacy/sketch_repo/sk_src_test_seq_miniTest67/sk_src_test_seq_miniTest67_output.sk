@@ -1,0 +1,6 @@
+void p1Sk (bit[5] x, ref bit _out)  implements pbe_p1Sk
+{
+  _out = 0;
+  _out = x[2];
+  return;
+}

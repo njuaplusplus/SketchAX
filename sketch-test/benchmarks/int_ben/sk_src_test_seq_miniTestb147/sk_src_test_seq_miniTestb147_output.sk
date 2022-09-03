@@ -1,0 +1,28 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb147.sk:2*/
+
+void foo (int i, int j, int k, ref int _out)/*sk_src_..stb147.sk:2*/
+{
+  _out = 0;
+  if((i + j) != 2)/*sk_src_..stb147.sk:4*/
+  {
+    _out = i + 2;
+    return;
+  }
+  _out = (i + (2 * j)) + (3 * k);
+  return;
+}
+/*sk_src_..stb147.sk:10*/
+
+void moo (int i_0, int j, int k, ref int _out)  implements pbe_moo
+{
+  _out = 0;
+  if((i_0 + j) != 2)/*sk_src_..stb147.sk:15*/
+  {
+    _out = i_0 + 2;
+    return;
+  }
+  _out = (i_0 + (2 * j)) + (3 * k);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

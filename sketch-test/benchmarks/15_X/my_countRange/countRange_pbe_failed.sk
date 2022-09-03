@@ -1,0 +1,16 @@
+//@Description Counts the number of ones in a bit-vector in logn steps.
+int W=4;
+
+int countRange1(int[W] in, int l, int h)
+{
+    int cnt=??;
+    repeat(??)
+    {
+        // if ({| in[??] (== | != | > | >=) v | ??  |}) {
+        if ({| in[??] (== | != | > | < ) l | ??  |} && {| in[??] (== | != | > | < ) h | ??  |}) {
+            cnt += 1;
+        }
+    }
+    return cnt;
+}
+

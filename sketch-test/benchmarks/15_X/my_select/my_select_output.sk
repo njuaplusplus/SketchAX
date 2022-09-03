@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*my_select.sk:3*/
+
+void select (int[16] input, ref int _out)/*my_select.sk:3*/
+{
+  _out = 0;
+  _out = input[14];
+  return;
+}
+/*my_select.sk:7*/
+
+void selectSK0 (int[16] input, ref int _out)  implements pbe_selectSK0
+{
+  _out = 0;
+  _out = input[14];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

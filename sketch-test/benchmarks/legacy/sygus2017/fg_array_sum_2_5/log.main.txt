@@ -1,0 +1,41 @@
+Sep 26, 2018 1:31:32 PM Run main
+INFO: Using 6 threads
+Sep 26, 2018 1:31:32 PM Run main
+INFO: Using finite coeffBound timeout 20 mins and infinite coeffBound timeout 5 mins
+Sep 26, 2018 1:31:32 PM Run main
+INFO: Accepted
+Sep 26, 2018 1:31:32 PM Run main
+INFO: Final Constraints:(and (or (<= (+ x1 x2) 5) (= (findSum x1 x2) (+ x1 x2)))
+     (or (not (<= (+ x1 x2) 5)) (= (findSum x1 x2) 0)))
+Sep 26, 2018 1:31:32 PM SygusDispatcher prescreen
+INFO: Checking candidates generated from parsing.
+Sep 26, 2018 1:31:32 PM SygusDispatcher prescreen
+INFO: SSI Detected, using SSI algorithm
+Sep 26, 2018 1:31:32 PM SygusDispatcher initAlgorithm
+INFO: Initializing CEGIS algorithm as prepared fallback.
+Sep 26, 2018 1:31:32 PM SygusDispatcher initAlgorithm
+INFO: Initializing SSI algorithms.
+Sep 26, 2018 1:31:32 PM SygusDispatcher runAlgorithm
+INFO: Starting SSI algorithms.
+Sep 26, 2018 1:31:32 PM SSI getDef
+INFO: Scanning constraints.
+Sep 26, 2018 1:31:32 PM SSI normalizeExpr
+INFO: Atom: (<= (+ x1 x2) 5)
+Sep 26, 2018 1:31:32 PM SSI normalizeExpr
+INFO: Atom: (= (findSum x1 x2) (+ x1 x2))
+Sep 26, 2018 1:31:32 PM SSI normalizeExpr
+INFO: Normalized:(= (+ (* (- 1) x1) (* (- 1) x2)) (* (- 1) (findSum x1 x2)))
+Sep 26, 2018 1:31:32 PM SSI normalizeExpr
+INFO: Atom: (<= (+ x1 x2) 5)
+Sep 26, 2018 1:31:32 PM SSI normalizeExpr
+INFO: Atom: (= (findSum x1 x2) 0)
+Sep 26, 2018 1:31:32 PM SSI normalizeExpr
+INFO: Normalized:(= 0 (* (- 1) (findSum x1 x2)))
+Sep 26, 2018 1:31:32 PM SSI getDef
+INFO: Candidate: 0
+Sep 26, 2018 1:31:32 PM SSI getDef
+INFO: Candidate: (+ x1 x2)
+Sep 26, 2018 1:31:32 PM SSI getDef
+INFO: Constructing result...
+Sep 26, 2018 1:31:32 PM Run main
+INFO: Runtime: 137

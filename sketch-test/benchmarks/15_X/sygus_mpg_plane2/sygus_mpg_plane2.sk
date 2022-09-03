@@ -1,0 +1,10 @@
+int N = 3;
+
+int select(int[N] input){
+    return 3*input[0]+3*input[1]+3;
+}
+
+int selectSK0 (int[N] input) implements select {
+    return ??*input[??] + ??*input[??] + ?? - ??;
+}
+

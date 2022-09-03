@@ -1,0 +1,23 @@
+void sum4RangeSK0 (int[4] in, int l, int h, ref int _out)  implements sum4RangeSK1
+{
+  _out = 0;
+  _out = 0;
+  if(((in[0]) > l) && ((in[0]) < h))/*sum4Range.sk:19*/
+  {
+    _out = in[0];
+  }
+  if(((in[2]) > l) && ((in[2]) < h))/*sum4Range.sk:19*/
+  {
+    _out = _out + (in[2]);
+  }
+  if(((in[1]) > l) && ((in[1]) < h))/*sum4Range.sk:19*/
+  {
+    _out = _out + (in[1]);
+  }
+  if(((in[3]) > l) && ((in[3]) < h))/*sum4Range.sk:19*/
+  {
+    _out = _out + (in[3]);
+  }
+  return;
+}
+

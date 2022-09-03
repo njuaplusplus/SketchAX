@@ -1,0 +1,19 @@
+int N = 3;
+
+int select(int[N] input) {
+    if (2*input[0]+2*input[1]+input[2] >= 1) {
+        return input[0]+input[1];
+    } else {
+        return input[0]-input[1];
+    }
+}
+
+int selectSK0 (int[N] input) implements select {
+    if (2*input[0]+2*input[1]+input[2] >= 1) {
+        return ??*input[??] + ??*input[??] + ?? - ??;
+    } else {
+        return ??*input[??] - input[??] + ?? - ??;
+    }
+
+}
+

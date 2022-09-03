@@ -1,0 +1,26 @@
+//@Description Counts the number of ones in a bit-vector in logn steps.
+int W=4;
+
+int countGreater(int[W] in, int v)
+{
+    int ret = 0;
+    for(int i=0;i<W;i++){
+        if(in[i] > v)
+            ret = ret + 1;
+    }
+    return ret;
+}
+
+int countGreater0(int[W] in, int v) implements countGreater
+{
+    int cnt=??;
+    repeat(??)
+    {
+        // if ({| in[??] (== | != | > | >=) v | ??  |}) {
+        if ({| in[??] (== | != | >) v | ??  |}) {
+            cnt += 1;
+        }
+    }
+    return cnt;
+}
+

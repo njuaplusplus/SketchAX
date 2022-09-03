@@ -1,0 +1,66 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sygus_m..ample3.sk:1*/
+
+void select (int x, int y, int z, ref int _out)/*sygus_m..ample3.sk:1*/
+{
+  _out = 0;
+  if((3 * z) >= 5)/*sygus_m..ample3.sk:2*/
+  {
+    if((2 * x) <= y)/*sygus_m..ample3.sk:3*/
+    {
+      _out = (((3 * x) - (5 * y)) + (7 * z)) + 9;
+      return;
+    }
+    else
+    {
+      _out = ((2 * x) - (9 * z)) + 5;
+      return;
+    }
+  }
+  else
+  {
+    if((2 * z) <= ((-(y)) + (2 * x)))/*sygus_m..ample3.sk:9*/
+    {
+      _out = ((-6 * x) + (3 * y)) + 4;
+      return;
+    }
+    else
+    {
+      _out = (((9 * x) + (9 * y)) - z) + 5;
+      return;
+    }
+  }
+}
+/*sygus_m..ample3.sk:17*/
+
+void selectSK0 (int x, int y, int z, ref int _out)  implements pbe_selectSK0
+{
+  _out = 0;
+  if((3 * z) >= 4)/*sygus_m..ample3.sk:18*/
+  {
+    if((2 * x) <= y)/*sygus_m..ample3.sk:19*/
+    {
+      _out = (((3 * x) - (5 * y)) + (7 * z)) + 9;
+      return;
+    }
+    else
+    {
+      _out = ((2 * x) - (9 * z)) + 5;
+      return;
+    }
+  }
+  else
+  {
+    if((2 * z) <= ((-(y)) + (2 * x)))/*sygus_m..ample3.sk:25*/
+    {
+      _out = ((-6 * x) + (3 * y)) + 4;
+      return;
+    }
+    else
+    {
+      _out = (((9 * x) + (9 * y)) - z) + 5;
+      return;
+    }
+  }
+}
+/* END PACKAGE ANONYMOUS*/

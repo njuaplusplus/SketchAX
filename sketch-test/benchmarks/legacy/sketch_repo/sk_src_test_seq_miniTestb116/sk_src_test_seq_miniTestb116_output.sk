@@ -1,0 +1,9 @@
+void testSK (int i, ref int _out)  implements pbe_testSK
+{
+  _out = 0;
+  Node@ANONYMOUS n;
+  n = new Node();
+  n.val = i;
+  _out = n.val;
+  return;
+}

@@ -1,0 +1,70 @@
+======= Begin Example ======
+int_list_2
+int
+{2,2} => 0
+{3,10} => 0
+{6,14} => 20
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{8,1} => 0
+{8,8} => 16
+{10,0} => 0
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{14,14} => 28
+{1,9} => 0
+{10,12} => 22
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{15,5} => 20
+{0,0} => 0
+{12,1} => 0
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{10,7} => 17
+{4,3} => 0
+{12,7} => 19
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{3,13} => 16
+{1,15} => 16
+{14,11} => 25
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{11,8} => 19
+{10,15} => 25
+{7,13} => 20
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{2,12} => 0
+{10,14} => 24
+{9,7} => 16
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{0,0} => 0
+{6,5} => 0
+{6,14} => 20
+======= End Example ======
+======= Begin Example ======
+int_list_2
+int
+{15,13} => 28
+{15,0} => 0
+{6,0} => 0
+======= End Example ======

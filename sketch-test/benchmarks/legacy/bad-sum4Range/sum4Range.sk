@@ -1,0 +1,25 @@
+int W=4;
+
+int sum4Range(int[W] in, int l, int h)
+{
+    int ret = 0;
+    for(int i=0;i<W;i++){
+        if(in[i] < h && in[i] > l)
+            ret = ret + in[i];
+    }
+    return ret;
+}
+
+int sum4RangeSK0(int[W] in, int l, int h) implements sum4Range
+{
+    int cnt=??;
+    repeat(??)
+    {
+        // if ({| in[??] (== | != | > | >=) v | ??  |}) {
+        if ({| in[??] (== | != | > | < ) l | ??  |} && {| in[??] (== | != | > | < ) h | ??  |}) {
+            cnt += {| in[??] | ?? |};
+        }
+    }
+    return cnt;
+}
+

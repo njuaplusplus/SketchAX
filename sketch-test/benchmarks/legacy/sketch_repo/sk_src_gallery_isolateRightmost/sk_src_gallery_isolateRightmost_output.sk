@@ -1,0 +1,7 @@
+void isolate0sk (bit[32] x, ref bit[32] _out)  implements pbe_isolate0sk
+{
+  _out = ((bit[32])0);
+  bit[32] _out_s16 = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  _out = (_out_s16 + x) & (!(x));
+  return;
+}

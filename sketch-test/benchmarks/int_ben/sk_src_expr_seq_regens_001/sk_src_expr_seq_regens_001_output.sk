@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..ns_001.sk:5*/
+
+void sk (int in, ref int _out)  implements pbe_sk
+{
+  _out = 0;
+  _out = in * 2;
+  return;
+}
+/*sk_src_..ns_001.sk:1*/
+
+void spec (int in, ref int _out)/*sk_src_..ns_001.sk:1*/
+{
+  _out = 0;
+  _out = in * 2;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

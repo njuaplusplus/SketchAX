@@ -1,0 +1,15 @@
+void maxSketch0 (int[3] a, ref int _out)  implements pbe_maxSketch0
+{
+  _out = 0;
+  assume (1): "Assume at my_max3.sk:15"; //Assume at my_max3.sk:15
+  _out = a[0];
+  if((a[0]) < (a[1]))/*my_max3.sk:18*/
+  {
+    _out = a[1];
+  }
+  if(_out < (a[2]))/*my_max3.sk:18*/
+  {
+    _out = a[2];
+  }
+  return;
+}

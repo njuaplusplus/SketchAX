@@ -1,0 +1,19 @@
+void sketch (int i, ref bit _out)  implements pbe_sketch
+{
+  _out = 0;
+  foo@ANONYMOUS x = new foo();
+  x.x = i;
+  x.y = 3;
+  bit _has_out_ = 0;
+  if((x.y) == 3)/*sk_src_..stb126.sk:15*/
+  {
+    _has_out_ = 1;
+  }
+  if(_has_out_ == 0)/*sk_src_..stb126.sk:19*/
+  {
+    x.y = 5;
+  }
+  assert ((x.y) == 3); //Assert at sk_src_..stb126.sk:29 (2)
+  _out = 1;
+  return;
+}

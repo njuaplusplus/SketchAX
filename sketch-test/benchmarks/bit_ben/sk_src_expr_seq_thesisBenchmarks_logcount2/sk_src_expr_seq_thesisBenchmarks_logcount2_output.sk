@@ -1,0 +1,29 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..count2.sk:3*/
+
+void countBits (bit[4] in, ref bit[4] _out)/*sk_src_..count2.sk:3*/
+{
+  _out = ((bit[4])0);
+  _out = ((bit[4])0);
+  bit[4] one = ((bit[4])0);
+  one[0] = 1;
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    if(in[i])/*sk_src_..count2.sk:9*/
+    {
+      _out = _out + one;
+    }
+  }
+  return;
+}
+/*sk_src_..count2.sk:17*/
+
+void countSketch (bit[4] in, ref bit[4] _out)  implements pbe_countSketch
+{
+  _out = ((bit[4])0);
+  _out = in;
+  _out = (in & ({1,0,1,0})) + ((in >> 1) & ({1,0,1,0}));
+  _out = (_out & ({1,1,0,0})) + ((_out >> 2) & ({1,1,0,0}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,19 @@
+// output by specification
+// sketch --bnd-unroll-amnt 100 isolateRightmost.sk
+void isolate0sk0 (bit[32] x, ref bit[32] _out)  implements isolate0sk1
+{
+  _out = ((bit[32])0);
+  bit[32] _out_s16 = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  _out = (!(x)) & (_out_s16 + x);
+  return;
+}
+
+// output by example
+// sketch --bnd-unroll-amnt 100 isolateRightmost_pbe.sk
+void isolate0sk1 (bit[32] x, ref bit[32] _out)/*isolate..st_pbe.sk:15*/
+{
+  _out = ((bit[32])0);
+  bit[32] _out_s26 = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  _out = (!(x)) & (x + _out_s26);
+  return;
+}

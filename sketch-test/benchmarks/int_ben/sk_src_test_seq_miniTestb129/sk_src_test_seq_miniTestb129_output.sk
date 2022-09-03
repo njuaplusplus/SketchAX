@@ -1,0 +1,19 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb129.sk:18*/
+
+void sketch (int i, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  _out = 0;
+  _out = i;
+  return;
+}
+/*sk_src_..stb129.sk:1*/
+
+void spec (int i, ref int _out)/*sk_src_..stb129.sk:1*/
+{
+  _out = 0;
+  _out = i;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,24 @@
+int N = 3;
+
+generator int index(int i, int j){ /* automatically rewritten */
+    return i*N + j;
+}
+
+int[N*N] transpose(int[N*N] input1){
+    int[N*N] output=0;
+    for(int i=0; i<N; ++i){
+        for(int j=0; j<N; ++j){
+            output[index(i,j)] = input1[index(j,i)];
+        }
+    }
+    return output;
+}
+
+int[N*N] transposeSK0 (int[N*N] input1) implements transpose{
+    int[N*N] output=0;
+    repeat(N*N+1) {
+            output[??] = input1[??];
+    }
+    return output;
+}
+

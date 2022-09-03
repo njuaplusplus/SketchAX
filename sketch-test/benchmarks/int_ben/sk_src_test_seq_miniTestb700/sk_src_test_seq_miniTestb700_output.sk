@@ -1,0 +1,26 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb700.sk:4*/
+
+void fi (int x, ref int _out, ref global int y__ANONYMOUS_s0, ref global int z__ANONYMOUS_s1)/*sk_src_..stb700.sk:4*/
+{
+  _out = 0;
+  if((y__ANONYMOUS_s0 > 0) && (z__ANONYMOUS_s1 > 0))/*sk_src_..stb700.sk:5*/
+  {
+    _out = x;
+    return;
+  }
+  else
+  {
+    _out = x;
+    return;
+  }
+}
+/*sk_src_..stb700.sk:12*/
+
+void foo (int x, ref int _out, ref global int y__ANONYMOUS_s3, ref global int z__ANONYMOUS_s2)  implements pbe_foo
+{
+  _out = 0;
+  _out = x;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

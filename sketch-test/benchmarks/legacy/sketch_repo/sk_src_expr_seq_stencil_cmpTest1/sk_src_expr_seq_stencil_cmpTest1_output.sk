@@ -1,0 +1,604 @@
+void testSK (bit[32] idx, bit[32] nval, bit A, bit B, ref bit _out)  implements pbe_testSK
+{
+  _out = 0;
+  _out = 0;
+  bit _pac_sc_s1_s3 = 1;
+  if((idx[0]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[1]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[2]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[3]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[4]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[5]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[6]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[7]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[8]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[9]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[10]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[11]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[12]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[13]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[14]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[15]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[16]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[17]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[18]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[19]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[20]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[21]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[22]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[23]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[24]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[25]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[26]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[27]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[28]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[29]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[30]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  if((idx[31]) ^ 0)/*sk_src_..pTest1.sk:7*/
+  {
+    _pac_sc_s1_s3 = 0;
+  }
+  bit _pac_sc_s1;
+  _pac_sc_s1 = _pac_sc_s1_s3;
+  if(!(_pac_sc_s1_s3))/*sk_src_..pTest1.sk:50*/
+  {
+    bit _pac_sc_s1_s5 = 1;
+    if((idx[0]) ^ (nval[0]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[1]) ^ (nval[1]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[2]) ^ (nval[2]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[3]) ^ (nval[3]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[4]) ^ (nval[4]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[5]) ^ (nval[5]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[6]) ^ (nval[6]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[7]) ^ (nval[7]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[8]) ^ (nval[8]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[9]) ^ (nval[9]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[10]) ^ (nval[10]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[11]) ^ (nval[11]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[12]) ^ (nval[12]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[13]) ^ (nval[13]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[14]) ^ (nval[14]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[15]) ^ (nval[15]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[16]) ^ (nval[16]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[17]) ^ (nval[17]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[18]) ^ (nval[18]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[19]) ^ (nval[19]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[20]) ^ (nval[20]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[21]) ^ (nval[21]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[22]) ^ (nval[22]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[23]) ^ (nval[23]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[24]) ^ (nval[24]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[25]) ^ (nval[25]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[26]) ^ (nval[26]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[27]) ^ (nval[27]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[28]) ^ (nval[28]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[29]) ^ (nval[29]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[30]) ^ (nval[30]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    if((idx[31]) ^ (nval[31]))/*sk_src_..pTest1.sk:7*/
+    {
+      _pac_sc_s1_s5 = 0;
+    }
+    _pac_sc_s1 = _pac_sc_s1_s5;
+  }
+  bit _pac_sc_s0 = _pac_sc_s1;
+  if(!(_pac_sc_s1))/*sk_src_..pTest1.sk:50*/
+  {
+    bit done = 0;
+    bit _pac_sc_s0_s7 = 0;
+    if(((!(0)) && (idx[31])) && (!(nval[31])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[31]))) && (nval[31]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[30])) && (!(nval[30])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[30]))) && (nval[30]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[29])) && (!(nval[29])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[29]))) && (nval[29]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[28])) && (!(nval[28])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[28]))) && (nval[28]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[27])) && (!(nval[27])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[27]))) && (nval[27]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[26])) && (!(nval[26])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[26]))) && (nval[26]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[25])) && (!(nval[25])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[25]))) && (nval[25]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[24])) && (!(nval[24])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[24]))) && (nval[24]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[23])) && (!(nval[23])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[23]))) && (nval[23]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[22])) && (!(nval[22])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[22]))) && (nval[22]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[21])) && (!(nval[21])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[21]))) && (nval[21]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[20])) && (!(nval[20])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[20]))) && (nval[20]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[19])) && (!(nval[19])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[19]))) && (nval[19]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[18])) && (!(nval[18])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[18]))) && (nval[18]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[17])) && (!(nval[17])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[17]))) && (nval[17]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[16])) && (!(nval[16])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[16]))) && (nval[16]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[15])) && (!(nval[15])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[15]))) && (nval[15]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[14])) && (!(nval[14])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[14]))) && (nval[14]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[13])) && (!(nval[13])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[13]))) && (nval[13]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[12])) && (!(nval[12])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[12]))) && (nval[12]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[11])) && (!(nval[11])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[11]))) && (nval[11]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[10])) && (!(nval[10])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[10]))) && (nval[10]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[9])) && (!(nval[9])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[9]))) && (nval[9]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[8])) && (!(nval[8])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[8]))) && (nval[8]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[7])) && (!(nval[7])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[7]))) && (nval[7]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[6])) && (!(nval[6])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[6]))) && (nval[6]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[5])) && (!(nval[5])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[5]))) && (nval[5]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[4])) && (!(nval[4])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[4]))) && (nval[4]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[3])) && (!(nval[3])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[3]))) && (nval[3]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[2])) && (!(nval[2])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[2]))) && (nval[2]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[1])) && (!(nval[1])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[1]))) && (nval[1]))/*sk_src_..pTest1.sk:24*/
+    {
+      done = 1;
+      _pac_sc_s0_s7 = 0;
+    }
+    if(((!(done)) && (idx[0])) && (!(nval[0])))/*sk_src_..pTest1.sk:20*/
+    {
+      _pac_sc_s0_s7 = 1;
+      done = 1;
+    }
+    if(((!(done)) && (!(idx[0]))) && (nval[0]))/*sk_src_..pTest1.sk:24*/
+    {
+      _pac_sc_s0_s7 = 0;
+    }
+    _pac_sc_s0 = _pac_sc_s0_s7;
+  }
+  if(_pac_sc_s0)/*sk_src_..pTest1.sk:50*/
+  {
+    _out = 0;
+  }
+  else
+  {
+    _out = A ^ B;
+  }
+  return;
+}

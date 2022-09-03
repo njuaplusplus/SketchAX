@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test96.sk:11*/
+
+void boo (int i, ref int _out)/*sk_src_..Test96.sk:11*/
+{
+  _out = 0;
+  _out = i - 1;
+  return;
+}
+/*sk_src_..Test96.sk:2*/
+
+void foo (int i, ref int _out)  implements pbe_foo
+{
+  _out = 0;
+  _out = -1 + i;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,8 @@
+void GFMul02sk (bit[8] in, ref bit[8] _out)  implements pbe_GFMul02sk
+{
+  _out = ((bit[8])0);
+  bit[8] m1 = (in >> 7) & ({1,0,0,0,0,0,0,0});
+  bit[8] m2 = (m1 << 1) | m1;
+  _out = (in << 1) ^ ((m2 << 3) | m2);
+  return;
+}

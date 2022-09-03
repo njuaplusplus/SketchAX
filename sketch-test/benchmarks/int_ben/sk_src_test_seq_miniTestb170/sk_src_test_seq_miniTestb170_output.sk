@@ -1,0 +1,25 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+struct Node {
+    int val;
+    int next;
+}
+/*sk_src_..stb170.sk:20*/
+
+void rest (int i, ref int _out)/*sk_src_..stb170.sk:20*/
+{
+  _out = 0;
+  _out = i;
+  return;
+}
+/*sk_src_..stb170.sk:8*/
+
+void test (int i, ref int _out)  implements pbe_test
+{
+  _out = 0;
+  Node@ANONYMOUS n;
+  n = new Node();
+  n.val = i;
+  _out = i;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

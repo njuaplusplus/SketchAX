@@ -1,0 +1,7 @@
+void debug (bit[3] in, ref bit[3] _out)  implements pbe_debug
+{
+  _out = ((bit[3])0);
+  bit[3] tmp3 = ((in << 1) ^ in) & ({0,0,1});
+  _out = ((tmp3 >> 1) ^ tmp3) ^ in;
+  return;
+}

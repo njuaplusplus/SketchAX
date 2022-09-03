@@ -1,0 +1,197 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+struct node {
+    node next;
+    bit val;
+}
+struct list {
+    node head;
+    node tail;
+}
+/*sk_src_..everse.sk:88*/
+
+void populate (bit[3] elems, int n, ref list _out)/*sk_src_..everse.sk:88*/
+{
+  _out = null;
+  _out = new list();
+  node@ANONYMOUS prev = null;
+  for(int i = 0; i < n; i = i + 1)/*Canonical*/
+  {
+    node@ANONYMOUS t = new node();
+    t.val = elems[i];
+    if(prev != (null))/*sk_src_..everse.sk:94*/
+    {
+      prev.next = t;
+    }
+    prev = t;
+    if(i == 0)/*sk_src_..everse.sk:96*/
+    {
+      _out.head = t;
+    }
+  }
+  _out.tail = prev;
+  return;
+}
+/*sk_src_..everse.sk:15*/
+
+void reverse (list l, ref list _out)/*sk_src_..everse.sk:15*/
+{
+  _out = null;
+  if((l.head) == (null))/*sk_src_..everse.sk:16*/
+  {
+    _out = l;
+    return;
+  }
+  else
+  {
+    assert ((l.head) != (null)); //Assert at sk_src_..everse.sk:44 (2)
+    node@ANONYMOUS n_s33 = l.head;
+    l.head = l.head.next;
+    if((l.head) == (null))/*sk_src_..everse.sk:47*/
+    {
+      assert ((l.tail) == n_s33); //Assert at sk_src_..everse.sk:47 (0)
+      l.tail = null;
+    }
+    list@ANONYMOUS l2 = new list();
+    l2.head = n_s33;
+    l2.tail = n_s33;
+    n_s33.next = null;
+    list@ANONYMOUS _out_s35 = null;
+    reverse(l, _out_s35);
+    list@ANONYMOUS _out_s37 = null;
+    if((_out_s35.head) == (null))/*sk_src_..everse.sk:30*/
+    {
+      _out_s37 = l2;
+    }
+    else
+    {
+      if((l2.head) == (null))/*sk_src_..everse.sk:33*/
+      {
+        _out_s37 = _out_s35;
+      }
+      else
+      {
+        _out_s35.tail.next = l2.head;
+        _out_s35.tail = l2.tail;
+        _out_s37 = _out_s35;
+      }
+    }
+    _out = _out_s37;
+    return;
+  }
+}
+/*sk_src_..everse.sk:73*/
+
+void reverseSK (list l, ref list _out)/*sk_src_..everse.sk:73*/
+{
+  _out = null;
+  _out = new list();
+  _out.head = null;
+  _out.tail = null;
+  node@ANONYMOUS n1_s20 = null;
+  node@ANONYMOUS t;
+  t = l.tail;
+  bit c = n1_s20 != t;
+  node@ANONYMOUS tmp = null;
+  while(c)
+  {
+    {
+      {
+        {
+          node@ANONYMOUS t_0 = _out.head;
+          node@ANONYMOUS t_1 = _out.tail;
+          if(t_0 == t_1)/*sk_src_..everse.sk:81*/
+          {
+            node@ANONYMOUS t_2 = l.head;
+            _out.tail = t_2;
+          }
+          node@ANONYMOUS t_3 = l.tail;
+          node@ANONYMOUS t_4 = _out.head;
+          if(t_3 != t_4)/*sk_src_..everse.sk:81*/
+          {
+            node@ANONYMOUS t_5 = _out.tail;
+            _out.head = t_5;
+          }
+          node@ANONYMOUS t_6 = l.tail;
+          node@ANONYMOUS t_7 = _out.head;
+          if(t_6 != t_7)/*sk_src_..everse.sk:81*/
+          {
+            node@ANONYMOUS t_8 = _out.tail;
+            assert (t_8 != (null)); //Assert at sk_src_..everse.sk:56 (39)
+            t_8 = t_8.next;
+            _out.tail = t_8;
+          }
+          _out.head.next = tmp;
+          node@ANONYMOUS t_9 = l.tail;
+          node@ANONYMOUS t_10 = _out.head;
+          if(t_9 != t_10)/*sk_src_..everse.sk:81*/
+          {
+            node@ANONYMOUS t_11 = _out.head;
+            tmp = t_11;
+          }
+          node@ANONYMOUS t_12 = l.head;
+          node@ANONYMOUS t_13 = _out.tail;
+          c = t_12 != t_13;
+        }
+      }
+    }
+  }
+  return;
+}
+/*sk_src_..everse.sk:105*/
+
+void serialize (list l, int n, ref bit[3] _out)/*sk_src_..everse.sk:105*/
+{
+  _out = ((bit[3])0);
+  _out = ((bit[3])0);
+  node@ANONYMOUS t = l.head;
+  node@ANONYMOUS prev = null;
+  for(int i = 0; i < n; i = i + 1)/*Canonical*/
+  {
+    assert (t != (null)); //Assert at sk_src_..everse.sk:110 (5)
+    _out[i] = t.val;
+    prev = t;
+    t = t.next;
+  }
+  assert (prev == (l.tail)); //Assert at sk_src_..everse.sk:115 (2)
+  assert (t == (null)); //Assert at sk_src_..everse.sk:116 (2)
+  return;
+}
+/*sk_src_..everse.sk:131*/
+
+void sketch (bit[3] elems, int n_0, ref bit[3] _out)  implements pbe_sketch
+{
+  _out = ((bit[3])0);
+  int n = n_0;
+  if(n_0 >= 3)/*sk_src_..everse.sk:132*/
+  {
+    n = 3;
+  }
+  list@ANONYMOUS l_s6 = null;
+  populate(elems, n, l_s6);
+  list@ANONYMOUS l_s8 = null;
+  reverseSK(l_s6, l_s8);
+  bit[3] _out_s10 = {0,0,0};
+  serialize(l_s8, n, _out_s10);
+  _out = _out_s10;
+  return;
+}
+/*sk_src_..everse.sk:121*/
+
+void spec (bit[3] elems, int n_0, ref bit[3] _out)/*sk_src_..everse.sk:121*/
+{
+  _out = ((bit[3])0);
+  int n = n_0;
+  if(n_0 >= 3)/*sk_src_..everse.sk:122*/
+  {
+    n = 3;
+  }
+  list@ANONYMOUS l_s27 = null;
+  populate(elems, n, l_s27);
+  list@ANONYMOUS l_s29 = null;
+  reverse(l_s27, l_s29);
+  bit[3] _out_s31 = {0,0,0};
+  serialize(l_s29, n, _out_s31);
+  _out = _out_s31;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

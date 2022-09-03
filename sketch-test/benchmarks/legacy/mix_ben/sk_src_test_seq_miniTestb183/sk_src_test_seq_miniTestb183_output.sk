@@ -1,0 +1,26 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb183.sk:6*/
+
+void sk1 (int x, int y, ref bit _out)  implements pbe_sk1
+{
+  _out = 0;
+  _out = (x + 5) > y;
+  return;
+}
+/*sk_src_..stb183.sk:11*/
+
+void sk2 (int x, int y, ref bit _out)  implements spec/*sk_src_..stb183.sk:11*/
+{
+  _out = 0;
+  _out = ((x + 20) - 15) > y;
+  return;
+}
+/*sk_src_..stb183.sk:2*/
+
+void spec (int x, int y, ref bit _out)/*sk_src_..stb183.sk:2*/
+{
+  _out = 0;
+  _out = (x + 5) > y;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

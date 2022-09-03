@@ -1,0 +1,6 @@
+void sk1 (int x, int y, ref bit _out)  implements pbe_sk1
+{
+  _out = 0;
+  _out = (x + 5) > y;
+  return;
+}

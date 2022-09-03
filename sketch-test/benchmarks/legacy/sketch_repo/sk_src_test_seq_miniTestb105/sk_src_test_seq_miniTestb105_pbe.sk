@@ -1,0 +1,7 @@
+bit foo(int arr, bit org){
+	return (1 == arr) && org; 
+}
+
+bit pbe_fooSK(int arr, bit org) {
+	return (?? == arr) && org; 
+}

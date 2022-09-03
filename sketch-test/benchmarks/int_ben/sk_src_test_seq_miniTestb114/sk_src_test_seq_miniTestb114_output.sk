@@ -1,0 +1,56 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+struct Queue {
+    Node head;
+    Node tail;
+}
+struct Node {
+    int val;
+    Node next;
+}
+/*sk_src_..stb114.sk:20*/
+
+void newNode (int i, ref Node _out)/*sk_src_..stb114.sk:20*/
+{
+  _out = null;
+  _out = new Node();
+  _out.val = i;
+  _out.next = null;
+  return;
+}
+/*sk_src_..stb114.sk:13*/
+
+void newQueue (ref Queue _out)/*sk_src_..stb114.sk:13*/
+{
+  _out = null;
+  _out = new Queue();
+  _out.head = null;
+  _out.tail = null;
+  return;
+}
+/*sk_src_..stb114.sk:36*/
+
+void rest (int in, ref int _out)  implements pbe_rest
+{
+  _out = 0;
+  Queue@ANONYMOUS q_s1 = null;
+  newQueue(q_s1);
+  Node@ANONYMOUS _out_s3 = null;
+  newNode(5, _out_s3);
+  q_s1.head = _out_s3;
+  _out = (q_s1.head.val) + in;
+  return;
+}
+/*sk_src_..stb114.sk:30*/
+
+void test (int in, ref int _out)/*sk_src_..stb114.sk:30*/
+{
+  _out = 0;
+  Queue@ANONYMOUS q_s5 = null;
+  newQueue(q_s5);
+  Node@ANONYMOUS _out_s7 = null;
+  newNode(5, _out_s7);
+  q_s5.head = _out_s7;
+  _out = (q_s5.head.val) + in;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

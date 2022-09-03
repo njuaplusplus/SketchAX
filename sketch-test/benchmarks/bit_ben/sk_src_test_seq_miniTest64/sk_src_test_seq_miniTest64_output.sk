@@ -1,0 +1,28 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test64.sk:18*/
+
+void sum (bit[4] in, ref bit _out)/*sk_src_..Test64.sk:18*/
+{
+  _out = 0;
+  _out = 1;
+  return;
+}
+/*sk_src_..Test64.sk:1*/
+
+void tableSum (bit[4] in, ref bit _out)  implements pbe_tableSum
+{
+  _out = 0;
+  bit x3 = ((in[1]) && (in[2])) ^ ((in[1]) && (in[2]));
+  x3 = !(x3);
+  _out = 0;
+  if(x3 > 0)/*sk_src_..Test64.sk:10*/
+  {
+    _out = 1;
+  }
+  else
+  {
+    _out = 0;
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

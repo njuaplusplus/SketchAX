@@ -1,0 +1,20 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..opTest.sk:1*/
+
+void debug (bit[4] in, ref bit _out)  implements pbe_debug
+{
+  _out = 0;
+  _out = 0;
+  _out = in[1];
+  _out = in[2];
+  return;
+}
+/*sk_src_..opTest.sk:11*/
+
+void loopTest (bit[4] in, ref bit _out)/*sk_src_..opTest.sk:11*/
+{
+  _out = 0;
+  _out = in[2];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

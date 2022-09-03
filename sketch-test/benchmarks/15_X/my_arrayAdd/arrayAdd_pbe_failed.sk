@@ -1,0 +1,10 @@
+int N = 4;
+
+int[N] addSK1 (int[N] input1, int[N] input2) {
+    int[N] output=0;
+    repeat(??) {
+            output[??] = input1[??] + input2[??];
+    }
+    return output;
+}
+

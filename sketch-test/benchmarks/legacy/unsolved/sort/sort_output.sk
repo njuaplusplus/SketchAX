@@ -1,0 +1,51 @@
+void MergeSort0 (int N, int[N] input, ref int[N] _out)  implements MergeSort1/*sort.sk:33*/
+{
+  _out = ((int[N])0);
+  _out = ((int[N])0);
+  if(N > 1)/*sort.sk:35*/
+  {
+    int No2a = N / 2;
+    int No2b = N - No2a;
+    int[No2a] firstHalf = input[0::No2a];
+    int[No2b] secondHalf = input[No2a::No2b];
+    int[No2a] firstHalf_s3;
+    MergeSort0(No2a, firstHalf, firstHalf_s3);
+    int[No2b] secondHalf_s5;
+    MergeSort0(No2b, secondHalf, secondHalf_s5);
+    int y = 0;
+    int x = 0;
+    for(int i = 0; i < N; i = i + 1)/*Canonical*/
+    {
+      bit xa_s57 = No2a != x;
+      bit xa;
+      xa = xa_s57;
+      if(xa_s57)/*generators.skh:126*/
+      {
+        bit xa_s57_0 = No2b != y;
+        bit xa_0 = xa_s57_0;
+        if(xa_s57_0)/*generators.skh:126*/
+        {
+          int _out_s71 = secondHalf_s5[y];
+          int _out_s71_0 = firstHalf_s3[x];
+          xa_0 = _out_s71 < _out_s71_0;
+        }
+        xa = !(xa_0);
+      }
+      if(xa)/*sort.sk:55*/
+      {
+        _out[i] = firstHalf_s3[x];
+        x = x + 1;
+      }
+      else
+      {
+        _out[i] = secondHalf_s5[y];
+        y = y + 1;
+      }
+    }
+  }
+  else
+  {
+    _out = input;
+  }
+  return;
+}

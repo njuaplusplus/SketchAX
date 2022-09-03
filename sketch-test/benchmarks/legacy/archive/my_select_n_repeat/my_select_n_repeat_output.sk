@@ -1,0 +1,61 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*my_sele..repeat.sk:3*/
+
+void select (int[8] input, int n, ref int _out)/*my_sele..repeat.sk:3*/
+{
+  _out = 0;
+  if(n >= 8)/*my_sele..repeat.sk:4*/
+  {
+    _out = -1;
+    return;
+  }
+  _out = input[n];
+  return;
+}
+/*my_sele..repeat.sk:8*/
+
+void selectSK0 (int[8] input, int n, ref int _out)  implements pbe_selectSK0
+{
+  _out = 0;
+  if(n >= 8)/*my_sele..repeat.sk:9*/
+  {
+    _out = -1;
+    return;
+  }
+  int output = 29;
+  if(0 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[0]) + 22) - 22;
+  }
+  if(1 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[1]) + 16) - 16;
+  }
+  if(2 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[2]) + 3) - 3;
+  }
+  if(3 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[3]) + 31) - 31;
+  }
+  if(4 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[4]) + 28) - 28;
+  }
+  if(5 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[5]) + 31) - 31;
+  }
+  if(6 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[6]) + 31) - 31;
+  }
+  if(7 == n)/*my_sele..repeat.sk:14*/
+  {
+    output = ((input[7]) + 31) - 31;
+  }
+  _out = output;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

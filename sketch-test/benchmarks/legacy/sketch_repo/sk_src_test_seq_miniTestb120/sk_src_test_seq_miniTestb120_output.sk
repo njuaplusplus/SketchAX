@@ -1,0 +1,11 @@
+void SKrouter (int dest_port, ref int _out)  implements pbe_SKrouter
+{
+  _out = 0;
+  if(dest_port == 22)/*sk_src_..stb120.sk:22*/
+  {
+    _out = 1;
+    return;
+  }
+  _out = 0;
+  return;
+}

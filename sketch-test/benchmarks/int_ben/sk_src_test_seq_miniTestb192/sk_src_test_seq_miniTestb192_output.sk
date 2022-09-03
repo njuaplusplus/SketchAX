@@ -1,0 +1,19 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb192.sk:8*/
+
+void sketch (int x, int y, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  _out = 3 + (x + y);
+  return;
+}
+/*sk_src_..stb192.sk:2*/
+
+void spec (int x, int y, ref int _out)/*sk_src_..stb192.sk:2*/
+{
+  _out = 0;
+  _out = x + y;
+  _out = _out + 3;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

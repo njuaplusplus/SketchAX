@@ -1,0 +1,10 @@
+void sketch (int x, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  Foo@ANONYMOUS f = new Foo();
+  int _out_s1 = 0;
+  spec(x, _out_s1);
+  f.x = _out_s1;
+  _out = f.x;
+  return;
+}

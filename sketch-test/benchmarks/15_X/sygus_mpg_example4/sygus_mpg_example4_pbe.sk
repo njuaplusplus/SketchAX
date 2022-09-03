@@ -1,0 +1,33 @@
+int select(int x, int y, int z, int z1) {
+    if ( 2*x+ z - z1 >= -y) {
+        if (x + z1 <= y) {
+           return 10*x + 20*y + 15*z - 99;
+        } else {
+           return 9*y + 25*z1 - 11;
+        }
+    } else {
+        if (x + 3*z + z1 <= -9) {
+           return 11*x + 15*y + 30*z + 22*z1 + 11;
+        } else {
+           return 16*x + 18*z + 5*z1  - 55;
+        }
+    }
+}
+
+int pbe_selectSK0 (int x, int y, int z, int z1)  {
+    if ( ??*x+ z - z1 >= -y) {
+        if (x + z1 <= y) {
+           return ??*x + 20*y + 15*z - 99;
+        } else {
+           return 9*y + 25*z1 - 11;
+        }
+    } else {
+        if (x + 3*z + z1 <= -9) {
+           return ??*x + 15*y + 30*z + 22*z1 + 11;
+        } else {
+           return 16*x + 18*z + 5*z1  - 55;
+        }
+    }
+}
+
+

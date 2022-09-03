@@ -1,0 +1,9 @@
+
+bit test(bit a, bit b, bit c, bit d){	
+	return (a & b) & (c & d);	
+}
+
+bit pbe_sk(bit a, bit b, bit c, bit d) {
+	
+	return ?? & (( (a & c) & b ) & d);	
+}

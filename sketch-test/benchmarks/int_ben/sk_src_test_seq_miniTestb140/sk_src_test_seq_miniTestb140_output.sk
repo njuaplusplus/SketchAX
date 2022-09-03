@@ -1,0 +1,19 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb140.sk:6*/
+
+void sk (int in, ref int _out)  implements pbe_sk
+{
+  _out = 0;
+  assert (in == ((in + 2) - 2)); //Assert at sk_src_..stb140.sk:7 (2)
+  _out = in;
+  return;
+}
+/*sk_src_..stb140.sk:2*/
+
+void test (int in, ref int _out)/*sk_src_..stb140.sk:2*/
+{
+  _out = 0;
+  _out = in;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

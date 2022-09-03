@@ -1,0 +1,33 @@
+int select(int x, int y) {
+    if (x+y <= 1) {
+        return 10*(x+y+1);
+    } else if (x+y <=2) {
+        return 20*(x+y-1);
+    } else if (x+y<=3) {
+        return 30*(x+y+1);
+    } else if (x+y <= 4) {
+        return 40*(x+y-1);
+    } else if (x+y <= 5) {
+        return 50*(x+y+1);
+    } else {
+        return 60*(x+y-1);
+    }
+}
+
+int pbe_selectSK0 (int x, int y)  {
+    if (x+y <= 1) {
+        return 10*(x+y+1);
+    } else if (x+y <=2) {
+        return 20*(x+y-1);
+    } else if (x+y<=3) {
+        return 30*(x+y+1);
+    } else if (x+y <= 4) {
+        return 40*(x+y-1);
+    } else if (x+y <= 5) {
+        return 50*(x+y+??);
+    } else {
+        return 60*(x+y-??);
+    }
+}
+
+

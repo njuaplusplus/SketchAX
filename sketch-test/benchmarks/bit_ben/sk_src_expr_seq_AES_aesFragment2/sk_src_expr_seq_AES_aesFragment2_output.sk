@@ -1,0 +1,74 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..gment2.sk:63*/
+
+void GFM02 (bit[8] input, ref bit[8] _out)/*sk_src_..gment2.sk:63*/
+{
+  _out = ((bit[8])0);
+  bit[9] in = {0,0,0,0,0,0,0,0,0};
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    in[i + 1] = input[i];
+  }
+  bit[9] modpoly = {1,1,0,1,1,0,0,0,1};
+  for(int k = 0; k < 8; k = k + 1)/*Canonical*/
+  {
+    if((in[8]) == 1)/*sk_src_..gment2.sk:79*/
+    {
+      in[k] = (in[k]) ^ (modpoly[k]);
+    }
+  }
+  for(int i_0 = 0; i_0 < 8; i_0 = i_0 + 1)/*Canonical*/
+  {
+    _out[i_0] = in[i_0];
+  }
+  return;
+}
+/*sk_src_..gment2.sk:32*/
+
+void GFM03 (bit[8] input, ref bit[8] _out)/*sk_src_..gment2.sk:32*/
+{
+  _out = ((bit[8])0);
+  bit[9] in = {0,0,0,0,0,0,0,0,0};
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    in[i + 1] = input[i];
+  }
+  for(int i_0 = 0; i_0 < 8; i_0 = i_0 + 1)/*Canonical*/
+  {
+    in[i_0] = (in[i_0]) ^ (input[i_0]);
+  }
+  bit[9] modpoly = {1,1,0,1,1,0,0,0,1};
+  if((in[8]) == 1)/*sk_src_..gment2.sk:52*/
+  {
+    for(int k = 0; k < 8; k = k + 1)/*Canonical*/
+    {
+      in[k] = (in[k]) ^ (modpoly[k]);
+    }
+  }
+  for(int i_1 = 0; i_1 < 8; i_1 = i_1 + 1)/*Canonical*/
+  {
+    _out[i_1] = in[i_1];
+  }
+  return;
+}
+/*sk_src_..gment2.sk:24*/
+
+void GFMul02sk (bit[8] in, ref bit[8] _out)  implements pbe_GFMul02sk
+{
+  _out = ((bit[8])0);
+  bit[8] m1 = (in >> 7) & ({1,0,0,0,0,0,0,0});
+  bit[8] m2 = (m1 << 3) | m1;
+  _out = (in << 1) ^ ((m2 << 1) | m2);
+  return;
+}
+/*sk_src_..gment2.sk:28*/
+
+void GFMul03sk (bit[8] in, ref bit[8] _out)  implements GFM03/*sk_src_..gment2.sk:28*/
+{
+  _out = ((bit[8])0);
+  bit[8] m1 = (in >> 7) & ({1,0,0,0,0,0,0,0});
+  bit[8] m2 = (m1 << 1) | m1;
+  _out = ((in << 1) ^ in) ^ ((m2 << 3) | m2);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

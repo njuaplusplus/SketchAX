@@ -1,0 +1,6 @@
+void foo (int i, ref int _out)  implements pbe_foo
+{
+  _out = 0;
+  _out = -1 + i;
+  return;
+}

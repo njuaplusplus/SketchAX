@@ -1,0 +1,29 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test51.sk:10*/
+
+void reverse (bit[3] in, bit[3] in2, ref bit _out)/*sk_src_..Test51.sk:10*/
+{
+  _out = 0;
+  int idx1 = ((int)in);
+  int idx;
+  idx = idx1;
+  if(idx1 > 2)/*sk_src_..Test51.sk:13*/
+  {
+    idx = 2;
+  }
+  _out = in2[idx];
+  return;
+}
+/*sk_src_..Test51.sk:1*/
+
+void reverseSketch (bit[3] in, bit[3] in2, ref bit _out)  implements pbe_reverseSketch
+{
+  _out = 0;
+  int[8] fu = {0,1,2,2,2,2,2,2};
+  int idx1 = ((int)in);
+  int idx;
+  idx = fu[idx1];
+  _out = in2[idx];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

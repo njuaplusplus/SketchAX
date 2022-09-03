@@ -1,0 +1,13 @@
+
+int pbe_foo(int i) {
+	int x = -1;
+	if(??){
+		x = 0;			
+	}	
+	return x + i;	
+}
+
+
+int boo(int i){
+	return i-1;;	
+}

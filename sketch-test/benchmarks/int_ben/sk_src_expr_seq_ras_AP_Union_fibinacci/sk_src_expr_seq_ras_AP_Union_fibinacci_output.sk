@@ -1,0 +1,43 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..inacci.sk:5*/
+
+void _main (int x, ref int _out)  implements pbe__main
+{
+  _out = 0;
+  int _out_s1 = 0;
+  fib(12, _out_s1);
+  assert (_out_s1 == 233); //Assert at sk_src_..inacci.sk:7 (0)
+  _out = 1;
+  return;
+}
+/*sk_src_..inacci.sk:3*/
+
+void dummy (int x, ref int _out)/*sk_src_..inacci.sk:3*/
+{
+  _out = 0;
+  _out = 1;
+  return;
+}
+/*sk_src_..inacci.sk:11*/
+
+void fib (int x, ref int _out)/*sk_src_..inacci.sk:11*/
+{
+  _out = 0;
+  if(x == 0)/*sk_src_..inacci.sk:12*/
+  {
+    _out = 1;
+    return;
+  }
+  if(x == 1)/*sk_src_..inacci.sk:13*/
+  {
+    _out = 1;
+    return;
+  }
+  int _out_s3 = 0;
+  fib(x - 1, _out_s3);
+  int _out_s5 = 0;
+  fib(x - 2, _out_s5);
+  _out = _out_s3 + _out_s5;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,16 @@
+int W=4;
+
+int sum4LessSK1(int[W] in, int v)
+{
+    int cnt=??;
+    repeat(??)
+    {
+        // if ({| in[??] (== | != | > | >=) v | ??  |}) {
+        if ({| in[??] (== | != | > | < ) v | ??  |}) {
+            cnt += {| in[??] | ?? |};
+        }
+    }
+    return cnt;
+}
+
+

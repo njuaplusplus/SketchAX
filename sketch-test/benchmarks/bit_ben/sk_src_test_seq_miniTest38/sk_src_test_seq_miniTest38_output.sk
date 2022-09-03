@@ -1,0 +1,26 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test38.sk:1*/
+
+void miniTest (bit[4] in_0, bit[2] in2, ref bit[4] _out)/*sk_src_..Test38.sk:1*/
+{
+  _out = ((bit[4])0);
+  bit[4] in = in_0;
+  int i;
+  i = ((int)in2);
+  in[i] = 1;
+  _out = in;
+  return;
+}
+/*sk_src_..Test38.sk:8*/
+
+void miniTestSK (bit[4] in_0, bit[2] in2, ref bit[4] _out)  implements pbe_miniTestSK
+{
+  _out = ((bit[4])0);
+  bit[4] in = in_0;
+  int i;
+  i = ((int)in2);
+  in[i] = 1;
+  _out = in;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

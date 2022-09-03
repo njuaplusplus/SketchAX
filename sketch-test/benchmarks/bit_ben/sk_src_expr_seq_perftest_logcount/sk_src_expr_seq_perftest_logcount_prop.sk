@@ -1,0 +1,55 @@
+int W=8;
+
+bit[W] countBits(bit[W] in)
+{
+	bit[W] ret=0;
+	bit[W] tmp = 0;
+	tmp[0] = 1;
+	for(int i=0;i<W;i++){
+		if(in[i])
+			ret=ret+tmp;
+	}
+	return ret;
+}
+
+
+
+bit[W] pbe_countSketch2(bit[W] in) 
+{
+	bit[W] tmp=in;
+	loop({*})
+	{
+		bit[W] m={*};
+		tmp=(tmp & m) + (tmp>>{*} & m);
+	}
+	return tmp;
+}
+
+bit is_permutation(int[W] y) {
+    bit[W] res = 0;
+    for (int i=0; i<W; i++) {
+        if (y[i]<0 || y[i]>=W || res[y[i]] == 1) {
+            return 0;
+        } else {
+            res[y[i]] = 1;
+        }
+    }
+    return 1;
+}
+
+bit[W] permute(bit[W]x, int[W] ind){
+    bit[W] res = 0;
+    for(int i=0; i<W; i++){
+        res[i]= x[ind[i]];
+    }
+    return res;
+}
+
+
+harness void test_permutation_invar(bit[W] x, int[W] y) {
+    if (!is_permutation(y)) return;
+    bit[W] xp = permute(x,y);
+    assert pbe_countSketch2(x) == pbe_countSketch2(xp);
+}
+
+

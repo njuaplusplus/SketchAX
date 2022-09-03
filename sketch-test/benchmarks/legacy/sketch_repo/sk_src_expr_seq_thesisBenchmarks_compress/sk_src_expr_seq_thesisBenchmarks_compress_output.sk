@@ -1,0 +1,40 @@
+void fast (bit[8] x_0, bit[8] m_1, ref bit[8] _out)  implements pbe_fast
+{
+  _out = ((bit[8])0);
+  bit[8] x = x_0;
+  x = x_0 & m_1;
+  bit[8] mk = (!(m_1)) << 1;
+  bit[8] mp = mk ^ (mk << 16);
+  mp = mp ^ (mp << 0);
+  mp = mp ^ (mp << 6);
+  bit[8] mv = mp & m_1;
+  bit[8] t = m_1 & mv;
+  bit[8] m_s1 = (m_1 ^ t) | (t >> 4);
+  bit[8] t_0 = x & mv;
+  bit[8] x_s3 = (x ^ t_0) | (t_0 >> 0);
+  mk = mk & (!(mp));
+  mp = mk ^ (mk << 1);
+  mp = mp ^ (mp << 4);
+  mp = mp ^ (mp << 2);
+  mv = mp & m_s1;
+  bit[8] t_1 = m_s1 & mv;
+  bit[8] m_s1_0 = (m_s1 ^ t_1) | (t_1 >> 1);
+  bit[8] t_2 = x_s3 & mv;
+  bit[8] x_s3_0 = (x_s3 ^ t_2) | (t_2 >> 1);
+  mk = mk & (!(mp));
+  mp = mk ^ (mk << 1);
+  mp = mp ^ (mp << 2);
+  mp = mp ^ (mp << 4);
+  mv = mp & m_s1_0;
+  bit[8] t_3 = m_s1_0 & mv;
+  bit[8] t_4 = x_s3_0 & mv;
+  bit[8] x_s3_1 = (x_s3_0 ^ t_4) | (t_4 >> 2);
+  mk = mk & (!(mp));
+  mp = mk ^ (mk << 1);
+  mp = mp ^ (mp << 14);
+  mp = mp ^ (mp << 2);
+  mv = mp & ((m_s1_0 ^ t_3) | (t_3 >> 2));
+  bit[8] t_5 = x_s3_1 & mv;
+  _out = (x_s3_1 ^ t_5) | (t_5 >> 4);
+  return;
+}

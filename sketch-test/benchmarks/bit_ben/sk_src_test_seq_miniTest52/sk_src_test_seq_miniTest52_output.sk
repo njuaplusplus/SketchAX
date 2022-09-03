@@ -1,0 +1,59 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test52.sk:34*/
+
+void reverse (bit[8] in, ref bit[4] _out)/*sk_src_..Test52.sk:34*/
+{
+  _out = ((bit[4])0);
+  int[16] tmp = {3,4,5,6,7,8,9,10,11,12,13,14,15,0,1,2};
+  bit[4] a = ((bit[4])0);
+  bit[4] b;
+  b = ((bit[4])0);
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    a[i] = in[i];
+    b[i] = in[4 + i];
+  }
+  int v_0 = tmp[((int)a)];
+  bit[4] out_s1 = ((bit[4])0);
+  int v = v_0;
+  for(int i_0 = 0; i_0 < 4; i_0 = i_0 + 1)/*Canonical*/
+  {
+    out_s1[i_0] = (v % 2) > 0;
+    v = v / 2;
+  }
+  int v_0_0 = tmp[((int)b)];
+  bit[4] _out_s3 = ((bit[4])0);
+  int v_0_1 = v_0_0;
+  for(int i_1 = 0; i_1 < 4; i_1 = i_1 + 1)/*Canonical*/
+  {
+    _out_s3[i_1] = (v_0_1 % 2) > 0;
+    v_0_1 = v_0_1 / 2;
+  }
+  _out = (out_s1 << 1) ^ _out_s3;
+  return;
+}
+/*sk_src_..Test52.sk:13*/
+
+void reverseSketch (bit[8] in, ref bit[4] _out)  implements pbe_reverseSketch
+{
+  _out = ((bit[4])0);
+  _out = ((bit[4])0);
+  bit[64] Ta = {0,1,0,0,0,0,1,1,0,1,1,1,0,0,0,1,0,1,0,1,0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,1,1,0,1,1,1,0,0,0,1,0,1,0,1,0,0,1,0,0,1,1,0,0,0,0,0};
+  bit[64] Tb = {1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,1,1,0,0,0,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,0,0,0,1,1,0,0,1,0,1,0,1,1,1,0,1,0,0,1,0,1,0,1,0,0,1,1,0};
+  bit[4] a = ((bit[4])0);
+  bit[4] b;
+  b = ((bit[4])0);
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    a[i] = in[i];
+    b[i] = in[4 + i];
+  }
+  int inva = ((int)a);
+  int invb = ((int)b);
+  for(int i_0 = 0; i_0 < 4; i_0 = i_0 + 1)/*Canonical*/
+  {
+    _out[i_0] = (Ta[(inva * 4) + i_0]) ^ (Tb[(invb * 4) + i_0]);
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

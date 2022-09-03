@@ -1,0 +1,37 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_.._GFMul.sk:13*/
+
+void GFMul02 (bit[8] in, ref bit[8] _out)/*sk_src_.._GFMul.sk:13*/
+{
+  _out = ((bit[8])0);
+  bit[9] tin = ((bit[9])0);
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    tin[i + 1] = in[i];
+  }
+  bit[9] modpoly = {1,1,0,1,1,0,0,0,1};
+  for(int k = 0; k < 8; k = k + 1)/*Canonical*/
+  {
+    if((tin[8]) == 1)/*sk_src_.._GFMul.sk:24*/
+    {
+      tin[k] = (tin[k]) ^ (modpoly[k]);
+    }
+  }
+  for(int k_0 = 0; k_0 < 8; k_0 = k_0 + 1)/*Canonical*/
+  {
+    _out[k_0] = tin[k_0];
+  }
+  return;
+}
+/*sk_src_.._GFMul.sk:5*/
+
+void GFMul02sk (bit[8] in, ref bit[8] _out)  implements pbe_GFMul02sk
+{
+  _out = ((bit[8])0);
+  bit[8] m = (in >> 7) & ({1,0,0,0,0,0,0,0});
+  m = (m << 3) | m;
+  m = (m << 1) | m;
+  _out = (in << 1) ^ m;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

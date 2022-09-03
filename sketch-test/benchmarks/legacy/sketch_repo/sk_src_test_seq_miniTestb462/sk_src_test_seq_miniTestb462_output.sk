@@ -1,0 +1,14 @@
+void sk (int i, int j, int k, int u, ref int _out)  implements pbe_sk
+{
+  _out = 0;
+  int t_s1 = 0;
+  maxp(i, k, t_s1);
+  int q_s3 = 0;
+  maxp(t_s1, j, q_s3);
+  int p_s5 = 0;
+  minp(10 - q_s3, 3, p_s5);
+  int _out_s7 = 0;
+  max(p_s5, u - 5, _out_s7);
+  _out = _out_s7;
+  return;
+}

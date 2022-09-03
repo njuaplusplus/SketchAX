@@ -1,0 +1,23 @@
+void dropThirdSK0 (int[24] in, ref int[16] _out)  implements dropThirdSK1
+{
+  _out = ((int[16])0);
+  _out[1] = in[1];
+  _out[2] = in[3];
+  _out[4] = in[6];
+  _out[3] = in[4];
+  _out[5] = in[7];
+  _out[8] = in[12];
+  _out[7] = in[10];
+  _out[6] = in[9];
+  _out[9] = in[13];
+  _out[11] = in[16];
+  _out[10] = in[15];
+  _out[0] = in[0];
+  _out[13] = in[19];
+  _out[12] = in[18];
+  _out[14] = in[21];
+  _out[15] = in[22];
+  return;
+}
+
+

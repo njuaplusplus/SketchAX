@@ -1,0 +1,24 @@
+int N = 2;
+
+generator int index(int i, int j){ /* automatically rewritten */
+    return i*N + j;
+}
+
+int[N*N] add(int[N*N] input1, int[N*N] input2){
+    int[N*N] output=0;
+    for(int i=0; i<N; ++i){
+        for(int j=0; j<N; ++j){
+            output[index(i,j)] = input1[index(i,j)] + input2[index(i,j)];
+        }
+    }
+    return output;
+}
+
+int[N*N] addSK0 (int[N*N] input1, int[N*N] input2) implements add{
+    int[N*N] output=0;
+    repeat(??) {
+            output[??] = input1[??] + input2[??];
+    }
+    return output;
+}
+

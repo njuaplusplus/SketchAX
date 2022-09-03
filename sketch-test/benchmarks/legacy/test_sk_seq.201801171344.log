@@ -1,0 +1,1944 @@
+====== Begin Test miniTest1 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest1/miniTest1_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,0,1}) == 1);
+    assert (pbe_reverseSketch({0,1,1,1}) == 1);
+    assert (pbe_reverseSketch({1,0,0,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest1 ======
+====== Begin Test miniTest10 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest10/miniTest10_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,1,0}) == 1);
+    assert (pbe_reverseSketch({1,1,1,1}) == 0);
+    assert (pbe_reverseSketch({0,0,0,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest10 ======
+====== Begin Test miniTest11 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest11/miniTest11_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,1,0}) == 1);
+    assert (pbe_reverseSketch({1,1,0,0}) == 0);
+    assert (pbe_reverseSketch({1,0,1,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest11 ======
+====== Begin Test miniTest12 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest12/miniTest12_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,0}) == 0);
+    assert (pbe_reverseSketch({0,0,1,0}) == 1);
+    assert (pbe_reverseSketch({0,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest12 ======
+====== Begin Test miniTest13 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest13/miniTest13_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,0,0,0}) == 0);
+    assert (pbe_reverseSketch({1,1,1,0,1}) == 0);
+    assert (pbe_reverseSketch({0,1,0,0,0}) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTest13 ======
+====== Begin Test miniTest14 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest14/miniTest14_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,1,1}) == 1);
+    assert (pbe_reverseSketch({0,1,0,1}) == 0);
+    assert (pbe_reverseSketch({1,0,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest14 ======
+====== Begin Test miniTest15 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest15/miniTest15_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,1}) == 1);
+    assert (pbe_reverseSketch({0,1,0,1}) == 1);
+    assert (pbe_reverseSketch({1,1,1,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest15 ======
+====== Begin Test miniTest16 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest16/miniTest16_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,0}) == {0,1,1,0});
+    assert (pbe_reverseSketch({1,0,0,0}) == {0,0,0,0});
+    assert (pbe_reverseSketch({0,0,1,1}) == {0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest16 ======
+====== Begin Test miniTest17 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest17/miniTest17_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,1}) == {1,0,0,1,0});
+    assert (pbe_reverseSketch({0,1,1,0}) == {0,1,1,0,0});
+    assert (pbe_reverseSketch({0,1,1,1}) == {0,1,1,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest17 ======
+====== Begin Test miniTest18 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest18/miniTest18_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,0}) == 0);
+    assert (pbe_reverseSketch({1,0,1,0}) == 1);
+    assert (pbe_reverseSketch({0,1,1,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest18 ======
+====== Begin Test miniTest19 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest19/miniTest19_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0,0}) == {0,0,0,0});
+    assert (pbe_reverseSketch({0,0,1,0}) == {1,0,1,0});
+    assert (pbe_reverseSketch({1,1,1,1}) == {0,1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest19 ======
+====== Begin Test miniTest2 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest2/miniTest2_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,0,0}) == 1);
+    assert (pbe_reverseSketch({1,0,0,1}) == 0);
+    assert (pbe_reverseSketch({0,0,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest2 ======
+====== Begin Test miniTest20 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest20/miniTest20_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,0,1}) == 1);
+    assert (pbe_reverseSketch({0,0,0,0,0}) == 0);
+    assert (pbe_reverseSketch({1,0,0,0,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest20 ======
+====== Begin Test miniTest21 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest21/miniTest21_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,0,0},{0,1,0}) == 1);
+    assert (pbe_reverseSketch({0,0,0},{1,1,1}) == 1);
+    assert (pbe_reverseSketch({1,1,0},{1,1,0}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest21 ======
+====== Begin Test miniTest22 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest22/miniTest22_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,1,1}) == 1);
+    assert (pbe_reverseSketch({1,0,1,1}) == 1);
+    assert (pbe_reverseSketch({1,1,1,0}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest22 ======
+====== Begin Test miniTest23 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest23/miniTest23_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,1}) == {0,0,1});
+    assert (pbe_miniTestSK({0,1,0}) == {1,0,0});
+    assert (pbe_miniTestSK({0,0,0}) == {0,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest23 ======
+====== Begin Test miniTest24 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest24/miniTest24_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_testSK({0,1,1,1}) == 1);
+    assert (pbe_testSK({1,0,0,0}) == 0);
+    assert (pbe_testSK({0,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest24 ======
+====== Begin Test miniTest26 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest26/miniTest26_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,1,1}) == {1,1,1});
+    assert (pbe_miniTestSK({1,0,1}) == {0,0,1});
+    assert (pbe_miniTestSK({1,0,0}) == {0,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest26 ======
+====== Begin Test miniTest28 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest28/miniTest28_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,0}) == {0,0,0});
+    assert (pbe_miniTestSK({1,1,1}) == {0,1,1});
+    assert (pbe_miniTestSK({0,0,1}) == {1,0,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest28 ======
+====== Begin Test miniTest29 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest29/miniTest29_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,1,1}) == {1,0,1});
+    assert (pbe_miniTestSK({0,0,0}) == {1,0,0});
+    assert (pbe_miniTestSK({1,0,1}) == {1,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest29 ======
+====== Begin Test miniTest3 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest3/miniTest3_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_simple({1,0,0,0,0,1,0,1,1,1,0,1}) == {0,0,0,0});
+    assert (pbe_simple({0,0,0,0,0,1,0,1,1,1,0,1}) == {1,0,0,0});
+    assert (pbe_simple({1,1,0,1,0,0,0,0,1,0,1,0}) == {0,0,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest3 ======
+====== Begin Test miniTest30 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest30/miniTest30_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,1}) == 1);
+    assert (pbe_miniTestSK({0,0,1,1}) == 1);
+    assert (pbe_miniTestSK({0,1,1,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest30 ======
+====== Begin Test miniTest31 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest31/miniTest31_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,1}) == 0);
+    assert (pbe_miniTestSK({1,0,0,0}) == 1);
+    assert (pbe_miniTestSK({1,1,0,1}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest31 ======
+====== Begin Test miniTest32 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest32/miniTest32_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,1,1}) == 1);
+    assert (pbe_miniTestSK({0,0,1,0}) == 0);
+    assert (pbe_miniTestSK({0,1,1,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest32 ======
+====== Begin Test miniTest33 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest33/miniTest33_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,1,0}) == {0,0,1,0});
+    assert (pbe_miniTestSK({0,0,0,0}) == {0,0,1,0});
+    assert (pbe_miniTestSK({0,0,1,1}) == {0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest33 ======
+====== Begin Test miniTest34 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest34/miniTest34_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,1}) == 1);
+    assert (pbe_miniTestSK({0,1,1,0}) == 1);
+    assert (pbe_miniTestSK({0,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest34 ======
+====== Begin Test miniTest35 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest35/miniTest35_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,1,1}) == 1);
+    assert (pbe_miniTestSK({0,0,1,1}) == 1);
+    assert (pbe_miniTestSK({1,0,1,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest35 ======
+====== Begin Test miniTest36 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest36/miniTest36_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,0,1}) == 0);
+    assert (pbe_miniTestSK({0,1,0,1}) == 0);
+    assert (pbe_miniTestSK({0,0,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest36 ======
+====== Begin Test miniTest37 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest37/miniTest37_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,0}) == 1);
+    assert (pbe_miniTestSK({0,1,0,1}) == 0);
+    assert (pbe_miniTestSK({0,0,1,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest37 ======
+====== Begin Test miniTest38 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest38/miniTest38_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,0,1},{0,1}) == {1,1,1,1});
+    assert (pbe_miniTestSK({1,1,1,0},{0,1}) == {1,1,1,0});
+    assert (pbe_miniTestSK({0,1,1,1},{1,1}) == {0,1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest38 ======
+====== Begin Test miniTest39 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest39/miniTest39_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,1,1}) == {1,1,1,1});
+    assert (pbe_miniTestSK({1,0,1,0}) == {0,1,1,0});
+    assert (pbe_miniTestSK({0,0,0,0}) == {1,1,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest39 ======
+====== Begin Test miniTest4 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest4/miniTest4_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,1}) == 1);
+    assert (pbe_reverseSketch({0,0,1,1}) == 1);
+    assert (pbe_reverseSketch({0,1,0,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest4 ======
+====== Begin Test miniTest40 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest40/miniTest40_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_tiledTranspose({0,0,1,1}) == {0,0,1,1});
+    assert (pbe_tiledTranspose({1,0,0,0}) == {1,0,0,0});
+    assert (pbe_tiledTranspose({1,0,1,0}) == {1,0,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest40 ======
+====== Begin Test miniTest41 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest41/miniTest41_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_tiledTranspose({1,0,1,0}) == {1,0,1,0});
+    assert (pbe_tiledTranspose({0,1,0,0}) == {0,1,0,0});
+    assert (pbe_tiledTranspose({0,0,0,0}) == {0,0,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest41 ======
+====== Begin Test miniTest48 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest48/miniTest48_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_MergeSort({1,1,0,0}) == {0,0,1,1});
+    assert (pbe_MergeSort({0,1,0,1}) == {0,0,1,1});
+    assert (pbe_MergeSort({0,1,0,0}) == {0,0,0,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest48 ======
+====== Begin Test miniTest49 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest49/miniTest49_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,0,0}) == {0,1,1,0});
+    assert (pbe_reverseSketch({1,0,0,0}) == {0,0,1,0});
+    assert (pbe_reverseSketch({1,0,0,1}) == {0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest49 ======
+====== Begin Test miniTest5 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest5/miniTest5_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,1,1}) == 0);
+    assert (pbe_reverseSketch({0,0,0,0}) == 0);
+    assert (pbe_reverseSketch({1,0,1,1}) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTest5 ======
+====== Begin Test miniTest50 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest50/miniTest50_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,1,1,0}) == 1);
+    assert (pbe_reverseSketch({1,1,1,0}) == 1);
+    assert (pbe_reverseSketch({0,0,1,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest50 ======
+====== Begin Test miniTest51 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest51/miniTest51_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,1},{0,0,1}) == 1);
+    assert (pbe_reverseSketch({0,0,0},{1,1,0}) == 1);
+    assert (pbe_reverseSketch({1,1,0},{0,1,1}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest51 ======
+====== Begin Test miniTest52 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest52/miniTest52_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,1,0,1,0,0,0}) == {0,1,0,1});
+    assert (pbe_reverseSketch({1,1,1,1,1,0,1,1}) == {0,0,1,0});
+    assert (pbe_reverseSketch({1,1,1,0,0,1,1,1}) == {1,0,1,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTest52 ======
+====== Begin Test miniTest53 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest53/miniTest53_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,1,1}) == {1,0,0});
+    assert (pbe_miniTestSK({0,1,0}) == {0,0,1});
+    assert (pbe_miniTestSK({1,0,0}) == {1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest53 ======
+====== Begin Test miniTest54 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest54/miniTest54_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_tableSum({0,1},{0,0}) == {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+    assert (pbe_tableSum({1,1},{1,1}) == {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+    assert (pbe_tableSum({0,1},{1,1}) == {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTest54 ======
+====== Begin Test miniTest55 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest55/miniTest55_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({0,0,1}) == {0,1,1});
+    assert (pbe_miniTestSK({0,1,1}) == {0,0,1});
+    assert (pbe_miniTestSK({1,0,1}) == {1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest55 ======
+====== Begin Test miniTest56 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest56/miniTest56_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_normalRoundsk({1,1,1,0,1,0,1,1,0,0,0,1,0,0,1,0,0,1,1,1,1,0,1,1,0,0,0,1,1,1,0,0}) == {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+    assert (pbe_normalRoundsk({1,0,0,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1,1,1,0,1,0}) == {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+    assert (pbe_normalRoundsk({1,0,0,1,0,1,0,1,1,1,0,0,0,0,1,1,0,1,0,0,1,1,0,0,0,1,0,0,1,0,0,1}) == {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTest56 ======
+====== Begin Test miniTest57 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest57/miniTest57_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_miniTestSK({1,0,1,1}) == 0);
+    assert (pbe_miniTestSK({0,1,1,0}) == 1);
+    assert (pbe_miniTestSK({0,1,1,1}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest57 ======
+====== Begin Test miniTest6 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest6/miniTest6_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({1,1,1,0}) == {0,0,0,0});
+    assert (pbe_reverseSketch({0,0,0,1}) == {0,1,0,0});
+    assert (pbe_reverseSketch({0,1,0,1}) == {0,1,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest6 ======
+====== Begin Test miniTest61 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest61/miniTest61_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test2({0,1,0}) == 0);
+    assert (pbe_test2({0,0,0}) == 0);
+    assert (pbe_test2({0,0,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest61 ======
+====== Begin Test miniTest63 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest63/miniTest63_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_tableSum({0,1,1,0}) == 0);
+    assert (pbe_tableSum({0,0,0,0}) == 0);
+    assert (pbe_tableSum({1,1,0,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest63 ======
+====== Begin Test miniTest64 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest64/miniTest64_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_tableSum({1,1,1,0}) == 1);
+    assert (pbe_tableSum({1,1,0,0}) == 1);
+    assert (pbe_tableSum({0,0,1,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest64 ======
+====== Begin Test miniTest65 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest65/miniTest65_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_p1Sk({0,1,0,0,0}) == 0);
+    assert (pbe_p1Sk({0,0,1,0,1}) == 1);
+    assert (pbe_p1Sk({1,1,1,0,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest65 ======
+====== Begin Test miniTest66 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest66/miniTest66_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_p1Sk({1,1,1,0,0}) == 1);
+    assert (pbe_p1Sk({0,1,0,1,0}) == 0);
+    assert (pbe_p1Sk({1,1,1,1,0}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTest66 ======
+====== Begin Test miniTest67 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest67/miniTest67_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_p1Sk({0,0,0,1,0}) == 0);
+    assert (pbe_p1Sk({0,1,1,0,0}) == 1);
+    assert (pbe_p1Sk({1,1,0,1,1}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTest67 ======
+====== Begin Test miniTest7 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest7/miniTest7_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,1}) == {1,0,0,0});
+    assert (pbe_reverseSketch({0,1,0,1}) == {1,1,0,0});
+    assert (pbe_reverseSketch({1,1,1,1}) == {0,0,0,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest7 ======
+====== Begin Test miniTest78 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest78/miniTest78_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch({1,0,0,1,1},8) == {1,0,0,1,1});
+    assert (pbe_sketch({0,1,0,1,1},6) == {1,1,0,1,1});
+    assert (pbe_sketch({1,1,1,0,1},10) == {1,1,1,0,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest78 ======
+====== Begin Test miniTest7small ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest7small/miniTest7small_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0}) == {0,1});
+    assert (pbe_reverseSketch({1,1}) == {1,0});
+    assert (pbe_reverseSketch({1,0}) == {1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest7small ======
+====== Begin Test miniTest8 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest8/miniTest8_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,0}) == {0,0,0,0});
+    assert (pbe_reverseSketch({0,0,0,1}) == {0,0,0,1});
+    assert (pbe_reverseSketch({1,0,0,0}) == {1,1,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest8 ======
+====== Begin Test miniTest85 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest85/miniTest85_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_testsk({1,1,0}) == {1,0,1});
+    assert (pbe_testsk({0,1,0}) == {0,0,1});
+    assert (pbe_testsk({1,0,0}) == {1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTest85 ======
+====== Begin Test miniTest9 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest9/miniTest9_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,1,1}) == 1);
+    assert (pbe_reverseSketch({0,0,0,0}) == 0);
+    assert (pbe_reverseSketch({0,1,1,0}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTest9 ======
+====== Begin Test miniTest92 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest92/miniTest92_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test92SK({1,0,1,0,0}) == {1,1,1,1,0});
+    assert (pbe_test92SK({1,0,0,0,0}) == {1,1,0,0,0});
+    assert (pbe_test92SK({1,1,1,1,0}) == {1,0,1,1,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTest92 ======
+====== Begin Test miniTest94 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest94/miniTest94_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,0,1},{0,0,0,1,0}) == {0,0,0,0,1});
+    assert (pbe_reverseSketch({0,0,0,1,0},{0,0,0,1,0}) == {0,0,0,1,0});
+    assert (pbe_reverseSketch({1,1,0,1,0},{0,0,1,0,0}) == {1,1,0,1,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTest94 ======
+====== Begin Test miniTest95 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTest95/miniTest95_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sklog2({0,0,1,1}) == {1,1,0,0});
+    assert (pbe_sklog2({1,0,1,0}) == {0,1,0,0});
+    assert (pbe_sklog2({0,1,1,0}) == {0,1,0,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTest95 ======
+====== Begin Test miniTestb105 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb105/miniTestb105_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_fooSK(9,0) == 0);
+    assert (pbe_fooSK(4,0) == 0);
+    assert (pbe_fooSK(2,0) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb105 ======
+====== Begin Test miniTestb106 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb106/miniTestb106_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_fooSK(6,1) == 0);
+    assert (pbe_fooSK(2,0) == 0);
+    assert (pbe_fooSK(8,0) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb106 ======
+====== Begin Test miniTestb110 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb110/miniTestb110_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_testSK({0,1,1,0,0}) == 1);
+    assert (pbe_testSK({1,1,0,1,1}) == 1);
+    assert (pbe_testSK({1,1,1,0,1}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb110 ======
+====== Begin Test miniTestb114 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb114/miniTestb114_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_rest(9) == 14);
+    assert (pbe_rest(1) == 6);
+    assert (pbe_rest(8) == 13);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb114 ======
+====== Begin Test miniTestb116 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb116/miniTestb116_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_testSK(8) == 8);
+    assert (pbe_testSK(1) == 1);
+    assert (pbe_testSK(10) == 10);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb116 ======
+====== Begin Test miniTestb120 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb120/miniTestb120_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_SKrouter(7) == 0);
+    assert (pbe_SKrouter(3) == 0);
+    assert (pbe_SKrouter(6) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb120 ======
+====== Begin Test miniTestb125 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb125/miniTestb125_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(2) == 1);
+    assert (pbe_sketch(7) == 1);
+    assert (pbe_sketch(8) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb125 ======
+====== Begin Test miniTestb126 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb126/miniTestb126_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(1) == 1);
+    assert (pbe_sketch(10) == 1);
+    assert (pbe_sketch(7) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb126 ======
+====== Begin Test miniTestb129 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb129/miniTestb129_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(5) == 5);
+    assert (pbe_sketch(6) == 6);
+    assert (pbe_sketch(10) == 10);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb129 ======
+====== Begin Test miniTestb130 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb130/miniTestb130_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(4) == 4);
+    assert (pbe_sketch(6) == 6);
+    assert (pbe_sketch(3) == 3);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb130 ======
+====== Begin Test miniTestb136 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb136/miniTestb136_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk(1,1,0,1) == 0);
+    assert (pbe_sk(0,0,1,1) == 0);
+    assert (pbe_sk(1,0,1,1) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb136 ======
+====== Begin Test miniTestb139 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb139/miniTestb139_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_foo(9) == 9);
+    assert (pbe_foo(0) == 0);
+    assert (pbe_foo(4) == 4);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb139 ======
+====== Begin Test miniTestb140 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb140/miniTestb140_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk(10) == 10);
+    assert (pbe_sk(4) == 4);
+    assert (pbe_sk(5) == 5);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb140 ======
+====== Begin Test miniTestb147 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb147/miniTestb147_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_moo(7,1,4) == 9);
+    assert (pbe_moo(10,8,9) == 12);
+    assert (pbe_moo(3,4,0) == 5);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb147 ======
+====== Begin Test miniTestb158 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb158/miniTestb158_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(5) == 1);
+    assert (pbe_test(9) == 1);
+    assert (pbe_test(6) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb158 ======
+====== Begin Test miniTestb159 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb159/miniTestb159_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(1) == 1);
+    assert (pbe_test(8) == 1);
+    assert (pbe_test(3) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb159 ======
+====== Begin Test miniTestb162 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb162/miniTestb162_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(10) == 2);
+    assert (pbe_test(1) == 2);
+    assert (pbe_test(7) == 2);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb162 ======
+====== Begin Test miniTestb163 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb163/miniTestb163_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(0) == 2);
+    assert (pbe_test(4) == 2);
+    assert (pbe_test(10) == 2);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb163 ======
+====== Begin Test miniTestb167 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb167/miniTestb167_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(1) == 1);
+    assert (pbe_test(10) == 1);
+    assert (pbe_test(2) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb167 ======
+====== Begin Test miniTestb168 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb168/miniTestb168_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(1) == 1);
+    assert (pbe_test(10) == 1);
+    assert (pbe_test(9) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb168 ======
+====== Begin Test miniTestb170 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb170/miniTestb170_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(8) == 8);
+    assert (pbe_test(7) == 7);
+    assert (pbe_test(6) == 6);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb170 ======
+====== Begin Test miniTestb174 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb174/miniTestb174_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk(7) == 1);
+    assert (pbe_sk(2) == 1);
+    assert (pbe_sk(5) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb174 ======
+====== Begin Test miniTestb175 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb175/miniTestb175_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test({6,9,4,6,6}) == 1);
+    assert (pbe_test({1,5,10,3,9}) == 1);
+    assert (pbe_test({1,6,7,9,5}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb175 ======
+====== Begin Test miniTestb176 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb176/miniTestb176_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test({5,8,9,1,10}) == 1);
+    assert (pbe_test({9,4,0,7,3}) == 1);
+    assert (pbe_test({2,8,0,6,5}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb176 ======
+====== Begin Test miniTestb177 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb177/miniTestb177_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test({8,9,8,4,4}) == 1);
+    assert (pbe_test({10,8,0,5,3}) == 1);
+    assert (pbe_test({9,8,10,1,4}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb177 ======
+====== Begin Test miniTestb178 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb178/miniTestb178_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test({1,6,5,5,6}) == 1);
+    assert (pbe_test({2,3,2,4,3}) == 1);
+    assert (pbe_test({9,2,5,3,10}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb178 ======
+====== Begin Test miniTestb179 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb179/miniTestb179_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test({2,4,2,0,4}) == 1);
+    assert (pbe_test({9,3,7,4,5}) == 1);
+    assert (pbe_test({3,0,4,8,5}) == 1);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb179 ======
+====== Begin Test miniTestb180 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb180/miniTestb180_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(10) == {0,1,0,1,0,0,0,0});
+    assert (pbe_test(2) == {0,1,0,0,0,0,0,0});
+    assert (pbe_test(6) == {0,1,1,0,0,0,0,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTestb180 ======
+====== Begin Test miniTestb181 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb181/miniTestb181_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(7) == {1,1,1,0,0,0,0,0});
+    assert (pbe_test(3) == {1,1,0,0,0,0,0,0});
+    assert (pbe_test(0) == {0,0,0,0,0,0,0,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTestb181 ======
+====== Begin Test miniTestb182 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb182/miniTestb182_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_test(4) == {0,0,1,0,0,0,0,0});
+    assert (pbe_test(6) == {0,1,1,0,0,0,0,0});
+    assert (pbe_test(1) == {1,0,0,0,0,0,0,0});
+}
+
+right rate: 0 / 1
+====== End Test miniTestb182 ======
+====== Begin Test miniTestb183 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb183/miniTestb183_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk1(9,2) == 1);
+    assert (pbe_sk1(8,3) == 1);
+    assert (pbe_sk1(8,6) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb183 ======
+====== Begin Test miniTestb191 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb191/miniTestb191_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(7,5) == 15);
+    assert (pbe_sketch(6,8) == 17);
+    assert (pbe_sketch(10,5) == 18);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb191 ======
+====== Begin Test miniTestb192 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb192/miniTestb192_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(10,3) == 16);
+    assert (pbe_sketch(8,8) == 19);
+    assert (pbe_sketch(2,6) == 11);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb192 ======
+====== Begin Test miniTestb205 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb205/miniTestb205_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk({1,0,1,1,1}) == {1,1,0,1,1});
+    assert (pbe_sk({1,1,0,1,0}) == {1,1,1,1,0});
+    assert (pbe_sk({0,1,0,1,1}) == {0,0,1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTestb205 ======
+====== Begin Test miniTestb206 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb206/miniTestb206_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk({1,0,1,1,0}) == {1,1,0,1,0});
+    assert (pbe_sk({1,0,0,1,0}) == {1,1,0,1,0});
+    assert (pbe_sk({1,1,1,1,1}) == {1,1,1,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTestb206 ======
+====== Begin Test miniTestb207 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb207/miniTestb207_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch({0,1}) == {0,1,0,0});
+    assert (pbe_sketch({1,0}) == {1,0,0,0});
+    assert (pbe_sketch({1,1}) == {1,1,0,0});
+}
+
+right rate: 1 / 1
+====== End Test miniTestb207 ======
+====== Begin Test miniTestb215 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb215/miniTestb215_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_foo({0,1,1},{0,1,0}) == 0);
+    assert (pbe_foo({1,1,1},{1,0,0}) == 0);
+    assert (pbe_foo({1,0,0},{1,1,0}) == 0);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb215 ======
+====== Begin Test miniTestb229 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb229/miniTestb229_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe__main(6) == 6);
+    assert (pbe__main(5) == 5);
+    assert (pbe__main(8) == 8);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb229 ======
+====== Begin Test miniTestb307 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb307/miniTestb307_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,1,1,1,0,1,1,0,0,1,1,1,0,1}) == {1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,0});
+    assert (pbe_reverseSketch({1,0,1,0,0,1,1,0,1,1,0,0,0,1,0,0}) == {0,0,1,0,0,0,1,1,0,1,1,0,0,1,0,1});
+    assert (pbe_reverseSketch({1,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0}) == {0,0,0,1,0,1,0,0,0,0,0,0,0,0,1,1});
+}
+
+right rate: 1 / 1
+====== End Test miniTestb307 ======
+====== Begin Test miniTestb362 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb362/miniTestb362_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sketch(2) == 2);
+    assert (pbe_sketch(4) == 4);
+    assert (pbe_sketch(6) == 6);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb362 ======
+====== Begin Test miniTestb430 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb430/miniTestb430_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_Sk(1) == 0);
+    assert (pbe_Sk(9) == 0);
+    assert (pbe_Sk(8) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb430 ======
+====== Begin Test miniTestb461 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb461/miniTestb461_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk(1,8,8) == 2);
+    assert (pbe_sk(6,9,8) == 1);
+    assert (pbe_sk(5,1,10) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb461 ======
+====== Begin Test miniTestb462 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb462/miniTestb462_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_sk(4,9,0,6) == 1);
+    assert (pbe_sk(3,4,7,8) == 3);
+    assert (pbe_sk(8,4,4,10) == 5);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb462 ======
+====== Begin Test miniTestb563_RemoveDumbArrays ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb563_RemoveDumbArrays/miniTestb563_RemoveDumbArrays_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_g(7,3) == 10);
+    assert (pbe_g(7,6) == 13);
+    assert (pbe_g(7,10) == 17);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb563_RemoveDumbArrays ======
+====== Begin Test miniTestb700 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb700/miniTestb700_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_foo(8) == 8);
+    assert (pbe_foo(1) == 1);
+    assert (pbe_foo(10) == 10);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb700 ======
+====== Begin Test miniTestb723 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb723/miniTestb723_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_reverseSketch({0,0,0,0}) == 0);
+    assert (pbe_reverseSketch({1,0,1,0}) == 1);
+    assert (pbe_reverseSketch({0,1,1,0}) == 1);
+}
+
+right rate: 0 / 1
+====== End Test miniTestb723 ======
+====== Begin Test miniTestb724 ======
+Synthsizing orignial code
+Extracting pbe code
+Extrating example types
+Generating inputs
+Synthesizing output
+Synthesizing output
+Synthesizing output
+Test failed /sketch_test/benchmarks/miniTestb724/miniTestb724_pbe.sk for 1 times
+using constraints:
+ harness void hard_constraints_original() {
+    assert (pbe_firstElementSketch({1,1,1,0},{1,1,0,0},{1,0,0,0,1}) == 1);
+    assert (pbe_firstElementSketch({0,1,0,0},{1,1,1,1},{0,0,1,1,0}) == 0);
+    assert (pbe_firstElementSketch({0,1,0,0},{0,0,1,0},{1,1,0,1,0}) == 0);
+}
+
+right rate: 1 / 1
+====== End Test miniTestb724 ======

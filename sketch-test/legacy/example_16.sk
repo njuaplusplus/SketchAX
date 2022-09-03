@@ -1,0 +1,11 @@
+void foo(int in, ref int out) {
+  in = in + 1;
+  out = in + 1;
+}
+
+harness void main(int x) {
+  int y = x;
+  int z = y + 10;
+  foo(y, z);
+  assert y == x && z ==x +2;
+}

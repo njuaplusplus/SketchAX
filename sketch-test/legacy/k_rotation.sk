@@ -1,0 +1,29 @@
+int[N] k_rotation(int N, int [N] x, int k) {
+    if (k == 0 || N == 0) {
+        return x;
+    }
+    k = k % N;
+    if (k < 0) {
+        // rotate k elements leftwards
+        // it is equal to rotate N-k elements rightwards.
+        k = N+k;
+    }
+    int l = k;
+    int[l] tmp = x[N-l::l];
+    x[l::N-l] = x[0::N-l];
+    x[0::l] = tmp;
+    return x;
+}
+
+harness void assert_all_rotations(int N, int[N] x) {
+    if (N == 0) return;
+    int[N] xp = x;
+    assert x == k_rotation(N, xp, 0);
+    for (int i=1; i<N; i++) {
+        int t = x[N-1];
+        x[1::N-1] = x[0::N-1];
+        x[0] = t;
+        xp = k_rotation(N, xp, 1);
+        assert x == xp;
+    }
+}

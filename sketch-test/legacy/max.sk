@@ -1,0 +1,17 @@
+int maxSketch(int x, int y, int z){
+  int max = {| x | y | z | ??|};
+  if ({|(max|x|y|z) (<|<=) (max|x|y|z)|}){ 
+     max = {|x|y|z|};
+  } 
+  if ({|(max|x|y|z) (<|<=) (max|x|y|z)|}){
+     max = {| x | y | z |};
+  }
+  return max; 
+}
+
+harness void Constraint(){
+  assert ((maxSketch(0,10,2)) == (10));
+  assert ((maxSketch(-1,10,20)) == (20));
+  assert ((maxSketch(-1,-2,-3)) == (-1));
+}
+

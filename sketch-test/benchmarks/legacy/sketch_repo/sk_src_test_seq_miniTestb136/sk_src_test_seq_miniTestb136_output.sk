@@ -1,0 +1,6 @@
+void sk (bit a, bit b, bit c, bit d, ref bit _out)  implements pbe_sk
+{
+  _out = 0;
+  _out = 1 & (((a & c) & b) & d);
+  return;
+}

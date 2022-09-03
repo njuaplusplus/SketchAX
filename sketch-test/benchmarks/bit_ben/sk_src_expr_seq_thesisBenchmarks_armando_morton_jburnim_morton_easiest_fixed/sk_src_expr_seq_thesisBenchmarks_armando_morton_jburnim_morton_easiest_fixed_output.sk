@@ -1,0 +1,37 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_.._fixed.sk:11*/
+
+void interleave_bits (bit[8] x, bit[8] y, ref bit[16] _out)/*sk_src_.._fixed.sk:11*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    _out[i * 2] = x[i];
+    _out[(i * 2) + 1] = y[i];
+  }
+  return;
+}
+/*sk_src_.._fixed.sk:20*/
+
+void sketch (bit[8] x, bit[8] y, ref bit[16] _out)  implements pbe_sketch
+{
+  _out = ((bit[16])0);
+  bit[16] x2 = ((bit[16])x);
+  bit[16] mask = {1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0};
+  x2 = (x2 | (x2 << 4)) & mask;
+  bit[16] mask_0 = {1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0};
+  x2 = (x2 | (x2 << 2)) & mask_0;
+  bit[16] mask_1 = {1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0};
+  x2 = (x2 | (x2 << 1)) & mask_1;
+  bit[16] y2 = ((bit[16])y);
+  bit[16] mask_2 = {1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0};
+  y2 = (y2 | (y2 << 4)) & mask_2;
+  bit[16] mask_3 = {1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0};
+  y2 = (y2 | (y2 << 2)) & mask_3;
+  bit[16] mask_4 = {1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0};
+  y2 = (y2 | (y2 << 1)) & mask_4;
+  _out = x2 | (y2 << 1);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

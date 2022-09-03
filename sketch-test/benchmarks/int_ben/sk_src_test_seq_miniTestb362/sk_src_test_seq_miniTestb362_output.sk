@@ -1,0 +1,27 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+struct Foo {
+    int x;
+}
+/*sk_src_..stb362.sk:11*/
+
+void sketch (int x, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  Foo@ANONYMOUS f = new Foo();
+  int _out_s1 = 0;
+  spec(x, _out_s1);
+  f.x = _out_s1;
+  _out = f.x;
+  return;
+}
+/*sk_src_..stb362.sk:5*/
+
+void spec (int x, ref int _out)/*sk_src_..stb362.sk:5*/
+{
+  _out = 0;
+  Foo@ANONYMOUS f = new Foo();
+  f.x = x;
+  _out = f.x;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

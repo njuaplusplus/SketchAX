@@ -1,0 +1,40 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test74.sk:15*/
+
+void sk1 (bit[4] in, ref bit _out)  implements pbe_sk1
+{
+  _out = 0;
+  _out = 0 | ((in[3]) & 1);
+  bit tmp_s1 = 0;
+  sk2(in, tmp_s1);
+  _out = _out ^ tmp_s1;
+  return;
+}
+/*sk_src_..Test74.sk:1*/
+
+void sk2 (bit[4] in, ref bit _out)  implements sp2/*sk_src_..Test74.sk:1*/
+{
+  _out = 0;
+  bit[4] tmp = in;
+  tmp[2] = 1;
+  tmp[3] = 0;
+  _out = tmp[1];
+  return;
+}
+/*sk_src_..Test74.sk:22*/
+
+void sp1 (bit[4] in, ref bit _out)/*sk_src_..Test74.sk:22*/
+{
+  _out = 0;
+  _out = (in[3]) ^ (in[1]);
+  return;
+}
+/*sk_src_..Test74.sk:9*/
+
+void sp2 (bit[4] in, ref bit _out)/*sk_src_..Test74.sk:9*/
+{
+  _out = 0;
+  _out = in[1];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

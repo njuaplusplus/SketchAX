@@ -1,0 +1,10 @@
+void sketch (bit[2] x, bit[2] y, ref bit[4] _out)  implements pbe_sketch
+{
+  _out = ((bit[4])0);
+  bit[4] x2 = ((bit[4])x);
+  x2 = (x2 | (x2 << 1)) & ({1,0,1,0});
+  bit[4] y2 = ((bit[4])y);
+  y2 = (y2 | (y2 << 1)) & ({1,0,1,0});
+  _out = x2 | (y2 << 1);
+  return;
+}

@@ -1,0 +1,9 @@
+void fastparity0 (bit[8] in, ref bit _out)  implements pbe_fastparity0
+{
+  _out = 0;
+  bit[8] y = in ^ (in << 4);
+  y = y ^ (y << 1);
+  y = y ^ (y << 2);
+  _out = y[7];
+  return;
+}

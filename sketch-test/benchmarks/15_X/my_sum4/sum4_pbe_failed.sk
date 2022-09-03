@@ -1,0 +1,12 @@
+int W=4;
+
+int sumSK1(int[W] in)
+{
+    int cnt=??;
+    repeat(W)
+    {
+        cnt += {| in[??] | ?? |};
+    }
+    return cnt;
+}
+

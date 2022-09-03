@@ -1,0 +1,16 @@
+bit pbe_debug(bit[4] in)  {
+	bit t=0;
+	int i=0;
+	loop({*}){
+	i++;
+	t = in[i];	
+	}
+	return t;
+}
+
+bit loopTest(bit[4] in) {
+	return in[2];
+}
+
+
+

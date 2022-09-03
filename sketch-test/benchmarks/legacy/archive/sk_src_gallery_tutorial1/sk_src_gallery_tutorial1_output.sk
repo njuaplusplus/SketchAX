@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..orial1.sk:7*/
+
+void sketch (int x, ref int _out)  implements pbe_sketch
+{
+  _out = 0;
+  _out = 2 * x;
+  return;
+}
+/*sk_src_..orial1.sk:3*/
+
+void spec (int x, ref int _out)/*sk_src_..orial1.sk:3*/
+{
+  _out = 0;
+  _out = x + x;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

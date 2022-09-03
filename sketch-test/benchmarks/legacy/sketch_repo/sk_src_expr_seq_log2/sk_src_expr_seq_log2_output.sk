@@ -1,0 +1,39 @@
+void sklog2 (bit[8] in_0, ref bit[8] _out)  implements pbe_sklog2
+{
+  _out = ((bit[8])0);
+  bit[8] in = in_0;
+  _out = ((bit[8])0);
+  bit[8] in_0_0 = in_0 & ({0,0,0,0,1,1,1,1});
+  bit _out_s1 = 1;
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    _out_s1 = _out_s1 & (!(in_0_0[i]));
+  }
+  if(!(_out_s1))/*sk_src_..q_log2.sk:34*/
+  {
+    in = in_0 >> 4;
+    _out = _out | ({0,0,1,0,0,0,0,0});
+  }
+  bit[8] in_1 = in & ({0,0,1,1,0,0,0,0});
+  bit _out_s1_0 = 1;
+  for(int i_0 = 0; i_0 < 8; i_0 = i_0 + 1)/*Canonical*/
+  {
+    _out_s1_0 = _out_s1_0 & (!(in_1[i_0]));
+  }
+  if(!(_out_s1_0))/*sk_src_..q_log2.sk:34*/
+  {
+    in = in >> 2;
+    _out = _out | ({0,1,0,0,0,0,0,0});
+  }
+  bit[8] in_2 = in & ({0,1,0,0,0,0,0,0});
+  bit _out_s1_1 = 1;
+  for(int i_1 = 0; i_1 < 8; i_1 = i_1 + 1)/*Canonical*/
+  {
+    _out_s1_1 = _out_s1_1 & (!(in_2[i_1]));
+  }
+  if(!(_out_s1_1))/*sk_src_..q_log2.sk:34*/
+  {
+    _out = _out | ({1,0,0,0,0,0,0,0});
+  }
+  return;
+}

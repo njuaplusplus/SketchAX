@@ -1,0 +1,342 @@
+ aplusplus@ubuntu  ~  j ben
+/mnt/hgfs/sketch-test/benchmarks
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks  cd jburnim_morton
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  ll
+total 25K
+-rw-r--r-- 1 501 dialout 1.9K Oct 15 00:06 cmp_jburnim_morton.sk
+-rw-r--r-- 1 501 dialout 3.6K Oct 15 00:05 jburnim_morton_pbe.sk
+-rw-r--r-- 1 501 dialout 3.8K Oct 14 22:21 jburnim_morton.sk
+-rw-r--r-- 1 501 dialout  15K Oct 15 00:07 README.md
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch --bnd-unroll-amnt 20 jburnim_morton.sk
+SKETCH version 1.7.4
+Benchmark = jburnim_morton.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*jburnim_morton.sk:18*/
+
+void interleave_bits (bit[16] x, bit[16] y, ref bit[32] _out)/*jburnim_morton.sk:18*/
+{
+  _out = ((bit[32])0);
+  _out = ((bit[32])0);
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i * 2] = x[i];
+    _out[(i * 2) + 1] = y[i];
+  }
+  return;
+}
+/*jburnim_morton.sk:27*/
+
+void sketch0 (bit[16] x, bit[16] y, ref bit[32] _out)  implements interleave_bits/*jburnim_morton.sk:27*/
+{
+  _out = ((bit[32])0);
+  bit[32] x2 = ((bit[32])x);
+  x2 = (x2 | (x2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  x2 = (x2 | (x2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  x2 = (x2 | (x2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  x2 = (x2 | (x2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  bit[32] y2 = ((bit[32])y);
+  y2 = (y2 | (y2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  y2 = (y2 | (y2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  y2 = (y2 | (y2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  _out = x2 | (y2 << 1);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 43698
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch --bnd-unroll-amnt 20 jburnim_morton_pbe.sk
+SKETCH version 1.7.4
+Benchmark = jburnim_morton_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*jburnim..on_pbe.sk:24*/
+
+void _main (int[16] ind)/*jburnim..on_pbe.sk:24*/
+{
+  bit[32] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s1);
+  assert (_out_s1 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0})); //Assert at jburnim..on_pbe.sk:25 (0)
+  bit[32] _out_s3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, _out_s3);
+  assert (_out_s3 == ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1})); //Assert at jburnim..on_pbe.sk:28 (0)
+  bit[32] _out_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0}, _out_s5);
+  assert (_out_s5 == ({0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0})); //Assert at jburnim..on_pbe.sk:31 (0)
+  bit[32] _out_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, _out_s7);
+  assert (_out_s7 == ({1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1})); //Assert at jburnim..on_pbe.sk:34 (0)
+}
+/*jburnim..on_pbe.sk:24*/
+
+void main__Wrapper (int[16] ind)  implements main__WrapperNospec/*jburnim..on_pbe.sk:24*/
+{
+  _main(ind);
+}
+/*jburnim..on_pbe.sk:24*/
+
+void main__WrapperNospec (int[16] ind)/*jburnim..on_pbe.sk:24*/
+{ }
+/*jburnim..on_pbe.sk:3*/
+
+void sketch1 (bit[16] x, bit[16] y, ref bit[32] _out)/*jburnim..on_pbe.sk:3*/
+{
+  _out = ((bit[32])0);
+  bit[32] x2 = ((bit[32])x);
+  x2 = (x2 | (x2 << 6)) & ({1,1,1,0,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0});
+  x2 = (x2 | (x2 << 5)) & ({1,0,1,0,0,1,1,1,1,0,0,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,0,0,0,0});
+  x2 = (x2 | (x2 << 4)) & ({1,0,1,0,1,0,1,0,0,0,1,1,0,0,0,1,1,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0});
+  x2 = (x2 | (x2 << 3)) & ({1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,1,0,1,1,0,0,1,1,0,0,0,1,1});
+  x2 = (x2 | (x2 << 2)) & ({1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,1});
+  bit[32] y2 = ((bit[32])y);
+  y2 = (y2 | (y2 << 0)) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 30)) & ({1,1,1,0,1,1,1,0,0,1,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 20)) & ({1,1,0,0,0,0,0,0,0,1,1,0,0,1,0,1,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,1});
+  y2 = (y2 | (y2 << 2)) & ({1,0,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0,0,1});
+  y2 = (y2 | (y2 << 3)) & ({1,0,1,0,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,1,0,1,1,0,1,0,0,0,0,0});
+  y2 = (y2 | (y2 << 1)) & ({1,1,1,0,0,0,1,0,0,0,1,1,0,0,1,0,0,1,0,0,1,0,1,1,0,1,1,0,0,0,0,0});
+  y2 = (y2 | (y2 << 2)) & ({1,0,1,0,1,0,1,0,0,0,1,0,0,1,1,0,1,1,0,1,1,0,0,1,0,0,1,1,0,0,0,0});
+  y2 = (y2 | (y2 << 8)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,0,0});
+  _out = x2 | (y2 << 1);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 918
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch --bnd-unroll-amnt 20 jburnim_morton_pbe.sk
+SKETCH version 1.7.4
+Benchmark = jburnim_morton_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*jburnim..on_pbe.sk:24*/
+
+void constraints (int[16] ind)/*jburnim..on_pbe.sk:24*/
+{
+  bit[32] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s1);
+  assert (_out_s1 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0})); //Assert at jburnim..on_pbe.sk:25 (0)
+  bit[32] _out_s3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, _out_s3);
+  assert (_out_s3 == ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1})); //Assert at jburnim..on_pbe.sk:28 (0)
+  bit[32] _out_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0}, _out_s5);
+  assert (_out_s5 == ({0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0})); //Assert at jburnim..on_pbe.sk:31 (0)
+  bit[32] _out_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, _out_s7);
+  assert (_out_s7 == ({1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1})); //Assert at jburnim..on_pbe.sk:34 (0)
+}
+/*jburnim..on_pbe.sk:24*/
+
+void constraints__Wrapper (int[16] ind)  implements constraints__WrapperNospec/*jburnim..on_pbe.sk:24*/
+{
+  constraints(ind);
+}
+/*jburnim..on_pbe.sk:24*/
+
+void constraints__WrapperNospec (int[16] ind)/*jburnim..on_pbe.sk:24*/
+{ }
+/*jburnim..on_pbe.sk:3*/
+
+void sketch1 (bit[16] x, bit[16] y, ref bit[32] _out)/*jburnim..on_pbe.sk:3*/
+{
+  _out = ((bit[32])0);
+  bit[32] x2 = ((bit[32])x);
+  x2 = (x2 | (x2 << 6)) & ({1,1,1,0,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0});
+  x2 = (x2 | (x2 << 5)) & ({1,0,1,0,0,1,1,1,1,0,0,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,0,0,0,0});
+  x2 = (x2 | (x2 << 4)) & ({1,0,1,0,1,0,1,0,0,0,1,1,0,0,0,1,1,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0});
+  x2 = (x2 | (x2 << 3)) & ({1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,1,0,1,1,0,0,1,1,0,0,0,1,1});
+  x2 = (x2 | (x2 << 2)) & ({1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,1});
+  bit[32] y2 = ((bit[32])y);
+  y2 = (y2 | (y2 << 0)) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 30)) & ({1,1,1,0,1,1,1,0,0,1,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 20)) & ({1,1,0,0,0,0,0,0,0,1,1,0,0,1,0,1,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,1});
+  y2 = (y2 | (y2 << 2)) & ({1,0,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0,0,1});
+  y2 = (y2 | (y2 << 3)) & ({1,0,1,0,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,1,0,1,1,0,1,0,0,0,0,0});
+  y2 = (y2 | (y2 << 1)) & ({1,1,1,0,0,0,1,0,0,0,1,1,0,0,1,0,0,1,0,0,1,0,1,1,0,1,1,0,0,0,0,0});
+  y2 = (y2 | (y2 << 2)) & ({1,0,1,0,1,0,1,0,0,0,1,0,0,1,1,0,1,1,0,1,1,0,0,1,0,0,1,1,0,0,0,0});
+  y2 = (y2 | (y2 << 8)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,0,0});
+  _out = x2 | (y2 << 1);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 919
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch cmp_jburnim_morton.sk
+SKETCH version 1.7.4
+Benchmark = cmp_jburnim_morton.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_sketch1_ANONYMOUS
+
+*** Rejected
+    [1508102708.9920 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_sketch1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1508102708.9980 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1508102708.9981 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_jburnim_morton.sk/input0.tmp
+Total time = 428
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch --bnd-unroll-amnt 20 cmp_jburnim_morton.sk
+SKETCH version 1.7.4
+Benchmark = cmp_jburnim_morton.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_sketch1_ANONYMOUS
+
+*** Rejected
+    [1508102716.8420 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_sketch1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1508102716.8440 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1508102716.8450 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_jburnim_morton.sk/input0.tmp
+Total time = 405
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch --bnd-unroll-amnt 20 jburnim_morton_pbe.sk
+SKETCH version 1.7.4
+Benchmark = jburnim_morton_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*jburnim..on_pbe.sk:68*/
+
+void assert_one_permutation (bit[16] x, bit[16] y, bit[32] o, int[16] ind)/*jburnim..on_pbe.sk:68*/
+{
+  bit _out_s9 = 0;
+  is_permutation(16, ind, _out_s9);
+  if(!(_out_s9))/*jburnim..on_pbe.sk:69*/
+  {
+    return;
+  }
+  bit[16] xp_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  permute(16, x, ind, xp_s11);
+  bit[16] yp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  permute(16, y, ind, yp_s13);
+  bit[32] op = ((bit[32])0);
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    op[2 * i] = o[2 * (ind[i])];
+    op[(2 * i) + 1] = o[(2 * (ind[i])) + 1];
+  }
+  bit[32] _out_s15 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1(xp_s11, yp_s13, _out_s15);
+  assert (_out_s15 == op); //Assert at jburnim..on_pbe.sk:77 (0)
+}
+/*jburnim..on_pbe.sk:24*/
+
+void constraints (int[16] ind)/*jburnim..on_pbe.sk:24*/
+{
+  bit[32] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s1);
+  assert (_out_s1 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0})); //Assert at jburnim..on_pbe.sk:25 (0)
+  bit[32] _out_s3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, _out_s3);
+  assert (_out_s3 == ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1})); //Assert at jburnim..on_pbe.sk:28 (0)
+  bit[32] _out_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0}, _out_s5);
+  assert (_out_s5 == ({0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0})); //Assert at jburnim..on_pbe.sk:31 (0)
+  bit[32] _out_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  sketch1({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, _out_s7);
+  assert (_out_s7 == ({1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1})); //Assert at jburnim..on_pbe.sk:34 (0)
+  assert_one_permutation({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0}, {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0}, ind);
+  assert_one_permutation({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1}, ind);
+  assert_one_permutation({1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0}, {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, {1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1}, ind);
+}
+/*jburnim..on_pbe.sk:24*/
+
+void constraints__Wrapper (int[16] ind)  implements constraints__WrapperNospec/*jburnim..on_pbe.sk:24*/
+{
+  constraints(ind);
+}
+/*jburnim..on_pbe.sk:24*/
+
+void constraints__WrapperNospec (int[16] ind)/*jburnim..on_pbe.sk:24*/
+{ }
+/*jburnim..on_pbe.sk:81*/
+
+void is_permutation (int N, int[N] ind, ref bit _out)/*jburnim..on_pbe.sk:81*/
+{
+  _out = 0;
+  bit[N] res = ((bit[N])0);
+  for(int i = 0; i < N; i = i + 1)/*Canonical*/
+  {
+    if((((ind[i]) < 0) || ((ind[i]) >= N)) || ((res[ind[i]]) == 1))/*jburnim..on_pbe.sk:84*/
+    {
+      _out = 0;
+      return;
+    }
+    else
+    {
+      res[ind[i]] = 1;
+    }
+  }
+  _out = 1;
+  return;
+}
+/*jburnim..on_pbe.sk:93*/
+
+void permute (int N, bit[N] x, int[N] ind, ref bit[N] _out)/*jburnim..on_pbe.sk:93*/
+{
+  _out = ((bit[N])0);
+  _out = ((bit[N])0);
+  for(int i = 0; i < N; i = i + 1)/*Canonical*/
+  {
+    _out[i] = x[ind[i]];
+  }
+  return;
+}
+/*jburnim..on_pbe.sk:3*/
+
+void sketch1 (bit[16] x, bit[16] y, ref bit[32] _out)/*jburnim..on_pbe.sk:3*/
+{
+  _out = ((bit[32])0);
+  bit[32] x2 = ((bit[32])x);
+  x2 = (x2 | (x2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  x2 = (x2 | (x2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  x2 = (x2 | (x2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  x2 = (x2 | (x2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  bit[32] y2 = ((bit[32])y);
+  y2 = (y2 | (y2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  y2 = (y2 | (y2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  y2 = (y2 | (y2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  _out = x2 | (y2 << 1);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 39475
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/jburnim_morton  sketch --bnd-unroll-amnt 20 cmp_jburnim_morton.sk
+SKETCH version 1.7.4
+Benchmark = cmp_jburnim_morton.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_jbu..morton.sk:1*/
+
+void sketch0 (bit[16] x, bit[16] y, ref bit[32] _out)  implements sketch1/*cmp_jbu..morton.sk:1*/
+{
+  _out = ((bit[32])0);
+  bit[32] x2 = ((bit[32])x);
+  x2 = (x2 | (x2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  x2 = (x2 | (x2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  x2 = (x2 | (x2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  x2 = (x2 | (x2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  bit[32] y2 = ((bit[32])y);
+  y2 = (y2 | (y2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  y2 = (y2 | (y2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  y2 = (y2 | (y2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  _out = x2 | (y2 << 1);
+  return;
+}
+/*cmp_jbu..morton.sk:18*/
+
+void sketch1 (bit[16] x, bit[16] y, ref bit[32] _out)/*cmp_jbu..morton.sk:18*/
+{
+  _out = ((bit[32])0);
+  bit[32] x2 = ((bit[32])x);
+  x2 = (x2 | (x2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  x2 = (x2 | (x2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  x2 = (x2 | (x2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  x2 = (x2 | (x2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  bit[32] y2 = ((bit[32])y);
+  y2 = (y2 | (y2 << 8)) & ({1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0});
+  y2 = (y2 | (y2 << 4)) & ({1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0});
+  y2 = (y2 | (y2 << 2)) & ({1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0});
+  y2 = (y2 | (y2 << 1)) & ({1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
+  _out = x2 | (y2 << 1);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1412

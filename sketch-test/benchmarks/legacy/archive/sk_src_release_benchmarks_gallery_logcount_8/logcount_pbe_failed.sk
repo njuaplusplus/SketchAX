@@ -1,0 +1,33 @@
+//@Description Counts the number of ones in a bit-vector in logn steps.
+int W=8;
+
+bit[W] countSketch1(bit[W] in)
+{
+    bit[W] tmp=in;
+    int cnt=0;
+    repeat(??)
+    {
+        bit[W] m = ??;
+        tmp=(tmp & m) + (tmp>>?? & m);
+        assert cnt++ < 5;
+    }
+    return tmp;
+}
+
+bit[W] countBits(bit[W] in)
+{
+    bit[W] ret=0;
+    bit[W] one = 0;
+    one[0] = 1;
+    for(int i=0;i<W;i++){
+        if(in[i])
+            ret=ret+one;
+    }
+    return ret;
+}
+// 
+// harness void constraints() {
+//     assert countSketch1({1,1,0,0,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+//     assert countSketch1({1,1,1,1,0,0,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+//     assert countSketch1({1,1,1,0,0,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+// }

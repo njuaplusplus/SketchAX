@@ -1,0 +1,70 @@
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+4 | {'c','a','a','c'} => {'c','a','a','c'}
+2 | {'a','c'} => {'c','a'}
+2 | {'b','b'} => {'b','b'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+3 | {'d','a','d'} => {'d','a','d'}
+2 | {'b','c'} => {'c','b'}
+1 | {'c'} => {'c'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+1 | {'c'} => {'c'}
+2 | {'c','d'} => {'d','c'}
+2 | {'a','a'} => {'a','a'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+1 | {'d'} => {'d'}
+4 | {'b','d','d','b'} => {'b','d','d','b'}
+1 | {'c'} => {'c'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+3 | {'b','b','b'} => {'b','b','b'}
+4 | {'c','a','d','d'} => {'d','d','a','c'}
+5 | {'b','c','a','b','c'} => {'c','b','a','c','b'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+2 | {'d','d'} => {'d','d'}
+3 | {'a','d','a'} => {'a','d','a'}
+5 | {'c','c','d','b','a'} => {'a','b','d','c','c'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+4 | {'a','a','b','a'} => {'a','b','a','a'}
+1 | {'d'} => {'d'}
+3 | {'a','b','d'} => {'d','b','a'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+3 | {'a','b','a'} => {'a','b','a'}
+5 | {'b','b','d','b','c'} => {'c','b','d','b','b'}
+3 | {'a','c','b'} => {'b','c','a'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+3 | {'d','d','b'} => {'b','d','d'}
+2 | {'d','d'} => {'d','d'}
+3 | {'d','d','c'} => {'c','d','d'}
+======= End Example ======
+======= Begin Example ======
+int_N,char_list_N
+char_list_N
+1 | {'d'} => {'d'}
+1 | {'c'} => {'c'}
+5 | {'b','b','a','c','c'} => {'c','c','a','b','b'}
+======= End Example ======

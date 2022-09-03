@@ -1,0 +1,30 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test78.sk:12*/
+
+void sketch (bit[5] in1_0, int in2, ref bit[5] _out)  implements pbe_sketch
+{
+  _out = ((bit[5])0);
+  bit[5] in1 = in1_0;
+  if(in2 < 5)/*sk_src_..Test78.sk:13*/
+  {
+    in1[in2] = !(in1_0[in2]);
+  }
+  in1[0] = 1;
+  _out = in1;
+  return;
+}
+/*sk_src_..Test78.sk:3*/
+
+void spec (bit[5] in1_0, int in2, ref bit[5] _out)/*sk_src_..Test78.sk:3*/
+{
+  _out = ((bit[5])0);
+  bit[5] in1 = in1_0;
+  if(in2 < 5)/*sk_src_..Test78.sk:4*/
+  {
+    in1[in2] = !(in1_0[in2]);
+  }
+  in1[0] = 1;
+  _out = in1;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

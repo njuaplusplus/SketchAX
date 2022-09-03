@@ -1,0 +1,27 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stZero.sk:7*/
+
+void firstZero (bit[32] in, ref bit[32] _out)/*sk_src_..stZero.sk:7*/
+{
+  _out = ((bit[32])0);
+  _out = ((bit[32])0);
+  bit flag = 1;
+  for(int i = 0; i < 32; i = i + 1)/*Canonical*/
+  {
+    if((!(in[i])) && (flag == 1))/*sk_src_..stZero.sk:11*/
+    {
+      _out[i] = 1;
+      flag = 0;
+    }
+  }
+  return;
+}
+/*sk_src_..stZero.sk:1*/
+
+void firstZeroSk (bit[32] in, ref bit[32] _out)  implements pbe_firstZeroSk
+{
+  _out = ((bit[32])0);
+  _out = (!(in + ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}))) & (in + ({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

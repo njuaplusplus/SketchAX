@@ -1,0 +1,6 @@
+void sketch (bit[1] x, ref bit[2] _out)  implements pbe_sketch
+{
+  _out = ((bit[2])0);
+  _out = x & ({1,0});
+  return;
+}

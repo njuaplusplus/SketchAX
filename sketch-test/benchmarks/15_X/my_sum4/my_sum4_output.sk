@@ -1,0 +1,10 @@
+void sumSK0 (int[4] in, ref int _out)  implements pbe_sumSK0
+{
+  _out = 0;
+  _out = 0;
+  _out = in[1];
+  _out = _out + (in[2]);
+  _out = _out + (in[3]);
+  _out = _out + (in[0]);
+  return;
+}

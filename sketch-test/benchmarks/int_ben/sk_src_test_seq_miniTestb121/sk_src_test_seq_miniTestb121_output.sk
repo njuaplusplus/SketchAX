@@ -1,0 +1,35 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb121.sk:3*/
+
+void foo (int a, int b, ref int _out)/*sk_src_..stb121.sk:3*/
+{
+  _out = 0;
+  _out = ((a + b) + a) + b;
+  return;
+}
+/*sk_src_..stb121.sk:22*/
+
+void moo (int a, int b, ref int _out)  implements pbe_moo
+{
+  _out = 0;
+  _out = 0;
+  int rv_s1 = 0;
+  op(a, b, rv_s1);
+  _out = rv_s1;
+  int rv_s3 = 0;
+  op(rv_s1, a, rv_s3);
+  _out = rv_s3;
+  int rv_s5 = 0;
+  op(rv_s3, b, rv_s5);
+  _out = rv_s5;
+  return;
+}
+/*sk_src_..stb121.sk:8*/
+
+void op (int a, int b, ref int _out)/*sk_src_..stb121.sk:8*/
+{
+  _out = 0;
+  _out = a + b;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

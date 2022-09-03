@@ -1,0 +1,11 @@
+int N = 3;
+
+int select(int[N] input){
+    return 5*input[0]+5*input[1]+5;
+}
+
+int pbe_selectSK0 (int[N] input)  {
+    return ??*input[??] + ??*input[??] + ?? - ??;
+}
+
+

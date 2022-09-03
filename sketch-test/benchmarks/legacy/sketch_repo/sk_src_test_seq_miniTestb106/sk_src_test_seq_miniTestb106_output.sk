@@ -1,0 +1,6 @@
+void fooSK (int arr, bit org, ref bit _out)  implements pbe_fooSK
+{
+  _out = 0;
+  _out = (3 == arr) && org;
+  return;
+}

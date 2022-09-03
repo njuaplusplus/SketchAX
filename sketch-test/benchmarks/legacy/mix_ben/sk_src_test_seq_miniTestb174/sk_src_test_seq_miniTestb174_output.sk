@@ -1,0 +1,27 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+struct foo {
+    int v;
+    foo s;
+}
+/*sk_src_..stb174.sk:11*/
+
+void sk (int i, ref bit _out)  implements pbe_sk
+{
+  _out = 0;
+  foo@ANONYMOUS f;
+  f = new foo();
+  f.s = f;
+  f.v = 10;
+  foo@ANONYMOUS t = f.s;
+  _out = (t.v) == 10;
+  return;
+}
+/*sk_src_..stb174.sk:7*/
+
+void test (int i, ref bit _out)/*sk_src_..stb174.sk:7*/
+{
+  _out = 0;
+  _out = 1;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

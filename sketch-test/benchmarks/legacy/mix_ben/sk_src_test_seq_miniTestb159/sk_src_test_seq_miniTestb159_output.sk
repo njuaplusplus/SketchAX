@@ -1,0 +1,20 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb159.sk:21*/
+
+void spec (int t, ref bit _out)/*sk_src_..stb159.sk:21*/
+{
+  _out = 0;
+  _out = 1;
+  return;
+}
+/*sk_src_..stb159.sk:2*/
+
+void test (int t0, ref bit _out)  implements pbe_test
+{
+  _out = 0;
+  bit[7] out = ((bit[7])0);
+  out[5] = 1;
+  _out = out[5];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

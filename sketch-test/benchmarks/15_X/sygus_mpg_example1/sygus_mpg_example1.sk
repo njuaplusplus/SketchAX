@@ -1,0 +1,19 @@
+int N = 2;
+
+int select(int[N] input) {
+    if (input[0] >= 5) {
+        return 5*input[0]+3*input[1]+17;
+    } else {
+        return 3*input[0]+1;
+    }
+}
+
+int selectSK0 (int[N] input) implements select {
+    if (input[0] >= ??) {
+        return ??*input[??] + ??*input[??] + ?? - ??;
+    } else {
+        return ??*input[??] + ??*input[??] + ?? - ??;
+    }
+
+}
+

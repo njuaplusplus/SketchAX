@@ -1,0 +1,19 @@
+pragma options "--bnd-unroll-amnt 40";
+
+char[N] reverseSketch0(int N, char[N] str) implements reverse {
+    for (int i=0; i<N/??; i++) {
+        char tmp = {| i | N | str[i+??] |};
+        str[i+??] = str[N-i-??];
+        str[N-i-??] = tmp;
+    }
+    return str;
+}
+
+char[N] reverse(int N, char[N] str) {
+    for (int i=0; i<N/2; i++) {
+        char tmp = str[i];
+        str[i] = str[N-i-1];
+        str[N-i-1] = tmp;
+    }
+    return str;
+}

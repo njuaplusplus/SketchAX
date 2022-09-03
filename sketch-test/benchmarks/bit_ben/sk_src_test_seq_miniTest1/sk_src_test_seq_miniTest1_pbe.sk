@@ -1,0 +1,9 @@
+bit pbe_reverseSketch(bit[4] in)  {	
+	return (in[1] & ??) | (in[3] & ??);
+}
+
+
+bit reverse (bit[4] in) {
+	return in[3];
+}
+

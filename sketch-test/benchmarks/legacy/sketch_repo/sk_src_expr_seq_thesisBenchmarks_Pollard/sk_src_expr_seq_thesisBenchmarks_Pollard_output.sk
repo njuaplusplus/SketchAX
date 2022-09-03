@@ -1,0 +1,19 @@
+void dupSketched (int[17] in, ref bit _out)  implements pbe_dupSketched
+{
+  _out = 0;
+  int count3 = 0;
+  for(int i = 0; i < 17; i = i + 1)/*Canonical*/
+  {
+    if((in[i]) == 16)/*sk_src_..ollard.sk:58*/
+    {
+      count3 = count3 + 1;
+    }
+  }
+  if(count3 >= 17)/*sk_src_..ollard.sk:60*/
+  {
+    _out = 0;
+    return;
+  }
+  _out = 1;
+  return;
+}

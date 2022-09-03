@@ -1,0 +1,39 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..uction.sk:14*/
+
+void _main (int y_0, ref int _out)  implements pbe__main
+{
+  _out = 0;
+  int y = y_0;
+  if(y_0 >= 3)/*sk_src_..uction.sk:15*/
+  {
+    _out = 0;
+    return;
+  }
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    int y_s1 = y + y;
+    y = y_s1;
+  }
+  _out = y;
+  return;
+}
+/*sk_src_..uction.sk:6*/
+
+void spec (int y_0, ref int _out)/*sk_src_..uction.sk:6*/
+{
+  _out = 0;
+  int y = y_0;
+  if(y_0 >= 3)/*sk_src_..uction.sk:7*/
+  {
+    _out = 0;
+    return;
+  }
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    y = 2 * y;
+  }
+  _out = y;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

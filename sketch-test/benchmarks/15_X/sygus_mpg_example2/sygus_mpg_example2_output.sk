@@ -1,0 +1,86 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sygus_m..ample2.sk:3*/
+
+void maxSpec (int[3] a, ref int _out)/*sygus_m..ample2.sk:3*/
+{
+  _out = 0;
+  _out = a[0];
+  for(int i = 1; i < 3; i = i + 1)/*Canonical*/
+  {
+    if(_out < (a[i]))/*sygus_m..ample2.sk:6*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}
+/*sygus_m..ample2.sk:13*/
+
+void minSpec (int[3] a, ref int _out)/*sygus_m..ample2.sk:13*/
+{
+  _out = 0;
+  _out = a[0];
+  for(int i = 1; i < 3; i = i + 1)/*Canonical*/
+  {
+    if(_out > (a[i]))/*sygus_m..ample2.sk:16*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}
+/*sygus_m..ample2.sk:23*/
+
+void select (int[3] input, ref int _out)/*sygus_m..ample2.sk:23*/
+{
+  _out = 0;
+  if(((2 * (input[0])) - 3) <= (((-2 * (input[1])) + (input[2])) + 4))/*sygus_m..ample2.sk:24*/
+  {
+    int _out_s7 = 0;
+    minSpec(input, _out_s7);
+    _out = _out_s7;
+    return;
+  }
+  else
+  {
+    int _out_s9 = 0;
+    maxSpec(input, _out_s9);
+    _out = _out_s9;
+    return;
+  }
+}
+/*sygus_m..ample2.sk:46*/
+
+void selectSK0 (int[3] a, ref int _out)  implements pbe_selectSK0
+{
+  _out = 0;
+  if(((2 * (a[0])) - 3) <= (((-2 * (a[1])) + (a[2])) + 4))/*sygus_m..ample2.sk:47*/
+  {
+    int _out_s3 = a[0];
+    if((a[2]) < (a[0]))/*sygus_m..ample2.sk:34*/
+    {
+      _out_s3 = a[2];
+    }
+    if(_out_s3 > (a[1]))/*sygus_m..ample2.sk:34*/
+    {
+      _out_s3 = a[1];
+    }
+    _out = _out_s3;
+    return;
+  }
+  else
+  {
+    int _out_s5 = a[1];
+    if((a[1]) < (a[2]))/*sygus_m..ample2.sk:34*/
+    {
+      _out_s5 = a[2];
+    }
+    if((a[0]) > _out_s5)/*sygus_m..ample2.sk:34*/
+    {
+      _out_s5 = a[0];
+    }
+    _out = _out_s5;
+    return;
+  }
+}
+/* END PACKAGE ANONYMOUS*/

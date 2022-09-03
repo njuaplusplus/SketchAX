@@ -1,0 +1,10 @@
+int N = 3;
+
+int[N*N] transposeSK1 (int[N*N] input1) {
+    int[N*N] output=0;
+    repeat(N*N+1) {
+            output[??] = input1[??];
+    }
+    return output;
+}
+

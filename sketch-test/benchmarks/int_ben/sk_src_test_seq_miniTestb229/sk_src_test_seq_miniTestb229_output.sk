@@ -1,0 +1,32 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb229.sk:28*/
+
+void _main (int x, ref int _out)  implements pbe__main
+{
+  _out = 0;
+  _out = x;
+  check1(x, x);
+  checkEven(x * 2);
+  return;
+}
+/*sk_src_..stb229.sk:23*/
+
+void check1 (int x, int ans)/*sk_src_..stb229.sk:23*/
+{
+  assert (ans == x); //Assert at sk_src_..stb229.sk:25 (2)
+}
+/*sk_src_..stb229.sk:18*/
+
+void checkEven (int x)/*sk_src_..stb229.sk:18*/
+{
+  assert ((x % 2) == 0); //Assert at sk_src_..stb229.sk:20 (2)
+}
+/*sk_src_..stb229.sk:5*/
+
+void spec (int x, ref int _out)/*sk_src_..stb229.sk:5*/
+{
+  _out = 0;
+  _out = x;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

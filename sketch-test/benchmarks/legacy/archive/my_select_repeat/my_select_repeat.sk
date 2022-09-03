@@ -1,0 +1,18 @@
+int N = 16;
+
+int select(int[N] input){
+    return input[14];
+}
+
+int selectSK0 (int[N] input) implements select {
+    int output = ?? - ??;
+    int i = ??;
+
+    repeat(N) {
+        if (i == ??) output = input[i] + ?? - ??;
+        i += ??;
+    }
+
+    return output;
+}
+

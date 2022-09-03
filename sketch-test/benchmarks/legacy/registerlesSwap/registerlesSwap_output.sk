@@ -1,0 +1,10 @@
+void swap0 (ref bit[8] x, ref bit[8] y) implements swap1
+{
+  y = x ^ y;
+  y = x ^ y;
+  y = x ^ y;
+  y = x ^ y;
+  y = x ^ y;
+  x = x ^ y;
+  y = x ^ y;
+}

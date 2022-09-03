@@ -1,0 +1,17 @@
+pragma options "--bnd-unroll-amnt 40";
+
+void maxSketch0 (int N, int[N] a, ref int _out)  implements maxSketch1 /*max.sk:14*/
+{
+  _out = 0;
+  assume (N > 0): "Assume at max.sk:15"; //Assume at max.sk:15
+  _out = a[0];
+  for(int i = 0; i < N; i = i + 1)/*Canonical*/
+  {
+    if(_out < (a[i]))/*max.sk:18*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}
+

@@ -1,0 +1,22 @@
+void countLess0 (int[4] in, int v, ref int _out)  implements pbe_countLess0
+{
+  _out = 0;
+  _out = 0;
+  if((in[2]) < v)/*my_countLess.sk:20*/
+  {
+    _out = 1;
+  }
+  if((in[1]) < v)/*my_countLess.sk:20*/
+  {
+    _out = _out + 1;
+  }
+  if((in[0]) < v)/*my_countLess.sk:20*/
+  {
+    _out = _out + 1;
+  }
+  if((in[3]) < v)/*my_countLess.sk:20*/
+  {
+    _out = _out + 1;
+  }
+  return;
+}

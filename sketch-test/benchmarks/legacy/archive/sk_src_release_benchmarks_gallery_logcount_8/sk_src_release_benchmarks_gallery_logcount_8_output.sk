@@ -1,0 +1,12 @@
+void countSketch0 (bit[8] in, ref bit[8] _out)  implements pbe_countSketch0
+{
+  _out = ((bit[8])0);
+  _out = in;
+  bit[8] m = {1,0,1,0,1,0,1,0};
+  _out = (in & m) + ((in >> 1) & m);
+  bit[8] m_0 = {1,1,0,0,1,1,0,0};
+  _out = (_out & m_0) + ((_out >> 2) & m_0);
+  bit[8] m_1 = {1,1,1,0,0,0,0,0};
+  _out = (_out & m_1) + ((_out >> 4) & m_1);
+  return;
+}

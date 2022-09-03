@@ -1,0 +1,49 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_.._debug.sk:6*/
+
+void lss (int[4] in_0, ref int _out)/*sk_src_.._debug.sk:6*/
+{
+  _out = 0;
+  int[4] in = in_0;
+  for(int i = 0; i < 4; i = i + 1)/*Canonical*/
+  {
+    in[i] = (in[i]) - 3;
+  }
+  _out = 0;
+  int sum = 0;
+  for(int i_0 = 0; i_0 < 4; i_0 = i_0 + 1)/*Canonical*/
+  {
+    sum = 0;
+    for(int j = i_0; j < 4; j = j + 1)/*Canonical*/
+    {
+      sum = sum + (in[j]);
+      if(sum > _out)/*sk_src_.._debug.sk:14*/
+      {
+        _out = sum;
+      }
+    }
+  }
+  return;
+}
+/*sk_src_.._debug.sk:20*/
+
+void lssSketch (int[4] in_0, ref int _out)  implements pbe_lssSketch
+{
+  _out = 0;
+  int[4] in = in_0;
+  int sum = 0;
+  for(int i_0 = 0; i_0 < 4; i_0 = i_0 + 1)/*Canonical*/
+  {
+    sum = sum + (in[i_0]);
+    if(sum <= 0)/*sk_src_.._debug.sk:28*/
+    {
+      sum = 0;
+    }
+    if(sum > _out)/*sk_src_.._debug.sk:29*/
+    {
+      _out = sum;
+    }
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

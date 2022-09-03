@@ -1,0 +1,27 @@
+//@Description Sketch that computes the xor of all the bits in a bit-vector using a strategy similar to log-shifting.
+
+int W=8;
+
+bit parity(bit[W] in)
+{
+    bit ret=0;
+    for(int i=0;i<W;i++)
+        ret=ret^in[i];
+    return ret;
+}
+
+bit fastparity1(bit[W] in)
+{
+    bit[W] y=in;
+    int x = ??;
+    repeat(??) {
+        y=y^(y << ??);
+    }
+    return y[??];
+}
+
+// harness void constraints(int[W] ind) {
+//     assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+//     assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 1;
+//     assert fastparity1({1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+// }

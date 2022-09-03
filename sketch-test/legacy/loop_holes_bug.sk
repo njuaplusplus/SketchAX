@@ -1,0 +1,15 @@
+int N = 3;
+int maxSketch(int[N] a) { //implements maxSpec {
+  int max = a[??];
+  loop (5) {
+    if ({|(max|a[??]) (<|<=) (max|a[??])|}) {
+      max = a[??];
+    }
+  }
+  return max;
+}
+harness void Constraint(){
+  assert ((maxSketch({0,10,2  })) == (10));
+  assert ((maxSketch({-1,10,20})) == (20));
+  assert ((maxSketch({-1,-2,-3})) == (-1));
+}

@@ -1,0 +1,10 @@
+int N = 2;
+
+int[N*N] addSK1 (int[N*N] input1, int[N*N] input2) {
+    int[N*N] output=0;
+    repeat(??) {
+            output[??] = input1[??] + input2[??];
+    }
+    return output;
+}
+

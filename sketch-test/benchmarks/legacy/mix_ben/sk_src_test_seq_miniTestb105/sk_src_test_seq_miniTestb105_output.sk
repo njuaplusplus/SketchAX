@@ -1,0 +1,18 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb105.sk:1*/
+
+void foo (int arr, bit org, ref bit _out)/*sk_src_..stb105.sk:1*/
+{
+  _out = 0;
+  _out = (1 == arr) && org;
+  return;
+}
+/*sk_src_..stb105.sk:5*/
+
+void fooSK (int arr, bit org, ref bit _out)  implements pbe_fooSK
+{
+  _out = 0;
+  _out = (1 == arr) && org;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

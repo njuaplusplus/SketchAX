@@ -1,0 +1,9 @@
+bit[2] spec(bit[1] x) {
+    return x;
+}
+
+bit[2] pbe_sketch(bit[1] x)  {
+    //bit[2] v = ??;
+    return x & ??;
+}
+

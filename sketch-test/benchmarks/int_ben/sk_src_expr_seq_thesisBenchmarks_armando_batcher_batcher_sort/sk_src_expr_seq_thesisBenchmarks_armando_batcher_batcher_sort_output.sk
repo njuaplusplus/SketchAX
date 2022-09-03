@@ -1,0 +1,52 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..r_sort.sk:13*/
+
+void batcher_sort (int[4] in_0, ref int _out)  implements pbe_batcher_sort
+{
+  _out = 0;
+  int[4] in = in_0;
+  int[6] holes_i = {1,1,0,0,1,2};
+  int[6] holes_j = {2,2,2,1,3,3};
+  int[8] swap_idx_j = {0,0,0,0,0,0,0,0};
+  int[8] swap_idx_i = {0,0,0,0,0,0,0,0};
+  for(int a = 0; a < 2; a = a + 1)/*Canonical*/
+  {
+    swap_idx_i[a] = 2 * a;
+    swap_idx_j[a] = (2 * a) + 1;
+  }
+  for(int a_0 = 2; a_0 < 8; a_0 = a_0 + 1)/*Canonical*/
+  {
+    swap_idx_i[a_0] = holes_i[a_0 - 2];
+    swap_idx_j[a_0] = holes_j[a_0 - 2];
+  }
+  for(int a_1 = 0; a_1 < 8; a_1 = a_1 + 1)/*Canonical*/
+  {
+    int i;
+    i = swap_idx_i[a_1];
+    int j;
+    j = swap_idx_j[a_1];
+    assert (i < j); //Assert at sk_src_..r_sort.sk:38 (4)
+    assert (j < 4); //Assert at sk_src_..r_sort.sk:39 (0)
+    if((in[i]) > (in[j]))/*sk_src_..r_sort.sk:40*/
+    {
+      int tmp = in[j];
+      in[j] = in[i];
+      in[i] = tmp;
+    }
+  }
+  for(int a_2 = 0; a_2 < 3; a_2 = a_2 + 1)/*Canonical*/
+  {
+    assert ((in[a_2]) <= (in[a_2 + 1])); //Assert at sk_src_..r_sort.sk:47 (1)
+  }
+  _out = 0;
+  return;
+}
+/*sk_src_..r_sort.sk:4*/
+
+void nospec (int[4] in, ref int _out)/*sk_src_..r_sort.sk:4*/
+{
+  _out = 0;
+  _out = 0;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

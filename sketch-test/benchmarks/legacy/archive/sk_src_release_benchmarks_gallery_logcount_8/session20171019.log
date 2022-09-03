@@ -1,0 +1,4156 @@
+root@b3b4c78dbb90:/sketch_test# ls
+compress  doublyLinkedList  isolateRightmost  jburnim_morton  logcount  parity  Pollard  registerlesSwap  reverse  sort
+root@b3b4c78dbb90:/sketch_test# cd logcount/
+root@b3b4c78dbb90:/sketch_test/logcount# sketch --help
+SKETCH version 1.7.4
+usage: [options]
+
+advanced flags: --be:flag --beopt:option value
+native compiler flags: --nc:flag --ncopt:option value
+bnd - bounds for bounded model checking
+debug - debugging
+fe - miscellaneous frontend options
+spmd - spmd sketching interface options
+sem - change program semantics
+slv - solver options
+    --bnd-ang-tuple-depth        Maximum depth of angelic tuples [default 1]
+    --bnd-angelic-arrsz          The max length of angelic array. [default -1]
+    --bnd-angelicbits            The number of bits to use for integer angelic ctrls.
+                                 [default -1]
+    --bnd-arr-size               Max Size for arrays of unknown size. [default 32]
+    --bnd-arr1d-size             Max Size for one dimensional arrays of unknown size.
+                                 [default 32]
+    --bnd-bound-mode             Determine whether inline-amnt will bound the number of
+                                 times a callsite will appear on the stack (CALLSITE) or
+                                 the number of times a call name will appear on the stack
+                                 (CALLNAME). [default CALLNAME]
+    --bnd-branch-amnt            This flag is also used for recursion control. It bounds
+                                 inlining based on the idea that if a function calls
+                                 itself recureively ten times, we want to inline it less
+                                 than a function that calls itself recursively only once.
+                                 In this case, n is the maximum value of the branching
+                                 factor, which is the number of times a function calls
+                                 itself recursively, times the amount of inlining.
+                                 [default 15]
+    --bnd-cbits                  The number of bits to use for integer holes. [default 5]
+    --bnd-cost-estimate          Initial value to start with when minimizing
+                                 expressions/cost functions [default 32]
+    --bnd-dag-size               Max size of DAG [default -1]
+    --bnd-eq-depth               Maximum depth for ADT equality comparisons [default 6]
+    --bnd-guc-depth              Maximum depth of GUC [default 3]
+    --bnd-heap-size              (Deprecated) System will ignore this flag. [default 11]
+    --bnd-inbits                 The number of bits to use for integer inputs. [default 5]
+    --bnd-incremental            Tells the solver to incrementally grow the size of
+                                 integer holes from 1 to n bits. [default
+                                 sketch.util.cli.CliOptional@133314b]
+    --bnd-inline-amnt            Bounds inlining to n levels of recursion, so each
+                                 function can appear at most n times in the stack.
+                                 [default 5]
+    --bnd-int-range              Maximum absolute value of integers modeled by the system;
+                                 -1 means there is no bound. [default -1]
+    --bnd-mbits                  The number of bits to use for minimize bound. [default 5]
+    --bnd-src-tuple-depth        Maximum depth of src tuples [default 2]
+    --bnd-unroll-amnt            The unroll ammount for loops. [default 8]
+    --debug-cex                  Show the counterexample inputs produced by the solver.
+                                 (Equivalend to backend flag -showinputs).
+    --debug-check-back-input     Feed the backend input file to a bash script to check its
+                                 validity
+ -p,--debug-dump-after           Stages / visitors to dump the program after (comma-sep)
+    --debug-dump-ast             Dump LISP-Like representation of the AST.
+ -P,--debug-dump-before          Stages / visitors to dump the program before (comma-sep)
+    --debug-dump-to-file         Dump debug output to a file
+    --debug-fake-solver          This flag indicates that the SAT solver should not be
+                                 invoked. Instead the frontend should look for a solution
+                                 file, and generate the code from that. It is useful when
+                                 working with sketches that take a long time to resolve if
+                                 one wants to play with different settings for code
+                                 generation.
+    --debug-output-dag           Write the IR to the given file in an easy to parse
+                                 format.
+    --debug-print-passes         Print names of stages and visitors as they execute
+    --debug-show-dag             Print IR for the synthesis problem to the console.
+    --debug-trace                Show a trace of the symbolic execution.
+ -V,--debug-verbosity            Sets the level of verbosity for the output. 0 is quiet
+                                 mode 10 is the most verbose. [default 1]
+    --fe-cegis-path              Path to the 'cegis' binary, overriding default search
+                                 paths.
+    --fe-custom-codegen <FILE>   Do custom code generation based on the visitor class from
+                                 this jar file.
+    --fe-def <VAR=val>           If the program contains a global variable VAR, it sets
+                                 its value to val. [default [Ljava.lang.String;@b1bc7ed]
+    --fe-elim-final-structs      Eliminate final structs and structs with no alias
+    --fe-force-codegen           Forces code generation. Even if the sketch fails to
+                                 resolve, this flag will force the synthesizer to produce
+                                 code from the latest known control values.
+    --fe-fpencoding              Determine which encoding to use for floats/doubles.
+                                 With AS_BIT, it will encode floats with a single bit.
+                                 With AS_FFIELD, it will encode them using the field of
+                                 integers mod 7.
+                                 With AS_FIXPOINT, it will encode them using fixedpoint
+                                 arithmetic.
+                                 [default AS_BIT]
+    --fe-inc                     Directory to search for include files. [default
+                                 [Ljava.lang.String;@7cd84586]
+    --fe-keep-asserts            DEPRACATED: The synthesizer guarantees that all asserts
+                                 will succeed. For this reason, all asserts are removed
+                                 from generated code by default. However, sometimes it is
+                                 useful for debugging purposes to keep the assertions
+                                 around.
+    --fe-keep-tmp                Keep intermediate files. Useful for debugging the
+                                 compiler.
+    --fe-kill-asserts            Remove all assertions from the code, since the
+                                 synthesizer knows they will all succeed.
+    --fe-low-overhead            Turn off all typechecking, as well as stencils. Useful to
+                                 reduce overhead when using sketch as a backend for other
+                                 tools.
+ -n,--fe-no-output-print         Do not print out code (useful when using printfcn's
+    --fe-output                  Temporary output directory used to communicate with
+                                 backend solver. This is a relative path relative to the
+                                 sketch temp directory which is usually $HOME/.sketch/tmp
+    --fe-output-code             Use this flag if you want the compiler to produce C code.
+    --fe-output-dir              Set the directory where you want the generated code to be
+                                 written. [default ./]
+    --fe-output-hole-func        the file name to which to output the values of 'Hole
+                                 Functions', which are single line functions to give
+                                 unique names to holes
+    --fe-output-prog-name        Set the name of the output C files. By default it is the
+                                 name of the first input file.
+    --fe-output-script           Produce compilation script even if output-test was not
+                                 used.
+    --fe-output-test             Produce also a harness to test the generated C code.
+    --fe-output-xml <FILE>       Output the values of holes as XML to a file, "--" for
+                                 stdout
+    --fe-tempdir                 Changes the default temp directory from $HOME/.sketch/tmp
+                                 to a different value.
+    --fe-timeout                 Stop Sketch after given number of minutes. [default 0.0]
+ -y,--fe-tprint-python           Print Python code from tprint statements to file
+    --fe-trunc-var-arr           Add assume a[i]==0 for i>length(a) for any varlength
+                                 array a
+ -h,--help                       display help
+    --help:bnd                   help for bounds for bounded model checking
+    --help:debug                 help for debugging
+    --help:fe                    help for miscellaneous frontend options
+    --help:sem                   help for change program semantics
+    --help:slv                   help for solver options
+    --help:spmd                  help for spmd sketching interface options
+    --sem-array-OOB-policy       What to do when an array access would be out of bounds.
+                                 Options: 'assertions' to fail, 'wrsilent_rdzero' to read
+                                 zeros and ignore writes. [default assertions]
+    --slv-lightverif             Performs lightweight verification instead of full bounded
+                                 verification.
+    --slv-mem-limit              Kills the solver if its memory usage exceeds the bound
+                                 (bytes). [default 0]
+    --slv-ntimes                 Number of rounds on a single back-end invocation.
+                                 [default -1]
+    --slv-olevel                 Sets the optimization level for the compiler. [default
+                                 -1]
+    --slv-only-sp-rand           Only randomize depth holes of GUC
+    --slv-p-cpus                 Number of cores to use. [default 0]
+    --slv-p-timeout              Kills test trials after given number of minutes. [default
+                                 1.0]
+    --slv-p-trials               Number of parallel trails. [default 0]
+    --slv-parallel               Runs backend in parallel.
+    --slv-randassign             Concretize high-impact holes.
+    --slv-randdegree             Degree of randomness for hole concretization. [default
+                                 -1]
+    --slv-randdegrees            Degrees of randomness for hole concretization.
+    --slv-reorder-encoding       How reorder blocks should be rewritten. Options:
+                                 'exponential' to use 'insert' blocks, 'quadratic' to use
+                                 a loop of switch statements. Default value is
+                                 exponential. [default exponential]
+    --slv-seed                   Seeds the random number generator. If set to zero, a
+                                 random seed is used. [default 0]
+    --slv-simiters               Maximum steps of random simulation to perform for every
+                                 verification step. [default 4]
+    --slv-simple-inputs          Helps performance on bitvector benchmarks. Avoids
+                                 producing completely random inputs.
+    --slv-sp-rand-bias           Bias for special randomize holes [default 1]
+    --slv-strategy               Strategy for parallel-running. [default NOT_SET]
+    --slv-synth                  SAT solver to use for synthesis. Options: 'ABC' for the
+                                 ABC solver, 'MINI' for the MiniSat solver. [default
+                                 NOT_SET]
+    --slv-timeout                Kills the solver after given number of minutes. [default
+                                 0.0]
+    --slv-unoptimized            Don't optimize using specification
+    --slv-verif                  SAT solver to use for verification. Options: 'ABC' for
+                                 the ABC solver, 'MINI' for the MiniSat solver. [default
+                                 NOT_SET]
+    --spmd-max-nproc             Max NProc of spmd programs [default 16]
+root@b3b4c78dbb90:/sketch_test/logcount# sketch --bnd-unroll-amnt 50 -V 10 logcount.sk
+SKETCH version 1.7.4
+Benchmark = logcount.sk
+    [1508424005.7620 - DEBUG] Running stage 'parse' -- Parse the program from a file
+    [1508424005.9900 - DEBUG] Running stage 'preproc' -- Preprocessing (used for all further transformations)
+    [1508424006.0930 - DEBUG] Running stage SpmdLowLevelCStage
+    [1508424006.0990 - DEBUG]    Running visitor FlattenStmtBlocks2
+    [1508424006.1000 - DEBUG]    Running visitor SplitAssignFromVarDef
+    [1508424006.1010 - DEBUG]    Running visitor EliminateComplexForLoops
+    [1508424006.1050 - DEBUG] Running stage 'lowering' -- Lower for SKETCH backend
+    [1508424006.1140 - DEBUG] Running stage 'sten' -- Stencil transformations
+[SATBackend] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[SATBackend] MAX LOOP UNROLLING = 50
+[SATBackend] MAX FUNC INLINING  = 5
+estimated size of countSketch
+stmt cnt: 643
+
+[SATBackend] After prog.accept(partialEval)
+[SATBackend] OFILE = null
+searching for file null
+searching for file /sketch-1.7.4/sketch-frontend/cegis/src/SketchSolver/cegis
+searching for file /sketch-1.7.4/sketch-frontend/cegis
+searching for file cegis/src/SketchSolver/cegis
+searching for file ../sketch-backend/src/SketchSolver/cegis
+searching for file ../sketch-backend/bindings/cegis
+searching for file /root/.sketch/cegis-1.7.4
+searching for file /root/.sketch/cegis
+searching for file /usr/local/sbin/cegis
+searching for file /usr/local/sbin/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/local/bin/cegis
+searching for file /usr/local/bin/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/local/bin/../sketch-backend/bindings/cegis
+searching for file /usr/sbin/cegis
+searching for file /usr/sbin/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/sbin/../sketch-backend/bindings/cegis
+searching for file /usr/bin/cegis
+searching for file /usr/bin/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /usr/bin/../sketch-backend/bindings/cegis
+searching for file /sbin/cegis
+searching for file /sbin/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/src/SketchSolver/cegis
+searching for file /sbin/../sketch-backend/bindings/cegis
+searching for file /bin/cegis
+searching for file /bin/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/src/SketchSolver/cegis
+searching for file /bin/../sketch-backend/bindings/cegis
+searching for file /sketch-1.7.4/sketch-frontend/cegis
+searching for file /sketch-1.7.4/sketch-frontend/src/SketchSolver/cegis
+searching for file /sketch-1.7.4/sketch-frontend/../sketch-backend/src/SketchSolver/cegis
+resolved cegis to path /sketch-1.7.4/sketch-backend/src/SketchSolver/cegis
+    [1508424006.2860 - DEBUG] executing /sketch-1.7.4/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 10 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 5 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /root/.sketch/tmp/logcount.sk/solution0-0 /root/.sketch/tmp/logcount.sk/input0.tmp
+[SATBackend] Launching: /sketch-1.7.4/sketch-backend/src/SketchSolver/cegis --bnd-inbits 5 --boundmode CALLNAME --verbosity 10 --print-version -simiters 4 --assumebcheck --bnd-inline-amnt 5 -angelictupledepth 1 -srctupledepth 2 -sprandbias 1 -o /root/.sketch/tmp/logcount.sk/solution0-0 /root/.sketch/tmp/logcount.sk/input0.tmp
+starting command line: [/sketch-1.7.4/sketch-backend/src/SketchSolver/cegis, --bnd-inbits, 5, --boundmode, CALLNAME, --verbosity, 10, --print-version, -simiters, 4, --assumebcheck, --bnd-inline-amnt, 5, -angelictupledepth, 1, -srctupledepth, 2, -sprandbias, 1, -o, /root/.sketch/tmp/logcount.sk/solution0-0, /root/.sketch/tmp/logcount.sk/input0.tmp]
+Overriding inputs with 5
+boundmode = CALLNAME
+assuming  bounds checks
+SOLVER RAND SEED = 1508424006
+ optimization level = 6
+Reading SKETCH Program in File /root/.sketch/tmp/logcount.sk/input0.tmp
+CREATING countSketch
+size = 1055
+after ba size = 1055
+CREATING countBits
+size = 515
+after ba size = 515
+* before  EVERYTHING: countBits::SPEC nodes = 515	 countSketch::SKETCH nodes = 1055
+ INBITS = 5
+ CBITS  = 5
+ input_ints = 0 	 input_bits = 16
+ Inlining amount = 5
+ Inlining functions in the sketch.
+inlined 0 new size =1053
+END OF STEP 0
+Bailing out
+ Inlining functions in the spec.
+inlined 0 new size =515
+END OF STEP 0
+Bailing out
+after Creating Miter: Problem nodes = 1580
+* Final Problem size: Problem nodes = 1594
+  # OF CONTROLS:    86
+ control_ints = 6 	 control_bits = 80
+inputSize = 16	ctrlSize = 110
+Random seeds = 1
+!+ 00000000010100001000000101000011000000010110000000110010000000000011011010001000100110001100010000000000000101
+!+ H__0:0
+H__3_0:0
+H__4:8
+H__5_0:1
+H__6:16
+H__3_1:0
+H__3_2:0
+H__3_3:0
+H__3_4:0
+H__3_5:0
+H__3_6:0
+H__3_7:1
+H__3_8:0
+H__3_9:1
+H__3_10:0
+H__3_11:0
+H__3_12:0
+H__3_13:0
+H__3_14:1
+H__3_15:1
+H__7_0:0
+H__8:0
+H__5_1:0
+H__5_2:1
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:0
+H__5_9:0
+H__5_10:0
+H__5_11:0
+H__5_12:0
+H__5_13:1
+H__5_14:1
+H__5_15:0
+H__9_0:0
+H__10:1
+H__7_1:0
+H__7_2:0
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:1
+H__7_9:1
+H__7_10:0
+H__7_11:1
+H__7_12:1
+H__7_13:0
+H__7_14:1
+H__7_15:0
+H__11_0:0
+H__12:2
+H__9_1:1
+H__9_2:0
+H__9_3:0
+H__9_4:1
+H__9_5:1
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:1
+H__9_10:1
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:1
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:1
+H__11_14:0
+H__11_15:1
+
+BEG CHECK
+ * After optims it became = 561 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  0	ftime= 0	ctime= 0.004
+!% 0001010000000101
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:1
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:1
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1027 was 1594
+ * After all optims it became = 1027
+ finder  hits = 535	 bstoreObjs=1376	 sstorePages=2
+hitcount 	0	1302	0
+hitcount 	1	6	0
+hitcount 	2	6	0
+hitcount 	3	6	0
+hitcount 	4	6	0
+hitcount 	5	5	0
+hitcount 	6	5	0
+hitcount 	7	5	0
+hitcount 	8	5	0
+hitcount 	9	5	0
+hitcount 	10	5	0
+hitcount 	11	5	0
+hitcount 	12	5	0
+hitcount 	13	5	0
+hitcount 	14	5	0
+bucketsPerDepth 	0	381
+bucketsPerDepth 	1	281
+bucketsPerDepth 	2	86
+bucketsPerDepth 	3	20
+bucketsPerDepth 	4	4
+* TIME TO ADD INPUT :  0.009 ms
+DECISIONS START = 0
+f# %assign: 2 clauses: 4818 learn: 58 restart: 1 decision: 255 propagated: 10792
+END FIND
+!+ 10000010110010000010000000000000000000110000000000000001000110000000000000001000111000000000000111000000000000
+!+ H__0:1
+H__3_0:0
+H__4:13
+H__5_0:0
+H__6:1
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:0
+H__3_5:0
+H__3_6:0
+H__3_7:0
+H__3_8:0
+H__3_9:0
+H__3_10:0
+H__3_11:0
+H__3_12:0
+H__3_13:0
+H__3_14:0
+H__3_15:0
+H__7_0:0
+H__8:0
+H__5_1:1
+H__5_2:1
+H__5_3:0
+H__5_4:0
+H__5_5:0
+H__5_6:0
+H__5_7:0
+H__5_8:0
+H__5_9:0
+H__5_10:0
+H__5_11:0
+H__5_12:0
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:0
+H__10:2
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:2
+H__9_1:1
+H__9_2:1
+H__9_3:1
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:1
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 565 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  1	ftime= 0.012	ctime= 0.003
+!% 0100010100010100
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:1
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1016 was 1594
+ * After all optims it became = 1016
+ finder  hits = 1144	 bstoreObjs=2645	 sstorePages=3
+hitcount 	0	2559	1
+hitcount 	1	11	0
+hitcount 	2	2	0
+hitcount 	3	7	0
+hitcount 	4	1	0
+hitcount 	5	5	0
+hitcount 	7	5	0
+hitcount 	9	5	0
+hitcount 	11	5	0
+hitcount 	13	5	0
+hitcount 	15	5	0
+hitcount 	17	5	0
+hitcount 	19	5	0
+hitcount 	21	5	0
+hitcount 	23	5	0
+hitcount 	25	5	0
+hitcount 	27	5	0
+hitcount 	28	1	0
+hitcount 	29	4	0
+bucketsPerDepth 	0	212
+bucketsPerDepth 	1	351
+bucketsPerDepth 	2	261
+bucketsPerDepth 	3	108
+bucketsPerDepth 	4	31
+bucketsPerDepth 	5	1
+bucketsPerDepth 	6	1
+* TIME TO ADD INPUT :  0.006 ms
+DECISIONS START = 255
+f# %assign: 2 clauses: 9375 learn: 70 restart: 2 decision: 673 propagated: 18492
+END FIND
+!+ 10100010110010000110010100010101111010100101100111111100010111101100110000111000010010000100000010000000000000
+!+ H__0:5
+H__3_0:0
+H__4:13
+H__5_0:0
+H__6:1
+H__3_1:1
+H__3_2:1
+H__3_3:0
+H__3_4:0
+H__3_5:1
+H__3_6:0
+H__3_7:1
+H__3_8:0
+H__3_9:0
+H__3_10:0
+H__3_11:1
+H__3_12:0
+H__3_13:1
+H__3_14:0
+H__3_15:1
+H__7_0:1
+H__8:11
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:0
+H__5_6:1
+H__5_7:1
+H__5_8:0
+H__5_9:0
+H__5_10:1
+H__5_11:1
+H__5_12:1
+H__5_13:1
+H__5_14:1
+H__5_15:1
+H__9_0:1
+H__10:8
+H__7_1:1
+H__7_2:1
+H__7_3:1
+H__7_4:1
+H__7_5:0
+H__7_6:1
+H__7_7:1
+H__7_8:0
+H__7_9:0
+H__7_10:1
+H__7_11:1
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:3
+H__9_1:0
+H__9_2:1
+H__9_3:0
+H__9_4:0
+H__9_5:1
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:1
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 617 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  2	ftime= 0.008	ctime= 0.003
+!% 0100101000000100
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:1
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1013 was 1594
+ * After all optims it became = 1013
+ finder  hits = 1758	 bstoreObjs=92	 sstorePages=1
+hitcount 	1	11	0
+hitcount 	2	6	0
+hitcount 	3	2	0
+hitcount 	4	1	0
+hitcount 	5	6	0
+hitcount 	7	1	0
+hitcount 	8	5	0
+hitcount 	11	5	0
+hitcount 	14	5	0
+hitcount 	17	5	0
+hitcount 	20	5	0
+hitcount 	23	5	0
+hitcount 	26	5	0
+hitcount 	29	5	0
+hitcount 	32	5	0
+hitcount 	35	5	0
+hitcount 	38	5	0
+hitcount 	41	5	0
+hitcount 	42	1	0
+hitcount 	44	4	0
+bucketsPerDepth 	0	88
+bucketsPerDepth 	1	2
+* TIME TO ADD INPUT :  0.006 ms
+DECISIONS START = 673
+f# %assign: 1 clauses: 13783 learn: 79 restart: 3 decision: 864 propagated: 23872
+END FIND
+!+ 10100110000110000010110100110101100110100111100110111100010111001010001011101100100001110001000110000000000000
+!+ H__0:5
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:1
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:1
+H__3_6:0
+H__3_7:1
+H__3_8:0
+H__3_9:0
+H__3_10:1
+H__3_11:1
+H__3_12:0
+H__3_13:1
+H__3_14:0
+H__3_15:1
+H__7_0:1
+H__8:12
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:1
+H__5_7:1
+H__5_8:0
+H__5_9:0
+H__5_10:1
+H__5_11:1
+H__5_12:0
+H__5_13:1
+H__5_14:1
+H__5_15:1
+H__9_0:1
+H__10:8
+H__7_1:1
+H__7_2:1
+H__7_3:1
+H__7_4:0
+H__7_5:0
+H__7_6:1
+H__7_7:0
+H__7_8:1
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:1
+H__7_13:0
+H__7_14:1
+H__7_15:1
+H__11_0:1
+H__12:6
+H__9_1:1
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:1
+H__9_7:1
+H__9_8:1
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:1
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 679 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0.001 ms
+END CHECK
+********  3	ftime= 0.008	ctime= 0.003
+!% 0000010100100000
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:1
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 883 was 1594
+ * After all optims it became = 883
+ finder  hits = 2348	 bstoreObjs=1114	 sstorePages=2
+hitcount 	0	1022	0
+hitcount 	1	10	0
+hitcount 	2	2	0
+hitcount 	3	6	0
+hitcount 	4	1	0
+hitcount 	5	1	0
+hitcount 	7	5	0
+hitcount 	8	1	0
+hitcount 	11	6	0
+hitcount 	15	5	0
+hitcount 	19	5	0
+hitcount 	23	5	0
+hitcount 	27	5	0
+hitcount 	31	5	0
+hitcount 	35	5	0
+hitcount 	39	5	0
+hitcount 	43	5	0
+hitcount 	46	1	0
+hitcount 	47	4	0
+hitcount 	49	1	0
+hitcount 	50	1	0
+hitcount 	51	3	0
+hitcount 	52	1	0
+hitcount 	53	2	0
+hitcount 	54	1	0
+hitcount 	55	2	0
+hitcount 	56	1	0
+hitcount 	57	1	0
+hitcount 	58	1	0
+hitcount 	59	1	0
+bucketsPerDepth 	0	368
+bucketsPerDepth 	1	228
+bucketsPerDepth 	2	69
+bucketsPerDepth 	3	11
+* TIME TO ADD INPUT :  0.006 ms
+DECISIONS START = 864
+f# %assign: 3 clauses: 17011 learn: 480 restart: 6 decision: 2881 propagated: 233688
+END FIND
+!+ 10100001000000000101011010010100000001101011010011100000010000101001000010100100100101000000000110000000000000
+!+ H__0:5
+H__3_0:0
+H__4:2
+H__5_0:0
+H__6:0
+H__3_1:1
+H__3_2:0
+H__3_3:1
+H__3_4:0
+H__3_5:1
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:0
+H__3_11:1
+H__3_12:0
+H__3_13:1
+H__3_14:0
+H__3_15:0
+H__7_0:0
+H__8:16
+H__5_1:1
+H__5_2:0
+H__5_3:1
+H__5_4:0
+H__5_5:1
+H__5_6:1
+H__5_7:0
+H__5_8:1
+H__5_9:0
+H__5_10:0
+H__5_11:1
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:0
+H__10:8
+H__7_1:0
+H__7_2:0
+H__7_3:0
+H__7_4:1
+H__7_5:0
+H__7_6:1
+H__7_7:0
+H__7_8:0
+H__7_9:1
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:1
+H__7_15:0
+H__11_0:1
+H__12:4
+H__9_1:1
+H__9_2:0
+H__9_3:0
+H__9_4:1
+H__9_5:0
+H__9_6:1
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 605 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  4	ftime= 0.056	ctime= 0.004
+!% 0000100000110101
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1029 was 1594
+ * After all optims it became = 1029
+ finder  hits = 2953	 bstoreObjs=2388	 sstorePages=3
+hitcount 	0	2294	0
+hitcount 	1	9	0
+hitcount 	2	5	0
+hitcount 	3	1	0
+hitcount 	4	6	0
+hitcount 	5	1	0
+hitcount 	8	1	0
+hitcount 	9	5	0
+hitcount 	11	1	0
+hitcount 	14	5	0
+hitcount 	19	5	0
+hitcount 	24	5	0
+hitcount 	29	5	0
+hitcount 	34	5	0
+hitcount 	39	5	0
+hitcount 	44	5	0
+hitcount 	49	5	0
+hitcount 	54	5	0
+hitcount 	58	1	0
+hitcount 	59	4	0
+hitcount 	62	1	0
+hitcount 	63	1	0
+hitcount 	64	3	0
+hitcount 	66	1	0
+hitcount 	67	1	0
+hitcount 	68	2	0
+hitcount 	69	2	0
+hitcount 	71	1	0
+hitcount 	72	1	0
+hitcount 	73	1	0
+hitcount 	74	1	0
+bucketsPerDepth 	0	235
+bucketsPerDepth 	1	336
+bucketsPerDepth 	2	254
+bucketsPerDepth 	3	83
+bucketsPerDepth 	4	24
+bucketsPerDepth 	5	1
+* TIME TO ADD INPUT :  0.009 ms
+DECISIONS START = 2881
+f# %assign: 2 clauses: 21515 learn: 679 restart: 8 decision: 4255 propagated: 353279
+END FIND
+!+ 10100010000000000001000001101110000010001000001101100100100000110000110010101010100000000110000100000000000000
+!+ H__0:5
+H__3_0:0
+H__4:1
+H__5_0:0
+H__6:0
+H__3_1:0
+H__3_2:0
+H__3_3:1
+H__3_4:0
+H__3_5:0
+H__3_6:0
+H__3_7:0
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:1
+H__3_14:1
+H__3_15:0
+H__7_0:0
+H__8:8
+H__5_1:0
+H__5_2:0
+H__5_3:1
+H__5_4:0
+H__5_5:0
+H__5_6:0
+H__5_7:0
+H__5_8:0
+H__5_9:1
+H__5_10:1
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:4
+H__7_1:0
+H__7_2:0
+H__7_3:0
+H__7_4:1
+H__7_5:1
+H__7_6:0
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:1
+H__7_11:1
+H__7_12:0
+H__7_13:0
+H__7_14:1
+H__7_15:0
+H__11_0:1
+H__12:10
+H__9_1:1
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:1
+H__9_11:1
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 615 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  5	ftime= 0.036	ctime= 0.003
+!% 0100100010010000
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 944 was 1594
+ * After all optims it became = 944
+ finder  hits = 3551	 bstoreObjs=97	 sstorePages=1
+hitcount 	1	11	0
+hitcount 	2	4	0
+hitcount 	3	2	0
+hitcount 	4	1	0
+hitcount 	5	7	0
+hitcount 	8	1	0
+hitcount 	11	6	0
+hitcount 	17	5	0
+hitcount 	23	5	0
+hitcount 	29	5	0
+hitcount 	35	5	0
+hitcount 	41	5	0
+hitcount 	47	5	0
+hitcount 	53	5	0
+hitcount 	59	5	0
+hitcount 	65	5	0
+hitcount 	70	1	0
+hitcount 	71	4	0
+hitcount 	74	1	0
+hitcount 	76	1	0
+hitcount 	77	3	0
+hitcount 	78	1	0
+hitcount 	80	2	0
+hitcount 	82	1	0
+hitcount 	83	2	0
+hitcount 	84	1	0
+hitcount 	86	1	0
+hitcount 	88	1	0
+hitcount 	89	1	0
+bucketsPerDepth 	0	93
+bucketsPerDepth 	1	2
+* TIME TO ADD INPUT :  0.007 ms
+DECISIONS START = 4255
+f# %assign: 2 clauses: 25416 learn: 1837 restart: 13 decision: 9116 propagated: 1130460
+END FIND
+!+ 10100101100110000011110001100101110010011101001101101100100111101000000000100001111100000000000110000000000000
+!+ H__0:5
+H__3_0:1
+H__4:6
+H__5_0:1
+H__6:1
+H__3_1:0
+H__3_2:1
+H__3_3:1
+H__3_4:1
+H__3_5:1
+H__3_6:0
+H__3_7:0
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:0
+H__3_12:0
+H__3_13:1
+H__3_14:0
+H__3_15:1
+H__7_0:1
+H__8:9
+H__5_1:0
+H__5_2:1
+H__5_3:1
+H__5_4:1
+H__5_5:0
+H__5_6:1
+H__5_7:0
+H__5_8:0
+H__5_9:1
+H__5_10:1
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:1
+H__9_0:1
+H__10:4
+H__7_1:1
+H__7_2:1
+H__7_3:1
+H__7_4:1
+H__7_5:0
+H__7_6:1
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:16
+H__9_1:1
+H__9_2:1
+H__9_3:1
+H__9_4:1
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 674 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0.001 ms
+END CHECK
+********  6	ftime= 0.162	ctime= 0.003
+!% 0000000000010111
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1015 was 1594
+ * After all optims it became = 1015
+ finder  hits = 4157	 bstoreObjs=1349	 sstorePages=2
+hitcount 	0	1252	0
+hitcount 	1	10	0
+hitcount 	2	5	0
+hitcount 	3	1	0
+hitcount 	4	1	0
+hitcount 	5	2	0
+hitcount 	6	5	0
+hitcount 	8	2	0
+hitcount 	11	1	0
+hitcount 	13	5	0
+hitcount 	20	5	0
+hitcount 	27	5	0
+hitcount 	34	5	0
+hitcount 	41	5	0
+hitcount 	48	5	0
+hitcount 	55	5	0
+hitcount 	62	5	0
+hitcount 	69	5	0
+hitcount 	76	5	0
+hitcount 	82	1	0
+hitcount 	83	4	0
+hitcount 	87	1	0
+hitcount 	89	1	0
+hitcount 	90	3	0
+hitcount 	92	1	0
+hitcount 	94	1	0
+hitcount 	95	1	0
+hitcount 	96	1	0
+hitcount 	97	2	0
+hitcount 	99	1	0
+hitcount 	101	1	0
+hitcount 	103	1	0
+hitcount 	104	1	0
+bucketsPerDepth 	0	384
+bucketsPerDepth 	1	253
+bucketsPerDepth 	2	101
+bucketsPerDepth 	3	18
+bucketsPerDepth 	4	2
+* TIME TO ADD INPUT :  0.009 ms
+DECISIONS START = 9116
+f# %assign: 2 clauses: 29817 learn: 3722 restart: 19 decision: 14901 propagated: 2577699
+END FIND
+!+ 11000010000110010101000001101110100100101110000000000000001110000000000000000001000000000000000000000000000000
+!+ H__0:3
+H__3_0:0
+H__4:1
+H__5_0:1
+H__6:9
+H__3_1:1
+H__3_2:0
+H__3_3:1
+H__3_4:0
+H__3_5:0
+H__3_6:0
+H__3_7:0
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:1
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:4
+H__5_1:1
+H__5_2:0
+H__5_3:1
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:0
+H__5_9:0
+H__5_10:0
+H__5_11:0
+H__5_12:0
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:0
+H__10:16
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:16
+H__9_1:0
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 616 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  7	ftime= 999.339	ctime= 0.003
+!% 0000000101101000
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:1
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 979 was 1594
+ * After all optims it became = 979
+ finder  hits = 4760	 bstoreObjs=2534	 sstorePages=3
+hitcount 	0	2437	1
+hitcount 	1	10	0
+hitcount 	2	3	0
+hitcount 	3	3	0
+hitcount 	4	1	0
+hitcount 	5	1	0
+hitcount 	7	6	0
+hitcount 	8	1	0
+hitcount 	11	2	0
+hitcount 	15	5	0
+hitcount 	23	5	0
+hitcount 	31	5	0
+hitcount 	39	5	0
+hitcount 	47	5	0
+hitcount 	55	5	0
+hitcount 	63	5	0
+hitcount 	71	5	0
+hitcount 	79	5	0
+hitcount 	87	5	0
+hitcount 	94	1	0
+hitcount 	95	4	0
+hitcount 	100	1	0
+hitcount 	102	1	0
+hitcount 	103	3	0
+hitcount 	105	1	0
+hitcount 	108	2	0
+hitcount 	110	1	0
+hitcount 	111	2	0
+hitcount 	113	1	0
+hitcount 	116	1	0
+hitcount 	118	1	0
+hitcount 	119	1	0
+bucketsPerDepth 	0	208
+bucketsPerDepth 	1	347
+bucketsPerDepth 	2	248
+bucketsPerDepth 	3	108
+bucketsPerDepth 	4	25
+bucketsPerDepth 	5	2
+* TIME TO ADD INPUT :  0.009 ms
+DECISIONS START = 14901
+f# %assign: 3 clauses: 33990 learn: 3959 restart: 21 decision: 16140 propagated: 2786607
+END FIND
+!+ 11000010000110010111000001101111100100111111000000000000110110000000000000000010000000000000000000000000000000
+!+ H__0:3
+H__3_0:0
+H__4:1
+H__5_0:1
+H__6:9
+H__3_1:1
+H__3_2:1
+H__3_3:1
+H__3_4:0
+H__3_5:0
+H__3_6:0
+H__3_7:0
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:1
+H__3_14:1
+H__3_15:1
+H__7_0:1
+H__8:4
+H__5_1:1
+H__5_2:1
+H__5_3:1
+H__5_4:1
+H__5_5:1
+H__5_6:1
+H__5_7:0
+H__5_8:0
+H__5_9:0
+H__5_10:0
+H__5_11:0
+H__5_12:0
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:0
+H__10:12
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:8
+H__9_1:0
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 646 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  8	ftime= 0.068	ctime= 0.002
+!% 1000000010000011
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1028 was 1594
+ * After all optims it became = 1028
+ finder  hits = 5365	 bstoreObjs=102	 sstorePages=1
+hitcount 	1	15	0
+hitcount 	2	3	0
+hitcount 	3	3	0
+hitcount 	4	1	0
+hitcount 	5	1	0
+hitcount 	7	1	0
+hitcount 	8	6	0
+hitcount 	11	2	0
+hitcount 	17	5	0
+hitcount 	26	5	0
+hitcount 	35	5	0
+hitcount 	44	5	0
+hitcount 	53	5	0
+hitcount 	62	5	0
+hitcount 	71	5	0
+hitcount 	80	5	0
+hitcount 	89	5	0
+hitcount 	98	5	0
+hitcount 	106	1	0
+hitcount 	107	4	0
+hitcount 	113	1	0
+hitcount 	115	1	0
+hitcount 	116	3	0
+hitcount 	119	1	0
+hitcount 	122	1	0
+hitcount 	123	1	0
+hitcount 	124	1	0
+hitcount 	125	2	0
+hitcount 	128	1	0
+hitcount 	131	1	0
+hitcount 	133	1	0
+hitcount 	134	1	0
+bucketsPerDepth 	0	95
+bucketsPerDepth 	1	3
+* TIME TO ADD INPUT :  0.007 ms
+DECISIONS START = 16140
+f# %assign: 3 clauses: 37635 learn: 5118 restart: 26 decision: 20448 propagated: 3738306
+END FIND
+!+ 10100001100010100110101101111110010000010111100111110110000100000110110100100110100000000111000100000000000000
+!+ H__0:5
+H__3_0:0
+H__4:6
+H__5_0:0
+H__6:5
+H__3_1:1
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:1
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:1
+H__3_12:1
+H__3_13:1
+H__3_14:1
+H__3_15:0
+H__7_0:0
+H__8:1
+H__5_1:0
+H__5_2:1
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:1
+H__5_7:1
+H__5_8:0
+H__5_9:0
+H__5_10:1
+H__5_11:1
+H__5_12:1
+H__5_13:1
+H__5_14:1
+H__5_15:0
+H__9_0:1
+H__10:1
+H__7_1:1
+H__7_2:0
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:1
+H__7_8:1
+H__7_9:0
+H__7_10:1
+H__7_11:1
+H__7_12:0
+H__7_13:1
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:12
+H__9_1:1
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:1
+H__9_11:1
+H__9_12:1
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 638 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  9	ftime= 0.282	ctime= 0.003
+!% 1000110101100100
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:1
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1023 was 1594
+ * After all optims it became = 1023
+ finder  hits = 5972	 bstoreObjs=1343	 sstorePages=2
+hitcount 	0	1241	0
+hitcount 	1	8	0
+hitcount 	2	9	0
+hitcount 	3	4	0
+hitcount 	4	1	0
+hitcount 	5	1	0
+hitcount 	7	1	0
+hitcount 	8	1	0
+hitcount 	9	5	0
+hitcount 	11	2	0
+hitcount 	19	5	0
+hitcount 	29	5	0
+hitcount 	39	5	0
+hitcount 	49	5	0
+hitcount 	59	5	0
+hitcount 	69	5	0
+hitcount 	79	5	0
+hitcount 	89	5	0
+hitcount 	99	5	0
+hitcount 	109	5	0
+hitcount 	118	1	0
+hitcount 	119	4	0
+hitcount 	126	1	0
+hitcount 	128	1	0
+hitcount 	129	3	0
+hitcount 	133	1	0
+hitcount 	136	1	0
+hitcount 	137	1	0
+hitcount 	138	1	0
+hitcount 	139	2	0
+hitcount 	143	1	0
+hitcount 	146	1	0
+hitcount 	148	1	0
+hitcount 	149	1	0
+bucketsPerDepth 	0	371
+bucketsPerDepth 	1	253
+bucketsPerDepth 	2	97
+bucketsPerDepth 	3	20
+bucketsPerDepth 	4	2
+* TIME TO ADD INPUT :  0.009 ms
+DECISIONS START = 20448
+f# %assign: 3 clauses: 41972 learn: 6377 restart: 31 decision: 23400 propagated: 4906389
+END FIND
+!+ 10100000001010000000000110101100001000000001111011000100010000111111110000111100010111110000000110000000000000
+!+ H__0:5
+H__3_0:0
+H__4:16
+H__5_0:0
+H__6:1
+H__3_1:0
+H__3_2:0
+H__3_3:0
+H__3_4:0
+H__3_5:0
+H__3_6:0
+H__3_7:1
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:1
+H__3_14:0
+H__3_15:0
+H__7_0:0
+H__8:2
+H__5_1:0
+H__5_2:0
+H__5_3:0
+H__5_4:0
+H__5_5:0
+H__5_6:1
+H__5_7:1
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:1
+H__5_12:1
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:8
+H__7_1:0
+H__7_2:0
+H__7_3:0
+H__7_4:1
+H__7_5:1
+H__7_6:1
+H__7_7:1
+H__7_8:1
+H__7_9:1
+H__7_10:1
+H__7_11:1
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:7
+H__9_1:0
+H__9_2:1
+H__9_3:0
+H__9_4:1
+H__9_5:1
+H__9_6:1
+H__9_7:1
+H__9_8:1
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 649 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  10	ftime= 999.406	ctime= 0.003
+!% 0000000111010010
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1025 was 1594
+ * After all optims it became = 1025
+ finder  hits = 6577	 bstoreObjs=2591	 sstorePages=3
+hitcount 	0	2488	1
+hitcount 	1	8	0
+hitcount 	2	9	0
+hitcount 	3	4	0
+hitcount 	4	1	0
+hitcount 	5	2	0
+hitcount 	7	1	0
+hitcount 	8	1	0
+hitcount 	10	5	0
+hitcount 	11	2	0
+hitcount 	21	5	0
+hitcount 	32	5	0
+hitcount 	43	5	0
+hitcount 	54	5	0
+hitcount 	65	5	0
+hitcount 	76	5	0
+hitcount 	87	5	0
+hitcount 	98	5	0
+hitcount 	109	5	0
+hitcount 	120	5	0
+hitcount 	130	1	0
+hitcount 	131	4	0
+hitcount 	139	1	0
+hitcount 	141	1	0
+hitcount 	142	3	0
+hitcount 	147	1	0
+hitcount 	150	1	0
+hitcount 	152	2	0
+hitcount 	153	2	0
+hitcount 	158	1	0
+hitcount 	161	1	0
+hitcount 	163	1	0
+hitcount 	164	1	0
+bucketsPerDepth 	0	201
+bucketsPerDepth 	1	331
+bucketsPerDepth 	2	264
+bucketsPerDepth 	3	113
+bucketsPerDepth 	4	22
+bucketsPerDepth 	5	4
+* TIME TO ADD INPUT :  0.006 ms
+DECISIONS START = 23400
+f# %assign: 3 clauses: 46339 learn: 18911 restart: 42 decision: 51408 propagated: 20168338
+END FIND
+!+ 10100001110000100100010110101100001100100011111001000010000000011111000000101100000011010000000110000000000000
+!+ H__0:5
+H__3_0:0
+H__4:14
+H__5_0:0
+H__6:4
+H__3_1:1
+H__3_2:0
+H__3_3:0
+H__3_4:0
+H__3_5:1
+H__3_6:0
+H__3_7:1
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:1
+H__3_14:0
+H__3_15:0
+H__7_0:0
+H__8:6
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:0
+H__5_5:1
+H__5_6:1
+H__5_7:1
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:0
+H__5_12:1
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:0
+H__10:1
+H__7_1:0
+H__7_2:0
+H__7_3:0
+H__7_4:0
+H__7_5:1
+H__7_6:1
+H__7_7:1
+H__7_8:1
+H__7_9:1
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:6
+H__9_1:0
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:1
+H__9_6:1
+H__9_7:0
+H__9_8:1
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 615 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  11	ftime= 5000.23	ctime= 0.004
+!% 1011000000100001
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:1
+in_10_33_idx_3_0:1
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1033 was 1594
+ * After all optims it became = 1033
+ finder  hits = 7182	 bstoreObjs=103	 sstorePages=1
+hitcount 	1	5	0
+hitcount 	2	12	0
+hitcount 	3	4	0
+hitcount 	4	1	0
+hitcount 	5	1	0
+hitcount 	7	2	0
+hitcount 	8	1	0
+hitcount 	11	7	0
+hitcount 	23	5	0
+hitcount 	35	5	0
+hitcount 	47	5	0
+hitcount 	59	5	0
+hitcount 	71	5	0
+hitcount 	83	5	0
+hitcount 	95	5	0
+hitcount 	107	5	0
+hitcount 	119	5	0
+hitcount 	131	5	0
+hitcount 	142	1	0
+hitcount 	143	4	0
+hitcount 	152	1	0
+hitcount 	154	1	0
+hitcount 	155	3	0
+hitcount 	161	1	0
+hitcount 	164	1	0
+hitcount 	166	1	0
+hitcount 	167	3	0
+hitcount 	173	1	0
+hitcount 	176	1	0
+hitcount 	178	1	0
+hitcount 	179	1	0
+bucketsPerDepth 	0	96
+bucketsPerDepth 	1	3
+* TIME TO ADD INPUT :  0.005 ms
+DECISIONS START = 51408
+f# %assign: 2 clauses: 50704 learn: 51284 restart: 56 decision: 120121 propagated: 63869548
+END FIND
+!+ 10100011010011000011111101111100000010011100101110000100100001110100000000111000001110000000000110000000000000
+!+ H__0:5
+H__3_0:0
+H__4:11
+H__5_0:0
+H__6:3
+H__3_1:0
+H__3_2:1
+H__3_3:1
+H__3_4:1
+H__3_5:1
+H__3_6:1
+H__3_7:1
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:1
+H__3_12:1
+H__3_13:1
+H__3_14:0
+H__3_15:0
+H__7_0:0
+H__8:8
+H__5_1:0
+H__5_2:1
+H__5_3:1
+H__5_4:1
+H__5_5:0
+H__5_6:0
+H__5_7:1
+H__5_8:0
+H__5_9:1
+H__5_10:1
+H__5_11:1
+H__5_12:0
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:4
+H__7_1:0
+H__7_2:0
+H__7_3:1
+H__7_4:1
+H__7_5:1
+H__7_6:0
+H__7_7:1
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:3
+H__9_1:0
+H__9_2:0
+H__9_3:1
+H__9_4:1
+H__9_5:1
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 651 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0.001 ms
+END CHECK
+********  12	ftime= 21000.5	ctime= 0.002
+!% 1000100110101101
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:1
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1042 was 1594
+ * After all optims it became = 1042
+ finder  hits = 7788	 bstoreObjs=1377	 sstorePages=2
+hitcount 	0	1274	0
+hitcount 	1	5	0
+hitcount 	2	9	0
+hitcount 	3	6	0
+hitcount 	4	2	0
+hitcount 	5	1	0
+hitcount 	7	1	0
+hitcount 	8	1	0
+hitcount 	9	1	1
+hitcount 	11	2	0
+hitcount 	12	5	0
+hitcount 	25	5	0
+hitcount 	38	5	0
+hitcount 	51	5	0
+hitcount 	64	5	0
+hitcount 	77	5	0
+hitcount 	90	5	0
+hitcount 	103	5	0
+hitcount 	116	5	0
+hitcount 	129	5	0
+hitcount 	142	5	0
+hitcount 	154	1	0
+hitcount 	155	4	0
+hitcount 	165	1	0
+hitcount 	167	1	0
+hitcount 	168	3	0
+hitcount 	175	1	0
+hitcount 	178	1	0
+hitcount 	180	1	0
+hitcount 	181	2	0
+hitcount 	182	1	0
+hitcount 	188	1	0
+hitcount 	191	1	0
+hitcount 	193	1	0
+hitcount 	194	1	0
+bucketsPerDepth 	0	376
+bucketsPerDepth 	1	275
+bucketsPerDepth 	2	107
+bucketsPerDepth 	3	15
+bucketsPerDepth 	4	1
+* TIME TO ADD INPUT :  0.005 ms
+DECISIONS START = 120121
+f# %assign: 2 clauses: 55155 learn: 77173 restart: 74 decision: 433563 propagated: 301685139
+END FIND
+!+ 10100110000110000111011101101110101000111011011100111100100101011111111000111100100001110000000110000000000000
+!+ H__0:5
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:1
+H__3_1:1
+H__3_2:1
+H__3_3:1
+H__3_4:0
+H__3_5:1
+H__3_6:1
+H__3_7:1
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:1
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:2
+H__5_1:1
+H__5_2:1
+H__5_3:1
+H__5_4:0
+H__5_5:1
+H__5_6:1
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:1
+H__5_11:0
+H__5_12:0
+H__5_13:1
+H__5_14:1
+H__5_15:1
+H__9_0:1
+H__10:4
+H__7_1:1
+H__7_2:0
+H__7_3:1
+H__7_4:0
+H__7_5:1
+H__7_6:1
+H__7_7:1
+H__7_8:1
+H__7_9:1
+H__7_10:1
+H__7_11:1
+H__7_12:1
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:7
+H__9_1:1
+H__9_2:0
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:1
+H__9_7:1
+H__9_8:1
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 754 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  13	ftime= 173000	ctime= 0.005
+!% 0100001101011011
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:1
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:1
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1039 was 1594
+ * After all optims it became = 1039
+ finder  hits = 8395	 bstoreObjs=2647	 sstorePages=3
+hitcount 	0	2544	1
+hitcount 	1	3	0
+hitcount 	2	11	0
+hitcount 	3	3	0
+hitcount 	4	5	0
+hitcount 	5	1	0
+hitcount 	7	1	0
+hitcount 	8	1	0
+hitcount 	11	3	0
+hitcount 	13	5	0
+hitcount 	27	5	0
+hitcount 	41	5	0
+hitcount 	55	5	0
+hitcount 	69	5	0
+hitcount 	83	5	0
+hitcount 	97	5	0
+hitcount 	111	5	0
+hitcount 	125	5	0
+hitcount 	139	5	0
+hitcount 	153	5	0
+hitcount 	166	1	0
+hitcount 	167	4	0
+hitcount 	178	1	0
+hitcount 	180	1	0
+hitcount 	181	3	0
+hitcount 	189	1	0
+hitcount 	192	1	0
+hitcount 	194	1	0
+hitcount 	195	2	0
+hitcount 	197	1	0
+hitcount 	203	1	0
+hitcount 	206	1	0
+hitcount 	208	1	0
+hitcount 	209	1	0
+bucketsPerDepth 	0	199
+bucketsPerDepth 	1	336
+bucketsPerDepth 	2	270
+bucketsPerDepth 	3	120
+bucketsPerDepth 	4	27
+bucketsPerDepth 	5	1
+* TIME TO ADD INPUT :  0.009 ms
+DECISIONS START = 433563
+f# %assign: 2 clauses: 59629 learn: 60547 restart: 92 decision: 809482 propagated: 590416713
+END FIND
+!+ 10100100110110000011110111111100110000101100111111000011100000100010011000100100110111000000000110000000000000
+!+ H__0:5
+H__3_0:1
+H__4:12
+H__5_0:1
+H__6:1
+H__3_1:0
+H__3_2:1
+H__3_3:1
+H__3_4:1
+H__3_5:1
+H__3_6:0
+H__3_7:1
+H__3_8:1
+H__3_9:1
+H__3_10:1
+H__3_11:1
+H__3_12:1
+H__3_13:1
+H__3_14:0
+H__3_15:0
+H__7_0:1
+H__8:1
+H__5_1:1
+H__5_2:0
+H__5_3:1
+H__5_4:1
+H__5_5:0
+H__5_6:0
+H__5_7:1
+H__5_8:1
+H__5_9:1
+H__5_10:1
+H__5_11:1
+H__5_12:1
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:0
+H__10:7
+H__7_1:0
+H__7_2:0
+H__7_3:0
+H__7_4:1
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:1
+H__7_9:0
+H__7_10:0
+H__7_11:1
+H__7_12:1
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:4
+H__9_1:1
+H__9_2:1
+H__9_3:0
+H__9_4:1
+H__9_5:1
+H__9_6:1
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 684 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  14	ftime= 233000	ctime= 0.003
+!% 0000100011010111
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1031 was 1594
+ * After all optims it became = 1031
+ finder  hits = 9002	 bstoreObjs=103	 sstorePages=1
+hitcount 	1	3	0
+hitcount 	2	9	0
+hitcount 	3	5	0
+hitcount 	4	2	0
+hitcount 	5	4	0
+hitcount 	7	1	0
+hitcount 	8	1	0
+hitcount 	11	2	0
+hitcount 	13	1	1
+hitcount 	14	5	0
+hitcount 	29	5	0
+hitcount 	44	5	0
+hitcount 	59	5	0
+hitcount 	74	5	0
+hitcount 	89	5	0
+hitcount 	104	5	0
+hitcount 	119	5	0
+hitcount 	134	5	0
+hitcount 	149	5	0
+hitcount 	164	5	0
+hitcount 	178	1	0
+hitcount 	179	4	0
+hitcount 	191	1	0
+hitcount 	193	1	0
+hitcount 	194	3	0
+hitcount 	203	1	0
+hitcount 	206	1	0
+hitcount 	208	1	0
+hitcount 	209	2	0
+hitcount 	212	1	0
+hitcount 	218	1	0
+hitcount 	221	1	0
+hitcount 	223	1	0
+hitcount 	224	1	0
+bucketsPerDepth 	0	96
+bucketsPerDepth 	1	3
+* TIME TO ADD INPUT :  0.007 ms
+DECISIONS START = 809482
+f# %assign: 2 clauses: 63978 learn: 144978 restart: 115 decision: 3196399 propagated: 2699702591
+END FIND
+!+ 10100000010000010110110010100111010000111111110100101000010111111101101101101100111111100000000110000000000000
+!+ H__0:5
+H__3_0:0
+H__4:8
+H__5_0:0
+H__6:8
+H__3_1:1
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:1
+H__3_6:0
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:0
+H__3_13:1
+H__3_14:1
+H__3_15:1
+H__7_0:0
+H__8:1
+H__5_1:1
+H__5_2:1
+H__5_3:1
+H__5_4:1
+H__5_5:1
+H__5_6:1
+H__5_7:1
+H__5_8:1
+H__5_9:0
+H__5_10:1
+H__5_11:0
+H__5_12:0
+H__5_13:1
+H__5_14:0
+H__5_15:1
+H__9_0:0
+H__10:8
+H__7_1:1
+H__7_2:1
+H__7_3:1
+H__7_4:1
+H__7_5:1
+H__7_6:1
+H__7_7:1
+H__7_8:0
+H__7_9:1
+H__7_10:1
+H__7_11:0
+H__7_12:1
+H__7_13:1
+H__7_14:0
+H__7_15:1
+H__11_0:1
+H__12:6
+H__9_1:1
+H__9_2:1
+H__9_3:1
+H__9_4:1
+H__9_5:1
+H__9_6:1
+H__9_7:1
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 715 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0 ms
+END CHECK
+********  15	ftime= 2.576e+06	ctime= 0.002
+!% 0101000100000001
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:1
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1029 was 1594
+ * After all optims it became = 1029
+ finder  hits = 9607	 bstoreObjs=1354	 sstorePages=2
+hitcount 	0	1251	0
+hitcount 	1	3	0
+hitcount 	2	9	0
+hitcount 	3	5	0
+hitcount 	4	2	0
+hitcount 	5	1	0
+hitcount 	6	3	0
+hitcount 	7	1	0
+hitcount 	8	1	0
+hitcount 	11	2	0
+hitcount 	15	6	0
+hitcount 	31	5	0
+hitcount 	47	5	0
+hitcount 	63	5	0
+hitcount 	79	5	0
+hitcount 	95	5	0
+hitcount 	111	5	0
+hitcount 	127	5	0
+hitcount 	143	5	0
+hitcount 	159	5	0
+hitcount 	175	5	0
+hitcount 	190	1	0
+hitcount 	191	4	0
+hitcount 	204	1	0
+hitcount 	206	1	0
+hitcount 	207	3	0
+hitcount 	217	1	0
+hitcount 	220	1	0
+hitcount 	222	1	0
+hitcount 	223	2	0
+hitcount 	227	1	0
+hitcount 	233	1	0
+hitcount 	236	1	0
+hitcount 	238	1	0
+hitcount 	239	1	0
+bucketsPerDepth 	0	389
+bucketsPerDepth 	1	290
+bucketsPerDepth 	2	71
+bucketsPerDepth 	3	25
+bucketsPerDepth 	4	3
+* TIME TO ADD INPUT :  0.007 ms
+DECISIONS START = 3196399
+f# %assign: 2 clauses: 68275 learn: 179363 restart: 140 decision: 8513875 propagated: 7672639664
+END FIND
+!+ 10100100100100010001101101110011110100111011111100000101100010101011100000110100011101000000000110000000000000
+!+ H__0:5
+H__3_0:1
+H__4:4
+H__5_0:1
+H__6:8
+H__3_1:0
+H__3_2:0
+H__3_3:1
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:1
+H__3_8:0
+H__3_9:1
+H__3_10:1
+H__3_11:1
+H__3_12:0
+H__3_13:0
+H__3_14:1
+H__3_15:1
+H__7_0:1
+H__8:5
+H__5_1:1
+H__5_2:1
+H__5_3:1
+H__5_4:0
+H__5_5:1
+H__5_6:1
+H__5_7:1
+H__5_8:1
+H__5_9:1
+H__5_10:1
+H__5_11:0
+H__5_12:0
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:6
+H__7_1:0
+H__7_2:1
+H__7_3:0
+H__7_4:1
+H__7_5:0
+H__7_6:1
+H__7_7:0
+H__7_8:1
+H__7_9:1
+H__7_10:1
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:1
+H__12:5
+H__9_1:0
+H__9_2:1
+H__9_3:1
+H__9_4:1
+H__9_5:0
+H__9_6:1
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:1
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 680 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0.001 ms
+END CHECK
+********  16	ftime= 7.423e+06	ctime= 0.004
+!% 0000000010000100
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1000 was 1594
+ * After all optims it became = 1000
+ finder  hits = 10214	 bstoreObjs=2557	 sstorePages=3
+hitcount 	0	2454	1
+hitcount 	1	3	0
+hitcount 	2	4	0
+hitcount 	3	10	0
+hitcount 	4	2	0
+hitcount 	5	1	0
+hitcount 	6	2	0
+hitcount 	7	2	0
+hitcount 	8	1	0
+hitcount 	11	2	0
+hitcount 	16	5	0
+hitcount 	17	1	1
+hitcount 	33	5	0
+hitcount 	50	5	0
+hitcount 	67	5	0
+hitcount 	84	5	0
+hitcount 	101	5	0
+hitcount 	118	5	0
+hitcount 	135	5	0
+hitcount 	152	5	0
+hitcount 	169	5	0
+hitcount 	186	5	0
+hitcount 	202	1	0
+hitcount 	203	4	0
+hitcount 	217	1	0
+hitcount 	219	1	0
+hitcount 	220	3	0
+hitcount 	231	1	0
+hitcount 	234	1	0
+hitcount 	236	1	0
+hitcount 	237	2	0
+hitcount 	241	1	0
+hitcount 	248	1	0
+hitcount 	251	1	0
+hitcount 	253	1	0
+hitcount 	254	1	0
+bucketsPerDepth 	0	212
+bucketsPerDepth 	1	347
+bucketsPerDepth 	2	245
+bucketsPerDepth 	3	102
+bucketsPerDepth 	4	30
+bucketsPerDepth 	5	5
+bucketsPerDepth 	6	1
+* TIME TO ADD INPUT :  0.005 ms
+DECISIONS START = 8513875
+f# %assign: 2 clauses: 72407 learn: 107499 restart: 162 decision: 9903497 propagated: 9110672938
+END FIND
+!+ 00100110000100100010101010101010101000111001011110000100010100000011000000011000110000000000000000000000000000
+!+ H__0:4
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:4
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:0
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:2
+H__5_1:1
+H__5_2:1
+H__5_3:1
+H__5_4:0
+H__5_5:0
+H__5_6:1
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:1
+H__5_11:1
+H__5_12:0
+H__5_13:0
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:8
+H__7_1:1
+H__7_2:0
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:1
+H__7_9:1
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:3
+H__9_1:1
+H__9_2:1
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 663 was 1594
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_15_0
+in_10_33_idx_14_0
+2= in_10_33_idx_15_0 & in_10_33_idx_14_0
+3= 2 !
+4= ASSERT (!2) :
+}
+SLICE SIZE = 5
+DECISIONS START = 0
+c# %assign: 80 clauses: 0 learn: 0 restart: 1 decision: 2 propagated: 5
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 212= in_10_33_idx_2_0 & 211  = 0
+ reduced size from 663 to 605
+ * Simulation optimized it to = 605
+Simulation didn't find a cex:  0.003 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 0 clauses: 1572 learn: 100 restart: 2 decision: 384 propagated: 3192
+END CHECK
+********  17	ftime= 1.559e+06	ctime= 0.008
+!% 1100001100111011
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:1
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:1
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1043 was 1594
+ * After all optims it became = 1043
+ finder  hits = 10821	 bstoreObjs=103	 sstorePages=1
+hitcount 	1	3	0
+hitcount 	2	4	0
+hitcount 	3	8	0
+hitcount 	4	4	0
+hitcount 	5	1	0
+hitcount 	7	3	0
+hitcount 	8	2	0
+hitcount 	11	2	0
+hitcount 	17	5	0
+hitcount 	19	1	1
+hitcount 	35	5	0
+hitcount 	53	5	0
+hitcount 	71	5	0
+hitcount 	89	5	0
+hitcount 	107	5	0
+hitcount 	125	5	0
+hitcount 	143	5	0
+hitcount 	161	5	0
+hitcount 	179	5	0
+hitcount 	197	5	0
+hitcount 	214	1	0
+hitcount 	215	4	0
+hitcount 	230	1	0
+hitcount 	232	1	0
+hitcount 	233	3	0
+hitcount 	245	1	0
+hitcount 	248	1	0
+hitcount 	250	1	0
+hitcount 	251	2	0
+hitcount 	256	1	0
+hitcount 	263	1	0
+hitcount 	266	1	0
+hitcount 	268	1	0
+hitcount 	269	1	0
+bucketsPerDepth 	0	96
+bucketsPerDepth 	1	3
+* TIME TO ADD INPUT :  0.006 ms
+DECISIONS START = 9903497
+f# %assign: 2 clauses: 76886 learn: 129990 restart: 183 decision: 10944142 propagated: 10219234989
+END FIND
+!+ 00100110000101000010101010101010100010100110011001100100100100110000000000000100110000000000000011000000000000
+!+ H__0:4
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:2
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:0
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:8
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:4
+H__7_1:1
+H__7_2:0
+H__7_3:0
+H__7_4:1
+H__7_5:1
+H__7_6:0
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:4
+H__9_1:1
+H__9_2:1
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:1
+H__11_3:1
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 649 was 1594
+The spec and sketch can not be made to be equal. _p_out_countBits_ANONYMOUS
+Simulation found a cex by random testing:  0.002 ms
+END CHECK
+********  18	ftime= 1.206e+06	ctime= 0.005
+!% 0000101011111000
+!% in_10_33_idx_0_0:0
+in_10_33_idx_1_0:0
+in_10_33_idx_2_0:0
+in_10_33_idx_3_0:0
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:1
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:1
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 991 was 1594
+ * After all optims it became = 991
+ finder  hits = 11421	 bstoreObjs=1291	 sstorePages=2
+hitcount 	0	1188	0
+hitcount 	1	3	0
+hitcount 	2	4	0
+hitcount 	3	8	0
+hitcount 	4	4	0
+hitcount 	5	1	0
+hitcount 	7	3	0
+hitcount 	8	1	0
+hitcount 	9	1	0
+hitcount 	11	2	0
+hitcount 	18	5	0
+hitcount 	21	1	1
+hitcount 	37	5	0
+hitcount 	56	5	0
+hitcount 	75	5	0
+hitcount 	94	5	0
+hitcount 	113	5	0
+hitcount 	132	5	0
+hitcount 	151	5	0
+hitcount 	170	5	0
+hitcount 	189	5	0
+hitcount 	208	5	0
+hitcount 	226	1	0
+hitcount 	227	4	0
+hitcount 	243	1	0
+hitcount 	245	1	0
+hitcount 	246	3	0
+hitcount 	258	1	0
+hitcount 	262	1	0
+hitcount 	264	1	0
+hitcount 	265	2	0
+hitcount 	270	1	0
+hitcount 	277	1	0
+hitcount 	281	1	0
+hitcount 	283	1	0
+hitcount 	284	1	0
+bucketsPerDepth 	0	389
+bucketsPerDepth 	1	265
+bucketsPerDepth 	2	78
+bucketsPerDepth 	3	14
+bucketsPerDepth 	4	3
+* TIME TO ADD INPUT :  0.006 ms
+DECISIONS START = 10944142
+f# %assign: 2 clauses: 81037 learn: 136730 restart: 203 decision: 11585243 propagated: 10923355269
+END FIND
+!+ 00100110000101000010101010101010100010100110011001100100100110110000000000000100110000000000000010000000000000
+!+ H__0:4
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:2
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:0
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:8
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:4
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:1
+H__7_5:1
+H__7_6:0
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:4
+H__9_1:1
+H__9_2:1
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:1
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 660 was 1594
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 209= in_10_33_idx_2_0 & 208  = 0
+ reduced size from 660 to 602
+ * Simulation optimized it to = 602
+Simulation didn't find a cex:  0.002 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 0 clauses: 1551 learn: 840 restart: 5 decision: 1387 propagated: 54166
+END CHECK
+********  19	ftime= 765000	ctime= 0.024
+!% 1111101000111111
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:1
+in_10_33_idx_3_0:1
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:1
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:1
+in_10_33_idx_13_0:1
+in_10_33_idx_14_0:1
+in_10_33_idx_15_0:1
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 1044 was 1594
+ * After all optims it became = 1044
+ finder  hits = 12028	 bstoreObjs=2571	 sstorePages=3
+hitcount 	0	2468	0
+hitcount 	1	3	0
+hitcount 	2	4	0
+hitcount 	3	8	0
+hitcount 	4	2	0
+hitcount 	5	3	0
+hitcount 	7	1	0
+hitcount 	8	3	0
+hitcount 	10	1	0
+hitcount 	11	2	0
+hitcount 	19	5	0
+hitcount 	23	1	1
+hitcount 	39	5	0
+hitcount 	59	5	0
+hitcount 	79	5	0
+hitcount 	99	5	0
+hitcount 	119	5	0
+hitcount 	139	5	0
+hitcount 	159	5	0
+hitcount 	179	5	0
+hitcount 	199	5	0
+hitcount 	219	5	0
+hitcount 	238	1	0
+hitcount 	239	4	0
+hitcount 	256	1	0
+hitcount 	258	1	0
+hitcount 	259	3	0
+hitcount 	272	1	0
+hitcount 	276	1	0
+hitcount 	278	1	0
+hitcount 	279	2	0
+hitcount 	285	1	0
+hitcount 	292	1	0
+hitcount 	296	1	0
+hitcount 	298	1	0
+hitcount 	299	1	0
+bucketsPerDepth 	0	204
+bucketsPerDepth 	1	366
+bucketsPerDepth 	2	269
+bucketsPerDepth 	3	89
+bucketsPerDepth 	4	24
+bucketsPerDepth 	5	3
+* TIME TO ADD INPUT :  0.005 ms
+DECISIONS START = 11585243
+f# %assign: 2 clauses: 85556 learn: 107635 restart: 221 decision: 11887823 propagated: 11299135960
+END FIND
+!+ 00100110000101000010101010101010100100100110011001100100010110000011100000000100110000000000000001000000000000
+!+ H__0:4
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:2
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:0
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:4
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:8
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:0
+H__7_5:0
+H__7_6:0
+H__7_7:0
+H__7_8:1
+H__7_9:1
+H__7_10:1
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:4
+H__9_1:1
+H__9_2:1
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:1
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 671 was 1594
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 220= in_10_33_idx_2_0 & 219  = 0
+ reduced size from 671 to 613
+ * Simulation optimized it to = 613
+Simulation didn't find a cex:  0.001 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 0 clauses: 1580 learn: 864 restart: 5 decision: 1511 propagated: 64708
+END CHECK
+********  20	ftime= 318999	ctime= 0.026
+!% 1111111100000000
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:1
+in_10_33_idx_3_0:1
+in_10_33_idx_4_0:1
+in_10_33_idx_5_0:1
+in_10_33_idx_6_0:1
+in_10_33_idx_7_0:1
+in_10_33_idx_8_0:0
+in_10_33_idx_9_0:0
+in_10_33_idx_10_0:0
+in_10_33_idx_11_0:0
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 711 was 1594
+ * After all optims it became = 711
+ finder  hits = 12555	 bstoreObjs=106	 sstorePages=1
+hitcount 	1	6	0
+hitcount 	2	4	0
+hitcount 	3	8	0
+hitcount 	4	2	0
+hitcount 	5	3	0
+hitcount 	7	1	0
+hitcount 	8	3	0
+hitcount 	11	3	0
+hitcount 	20	5	0
+hitcount 	25	1	1
+hitcount 	41	5	0
+hitcount 	62	5	0
+hitcount 	83	5	0
+hitcount 	104	5	0
+hitcount 	125	5	0
+hitcount 	146	5	0
+hitcount 	167	5	0
+hitcount 	187	1	0
+hitcount 	188	4	0
+hitcount 	207	1	0
+hitcount 	208	1	0
+hitcount 	209	3	0
+hitcount 	227	1	0
+hitcount 	228	1	0
+hitcount 	229	1	0
+hitcount 	230	2	0
+hitcount 	246	1	0
+hitcount 	248	1	0
+hitcount 	249	1	0
+hitcount 	250	1	0
+hitcount 	251	1	0
+hitcount 	264	1	0
+hitcount 	267	1	0
+hitcount 	269	1	0
+hitcount 	270	1	0
+hitcount 	271	1	0
+hitcount 	280	1	0
+hitcount 	285	1	0
+hitcount 	288	1	0
+hitcount 	290	1	0
+hitcount 	291	1	0
+hitcount 	294	1	0
+hitcount 	301	1	0
+hitcount 	306	1	0
+hitcount 	309	1	0
+hitcount 	311	1	0
+bucketsPerDepth 	0	97
+bucketsPerDepth 	1	4
+* TIME TO ADD INPUT :  0.005 ms
+DECISIONS START = 11887823
+f# %assign: 2 clauses: 88031 learn: 191878 restart: 244 decision: 13763141 propagated: 13686276400
+END FIND
+!+ 00100110000101000010101010101010100010100110011001100100100110111000000000000010110000000000000000000000000000
+!+ H__0:4
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:2
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:0
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:8
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:4
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:1
+H__7_5:1
+H__7_6:1
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:8
+H__9_1:1
+H__9_2:1
+H__9_3:0
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 671 was 1594
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 220= in_10_33_idx_2_0 & 219  = 0
+ reduced size from 671 to 613
+ * Simulation optimized it to = 613
+Simulation didn't find a cex:  0.002 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 0 clauses: 1583 learn: 467 restart: 4 decision: 956 propagated: 32700
+END CHECK
+********  21	ftime= 2.889e+06	ctime= 0.016
+!% 1111000011110000
+!% in_10_33_idx_0_0:1
+in_10_33_idx_1_0:1
+in_10_33_idx_2_0:1
+in_10_33_idx_3_0:1
+in_10_33_idx_4_0:0
+in_10_33_idx_5_0:0
+in_10_33_idx_6_0:0
+in_10_33_idx_7_0:0
+in_10_33_idx_8_0:1
+in_10_33_idx_9_0:1
+in_10_33_idx_10_0:1
+in_10_33_idx_11_0:1
+in_10_33_idx_12_0:0
+in_10_33_idx_13_0:0
+in_10_33_idx_14_0:0
+in_10_33_idx_15_0:0
+
+BEG FIND
+Level 1  intsize = 2
+ * After optims it became = 957 was 1594
+ * After all optims it became = 957
+ finder  hits = 13151	 bstoreObjs=1229	 sstorePages=2
+hitcount 	0	1123	0
+hitcount 	1	4	0
+hitcount 	2	6	0
+hitcount 	3	8	0
+hitcount 	4	2	0
+hitcount 	5	3	0
+hitcount 	7	1	0
+hitcount 	8	3	0
+hitcount 	11	2	0
+hitcount 	12	1	0
+hitcount 	21	5	0
+hitcount 	27	1	1
+hitcount 	43	5	0
+hitcount 	65	5	0
+hitcount 	87	5	0
+hitcount 	109	5	0
+hitcount 	131	5	0
+hitcount 	153	5	0
+hitcount 	175	5	0
+hitcount 	196	1	0
+hitcount 	197	4	0
+hitcount 	217	1	0
+hitcount 	218	1	0
+hitcount 	219	3	0
+hitcount 	238	1	0
+hitcount 	239	1	0
+hitcount 	240	1	0
+hitcount 	241	2	0
+hitcount 	258	1	0
+hitcount 	260	1	0
+hitcount 	261	1	0
+hitcount 	262	1	0
+hitcount 	263	1	0
+hitcount 	276	1	0
+hitcount 	280	1	0
+hitcount 	282	1	0
+hitcount 	283	1	0
+hitcount 	284	1	0
+hitcount 	292	1	0
+hitcount 	298	1	0
+hitcount 	302	1	0
+hitcount 	304	1	0
+hitcount 	305	1	0
+hitcount 	307	1	0
+hitcount 	314	1	0
+hitcount 	320	1	0
+hitcount 	324	1	0
+hitcount 	326	1	0
+bucketsPerDepth 	0	359
+bucketsPerDepth 	1	259
+bucketsPerDepth 	2	91
+bucketsPerDepth 	3	5
+bucketsPerDepth 	4	2
+* TIME TO ADD INPUT :  0.004 ms
+DECISIONS START = 13763141
+f# %assign: 2 clauses: 91940 learn: 203965 restart: 270 decision: 20033252 propagated: 21040870453
+END FIND
+!+ 00100110000101000010101010101010100010100110011001100100100110111000000000000100111000000000000000000000000000
+!+ H__0:4
+H__3_0:1
+H__4:1
+H__5_0:1
+H__6:2
+H__3_1:0
+H__3_2:1
+H__3_3:0
+H__3_4:1
+H__3_5:0
+H__3_6:1
+H__3_7:0
+H__3_8:1
+H__3_9:0
+H__3_10:1
+H__3_11:0
+H__3_12:1
+H__3_13:0
+H__3_14:1
+H__3_15:0
+H__7_0:1
+H__8:8
+H__5_1:1
+H__5_2:0
+H__5_3:0
+H__5_4:1
+H__5_5:1
+H__5_6:0
+H__5_7:0
+H__5_8:1
+H__5_9:1
+H__5_10:0
+H__5_11:0
+H__5_12:1
+H__5_13:1
+H__5_14:0
+H__5_15:0
+H__9_0:1
+H__10:4
+H__7_1:1
+H__7_2:1
+H__7_3:0
+H__7_4:1
+H__7_5:1
+H__7_6:1
+H__7_7:0
+H__7_8:0
+H__7_9:0
+H__7_10:0
+H__7_11:0
+H__7_12:0
+H__7_13:0
+H__7_14:0
+H__7_15:0
+H__11_0:0
+H__12:4
+H__9_1:1
+H__9_2:1
+H__9_3:1
+H__9_4:0
+H__9_5:0
+H__9_6:0
+H__9_7:0
+H__9_8:0
+H__9_9:0
+H__9_10:0
+H__9_11:0
+H__9_12:0
+H__9_13:0
+H__9_14:0
+H__9_15:0
+H__11_1:0
+H__11_2:0
+H__11_3:0
+H__11_4:0
+H__11_5:0
+H__11_6:0
+H__11_7:0
+H__11_8:0
+H__11_9:0
+H__11_10:0
+H__11_11:0
+H__11_12:0
+H__11_13:0
+H__11_14:0
+H__11_15:0
+
+BEG CHECK
+ * After optims it became = 687 was 1594
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_13_0
+in_10_33_idx_12_0
+2= in_10_33_idx_13_0 & in_10_33_idx_12_0
+3= 2 !
+4= ASSERT (!2) :
+}
+SLICE SIZE = 5
+DECISIONS START = 0
+c# %assign: 80 clauses: 0 learn: 0 restart: 1 decision: 2 propagated: 5
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 220= in_10_33_idx_2_0 & 219  = 0
+ reduced size from 687 to 629
+ * Simulation optimized it to = 629
+Simulation didn't find a cex:  0.003 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 59 clauses: 890 learn: 322 restart: 9 decision: 8436 propagated: 726519
+CONTROL: growing l=2 inputs to size 3
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 220= in_10_33_idx_2_0 & 219  = 0
+ reduced size from 687 to 629
+ * Simulation optimized it to = 629
+Simulation didn't find a cex:  0.004 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 59 clauses: 890 learn: 322 restart: 9 decision: 8436 propagated: 726519
+CONTROL: growing l=2 inputs to size 4
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_11_0
+in_10_33_idx_10_0
+2= in_10_33_idx_11_0 & in_10_33_idx_10_0
+3= 2 !
+4= ASSERT (!2) :
+}
+SLICE SIZE = 5
+DECISIONS START = 0
+c# %assign: 80 clauses: 0 learn: 0 restart: 1 decision: 2 propagated: 5
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 220= in_10_33_idx_2_0 & 219  = 0
+ reduced size from 687 to 629
+ * Simulation optimized it to = 629
+Simulation didn't find a cex:  0.004 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 59 clauses: 890 learn: 322 restart: 9 decision: 8436 propagated: 726519
+CONTROL: growing l=2 inputs to size 5
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_9_0
+in_10_33_idx_8_0
+2= in_10_33_idx_9_0 & in_10_33_idx_8_0
+3= 2 !
+4= ASSERT (!2) :
+}
+SLICE SIZE = 5
+DECISIONS START = 0
+c# %assign: 80 clauses: 0 learn: 0 restart: 1 decision: 2 propagated: 5
+ TESTING HYPOTHESIS ITER 1
+dagcountBits{
+in_10_33_idx_2_0
+1= (0)
+in_10_33_idx_1_0
+in_10_33_idx_0_0
+4= (0) ^ in_10_33_idx_0_0
+5= in_10_33_idx_1_0 & 4
+6= (1)
+7= in_10_33_idx_0_0 ^ (1)
+8= 7 ^ (0)
+9= [in_10_33_idx_1_0]$in_10_33_idx_0_0, 8, $
+10= 5 & 9
+11= (0) ^ 10
+12= in_10_33_idx_2_0 & 11
+13= 12 !
+14= ASSERT (!12) :
+}
+SLICE SIZE = 15
+c# %assign: 88 clauses: 13 learn: 0 restart: 0 decision: 0 propagated: 7
+ FOUND CONST: 220= in_10_33_idx_2_0 & 219  = 0
+ reduced size from 687 to 629
+ * Simulation optimized it to = 629
+Simulation didn't find a cex:  0.004 ms
+After all optim
+DECISIONS START = 0
+c# %assign: 59 clauses: 890 learn: 322 restart: 9 decision: 8436 propagated: 726519
+END CHECK
+********  22	ftime= 1.2088e+07	ctime= 1000.3
+ *GOT THE CORRECT ANSWER IN 23 iterations.
+ *FIND TIME 2.9259e+07 CHECK TIME 1000.43 TOTAL TIME 2.926e+07
+VALUES H__0: 4, H__10: 4, H__11_0: 0, H__11_1: 0, H__11_10: 0, H__11_11: 0, H__11_12: 0, H__11_13: 0, H__11_14: 0, H__11_15: 0, H__11_2: 0, H__11_3: 0, H__11_4: 0, H__11_5: 0, H__11_6: 0, H__11_7: 0, H__11_8: 0, H__11_9: 0, H__12: 4, H__3_0: 1, H__3_1: 0, H__3_10: 1, H__3_11: 0, H__3_12: 1, H__3_13: 0, H__3_14: 1, H__3_15: 0, H__3_2: 1, H__3_3: 0, H__3_4: 1, H__3_5: 0, H__3_6: 1, H__3_7: 0, H__3_8: 1, H__3_9: 0, H__4: 1, H__5_0: 1, H__5_1: 1, H__5_10: 0, H__5_11: 0, H__5_12: 1, H__5_13: 1, H__5_14: 0, H__5_15: 0, H__5_2: 0, H__5_3: 0, H__5_4: 1, H__5_5: 1, H__5_6: 0, H__5_7: 0, H__5_8: 1, H__5_9: 1, H__6: 2, H__7_0: 1, H__7_1: 1, H__7_10: 0, H__7_11: 0, H__7_12: 0, H__7_13: 0, H__7_14: 0, H__7_15: 0, H__7_2: 1, H__7_3: 0, H__7_4: 1, H__7_5: 1, H__7_6: 1, H__7_7: 0, H__7_8: 0, H__7_9: 0, H__8: 8, H__9_0: 1, H__9_1: 1, H__9_10: 0, H__9_11: 0, H__9_12: 0, H__9_13: 0, H__9_14: 0, H__9_15: 0, H__9_2: 1, H__9_3: 1, H__9_4: 0, H__9_5: 0, H__9_6: 0, H__9_7: 0, H__9_8: 0, H__9_9: 0,
+RESULT = 2
+**ROUND 0 : 0 Round time:  2.926e+07 ms
+RNDDEG = -1
+return 0
+
+----- Statistics -----
+Total elapsed time (ms):  2.926e+07
+Model building time (ms): 0.01
+Solution time (ms):       2.926e+07
+Max virtual mem (bytes):  431591424
+Max resident mem (bytes): 339685376
+Max private mem (bytes):  426496000
+ALL CORRECT
+[SATBackend] Stats for last run:
+      [solution stats]
+      successful? ---------------------> true
+      elapsed time (s) ----------------> 29260.256
+      model building time (s) ---------> -0.001
+      solution time (s) ---------------> -0.001
+      max memory usage (MiB) ----------> -9.536743E-7
+      [SAT-specific solution stats]
+      initial number of nodes ---------> 1055
+      number of nodes after opts ------> 1594
+      number of controls --------------> 86
+      total number of control bits ----> 110
+
+[SATBackend] Solver exit value: 0
+    [1508453266.5480 - DEBUG] Running stage 'subst' -- Substitute a solution (assignment to ??'s) into the sketch
+    [1508453266.5510 - DEBUG] Running stage 'cleanup' -- Clean up sketch after substitutions for readability
+    [1508453266.5830 - DEBUG] Running stage 'outputc' -- Output C code (to console or file)
+/* BEGIN PACKAGE ANONYMOUS*/
+/*logcount.sk:4*/
+
+void countBits (bit[16] in, ref bit[16] _out)/*logcount.sk:4*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  bit[16] one = ((bit[16])0);
+  one[0] = 1;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(in[i])/*logcount.sk:10*/
+    {
+      _out = _out + one;
+    }
+  }
+  return;
+}
+/*logcount.sk:18*/
+
+void countSketch (bit[16] in, ref bit[16] _out)  implements countBits/*logcount.sk:18*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  bit[16] m = {1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0};
+  _out = (in & m) + ((in >> 1) & m);
+  bit[16] m_0 = {1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0};
+  _out = (_out & m_0) + ((_out >> 2) & m_0);
+  bit[16] m_1 = {1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0};
+  _out = (_out & m_1) + ((_out >> 8) & m_1);
+  bit[16] m_2 = {1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0};
+  _out = (_out & m_2) + ((_out >> 4) & m_2);
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 29260975

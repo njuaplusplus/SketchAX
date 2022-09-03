@@ -1,0 +1,36 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test56.sk:19*/
+
+void normalRound (bit[32] in, ref bit[32] _out)/*sk_src_..Test56.sk:19*/
+{
+  _out = ((bit[32])0);
+  _out = ((bit[32])0);
+  bit _out_s3 = 1;
+  for(int i = 0; i < 32; i = i + 1)/*Canonical*/
+  {
+    _out_s3 = _out_s3 & (!(in[i]));
+  }
+  if(_out_s3)/*sk_src_..Test56.sk:22*/
+  {
+    _out = ((bit[32])1);
+  }
+  return;
+}
+/*sk_src_..Test56.sk:10*/
+
+void normalRoundsk (bit[32] in, ref bit[32] _out)  implements pbe_normalRoundsk
+{
+  _out = ((bit[32])0);
+  _out = ((bit[32])0);
+  bit _out_s1 = 1;
+  for(int i = 0; i < 32; i = i + 1)/*Canonical*/
+  {
+    _out_s1 = _out_s1 & (!(in[i]));
+  }
+  if(_out_s1)/*sk_src_..Test56.sk:13*/
+  {
+    _out = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

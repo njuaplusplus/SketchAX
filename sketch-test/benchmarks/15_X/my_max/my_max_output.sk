@@ -1,0 +1,15 @@
+pragma options "--bnd-unroll-amnt 40";
+void maxSketch0 (int N, int[N] a, ref int _out)  implements pbe_maxSketch0
+{
+  _out = 0;
+  assume (N > 0): "Assume at my_max.sk:15"; //Assume at my_max.sk:15
+  _out = a[0];
+  for(int i = 0; i < N; i = i + 1)/*Canonical*/
+  {
+    if(_out < (a[i]))/*my_max.sk:18*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}

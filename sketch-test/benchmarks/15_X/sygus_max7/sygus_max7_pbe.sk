@@ -1,0 +1,24 @@
+int N = 7;
+
+int maxSpec(int[N] a) {
+    assume N > 0;
+    int max = a[0];
+    for (int i=0;i<N;i++) {
+        if (max < a[i]) {
+            max = a[i];
+        }
+    }
+    return max;
+}
+
+int pbe_maxSketch0(int[N] a)  {
+    assume N > 0;
+    int max = a[??];
+    repeat(N-1) {
+        if ({| ( a[??] | max ) (<|<=) ( a[??] | max ) |}) {
+            max = {| ?? | N | a[??] |};
+        }
+    }
+    return max;
+}
+

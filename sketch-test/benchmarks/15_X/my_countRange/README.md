@@ -1,0 +1,5 @@
+# Description
+
+This is the benchmark to compute how many elements in an array are greater than a given value `l` and less than `h`.
+It's fixed by permutation-invariant.
+

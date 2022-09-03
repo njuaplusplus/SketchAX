@@ -1,0 +1,22 @@
+void countRange0 (int[4] in, int l, int h, ref int _out)  implements pbe_countRange0
+{
+  _out = 0;
+  _out = 0;
+  if(((in[1]) > l) && ((in[1]) < h))/*my_countRange.sk:20*/
+  {
+    _out = 1;
+  }
+  if(((in[3]) > l) && ((in[3]) < h))/*my_countRange.sk:20*/
+  {
+    _out = _out + 1;
+  }
+  if(((in[0]) > l) && ((in[0]) < h))/*my_countRange.sk:20*/
+  {
+    _out = _out + 1;
+  }
+  if(((in[2]) > l) && ((in[2]) < h))/*my_countRange.sk:20*/
+  {
+    _out = _out + 1;
+  }
+  return;
+}

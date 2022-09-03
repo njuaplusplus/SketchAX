@@ -1,0 +1,34 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sygus_m..orloop.sk:14*/
+
+void maxSketch0 (int[6] a, ref int _out)  implements pbe_maxSketch0
+{
+  _out = 0;
+  assume (1): "Assume at sygus_m..orloop.sk:15"; //Assume at sygus_m..orloop.sk:15
+  _out = a[1];
+  for(int i = 0; i < 6; i = i + 1)/*Canonical*/
+  {
+    if(_out < (a[i]))/*sygus_m..orloop.sk:18*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}
+/*sygus_m..orloop.sk:3*/
+
+void maxSpec (int[6] a, ref int _out)/*sygus_m..orloop.sk:3*/
+{
+  _out = 0;
+  assume (1): "Assume at sygus_m..orloop.sk:4"; //Assume at sygus_m..orloop.sk:4
+  _out = a[0];
+  for(int i = 0; i < 6; i = i + 1)/*Canonical*/
+  {
+    if(_out < (a[i]))/*sygus_m..orloop.sk:7*/
+    {
+      _out = a[i];
+    }
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

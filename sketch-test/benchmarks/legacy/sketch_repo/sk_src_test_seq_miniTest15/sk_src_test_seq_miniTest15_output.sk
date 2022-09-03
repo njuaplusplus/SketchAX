@@ -1,0 +1,9 @@
+void reverseSketch (bit[4] in, ref bit _out)  implements pbe_reverseSketch
+{
+  _out = 0;
+  bit[2] tmp = ((bit[2])0);
+  tmp[0] = 1;
+  tmp[1] = 1;
+  _out = in[((int)tmp)];
+  return;
+}

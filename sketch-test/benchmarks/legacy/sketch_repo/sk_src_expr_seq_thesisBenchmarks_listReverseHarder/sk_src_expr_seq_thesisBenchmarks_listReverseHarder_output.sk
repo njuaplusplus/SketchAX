@@ -1,0 +1,17 @@
+void sketch (bit[4] elems, int n_0, ref bit[4] _out)  implements pbe_sketch
+{
+  _out = ((bit[4])0);
+  int n = n_0;
+  if(n_0 >= 4)/*sk_src_..Harder.sk:155*/
+  {
+    n = 3;
+  }
+  list@ANONYMOUS l_s11 = null;
+  populate(elems, n, l_s11);
+  list@ANONYMOUS l_s13 = null;
+  reverseSK(l_s11, l_s13);
+  bit[4] _out_s15 = {0,0,0,0};
+  serialize(l_s13, n, _out_s15);
+  _out = _out_s15;
+  return;
+}

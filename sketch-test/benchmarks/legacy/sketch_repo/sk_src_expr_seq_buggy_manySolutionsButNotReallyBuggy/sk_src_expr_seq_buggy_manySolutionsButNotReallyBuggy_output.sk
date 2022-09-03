@@ -1,0 +1,28 @@
+void firstZeroSk (bit[3] in, ref bit[3] _out)  implements pbe_firstZeroSk
+{
+  _out = ((bit[3])0);
+  bit[3] in2 = {1,0,0};
+  bit[3] in1 = in;
+  bit[3] ret_s1 = ((bit[3])0);
+  for(int i = 0; i < 3; i = i + 1)/*Canonical*/
+  {
+    if((in2[i]) == 1)/*sk_src_..yBuggy.sk:44*/
+    {
+      ret_s1 = ret_s1 + in1;
+    }
+    in1 = in1 << 1;
+  }
+  bit[3] in2_0 = {1,0,0};
+  bit[3] in1_0 = in;
+  bit[3] ret_s3 = ((bit[3])0);
+  for(int i_0 = 0; i_0 < 3; i_0 = i_0 + 1)/*Canonical*/
+  {
+    if((in2_0[i_0]) == 1)/*sk_src_..yBuggy.sk:44*/
+    {
+      ret_s3 = ret_s3 + in1_0;
+    }
+    in1_0 = in1_0 << 1;
+  }
+  _out = (!(ret_s1 + ({0,0,0}))) & (ret_s3 + ({1,0,0}));
+  return;
+}

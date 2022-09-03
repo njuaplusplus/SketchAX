@@ -1,0 +1,11 @@
+void test (int x, ref int _out)  implements pbe_test
+{
+  _out = 0;
+  foo@ANONYMOUS far = new foo();
+  for(int i = 0; i < 3; i = i + 1)/*Canonical*/
+  {
+    far.x[i] = i;
+  }
+  _out = far.x[2];
+  return;
+}

@@ -1,0 +1,32 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Test65.sk:14*/
+
+void p1Sk (bit[5] x, ref bit _out)  implements pbe_p1Sk
+{
+  _out = 0;
+  bit[5] one = ((bit[5])0);
+  one[0] = 1;
+  bit[5] two = ((bit[5])0);
+  two[1] = 1;
+  bit[5] five = (two + two) + one;
+  int idx_s1 = 0;
+  if(((((!(five[0])) & (!(five[1]))) & (!(five[2]))) & (!(five[3]))) & (!(five[4])))/*sk_src_..Test65.sk:4*/
+  {
+    idx_s1 = 0;
+  }
+  else
+  {
+    idx_s1 = 2;
+  }
+  _out = x[idx_s1];
+  return;
+}
+/*sk_src_..Test65.sk:9*/
+
+void spec (bit[5] x, ref bit _out)/*sk_src_..Test65.sk:9*/
+{
+  _out = 0;
+  _out = x[2];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

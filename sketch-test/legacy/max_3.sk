@@ -1,0 +1,113 @@
+int N = 3;
+// int maxSketch(int[N] a) implements maxSpec {
+//   int max = a[??];
+//   loop (??) {
+//     if ({|(max|a[??]) (<|<=) (max|a[??])|}) {
+//       max = a[??];
+//     }
+//   }
+//   return max;
+// }
+//
+// int maxSpec(int[N] a) {
+//   int max = a[0];
+//   for (int i=0;i<N;i++) {
+//     if (max < a[i]) {
+//       max = a[i];
+//     }
+//   }
+//   return max;
+// }
+
+int maxSketch(int[N] a) {
+    int max = {| ?? | N | a[??] |};
+    for (int i=??; i<N; i++) {
+        if ({| (i | N | a[i] | max) (<|<=) (i | N | a[i] | max) |}) {
+            max = {| i | N | a[i] |};
+        }
+    }
+    return max;
+}
+
+harness void originConstraint() {
+//    int[3][6] tests= {
+//        {0,10,2  },
+//        {0,2,10  },
+//        {10,0,2  },
+//        {10,2,0  },
+//        {2,0,10  },
+//        {2,10,0  }
+//    };
+//
+//    for (int i=0; i<6; i++) {
+//        assert (maxSketch(tests[i])) == 10;
+//    }
+//    assert ((maxSketch({0,10,2  })) == (10));
+//    assert ((maxSketch({0,2,10  })) == (10));
+//    assert ((maxSketch({10,0,2  })) == (10));
+//    assert ((maxSketch({10,2,0  })) == (10));
+//    assert ((maxSketch({2,0,10  })) == (10));
+//    assert ((maxSketch({2,10,0  })) == (10));
+
+    assert ((maxSketch({-1,10,20})) == (20));
+//    assert ((maxSketch({10,-1,20})) == (20));
+//    assert ((maxSketch({10,20,-1})) == (20));
+//    assert ((maxSketch({-1,20,10})) == (20));
+//    assert ((maxSketch({20,10,-1})) == (20));
+//    assert ((maxSketch({20,-1,10})) == (20));
+
+//    assert ((maxSketch({-1,-2,-3})) == (-1));
+//    assert ((maxSketch({-2,-1,-3})) == (-1));
+}
+
+harness void Constraint(int[N] y){
+
+    assert_one_permutation({ 0,10, 2}, 10, y);
+//    assert_one_permutation({-1,10,20}, 20, y);
+//    assert_one_permutation({-1,-2,-3}, -1, y);
+
+//    assert_all_rotations({ 0,10, 2}, 10);
+//    assert_all_rotations({-1,10,20}, 20);
+}
+
+void assert_all_rotations(int[N] x, int m) {
+    assert maxSketch(x) == m;
+    for (int i=1; i<N; i++) {
+        int t = x[N-1];
+        x[1::N-1] = x[0::N-1];
+        x[0] = t;
+        assert maxSketch(x) == m;
+    }
+}
+
+void assert_one_permutation(int[N] x, int m, int[N] y) {
+    if (!is_permutation(y)) return;
+    int[N] xp = permute(x,y);
+    assert maxSketch(xp) == m;
+}
+
+bit is_permutation(int[N] y) {
+    bit[N] res = 0;
+    for (int i=0; i<N; i++) {
+        if (y[i]<0 || y[i]>=N || res[y[i]] == 1) {
+            return 0;
+        } else {
+            res[y[i]] = 1;
+        }
+    }
+    return 1;
+}
+
+int[N] permute(int[N]x, int[N] ind){
+    int[N] res = 0;
+    for(int i=0; i<N; i++){
+        res[i]= x[ind[i]];
+    }
+    return res;
+}
+
+// harness void test_permutation_invar(int[N] x, int[N] y) {
+//     if (!is_permutation(y)) return;
+//     int[N] xp = permute(x,y);
+//     assert maxSketch(x) == maxSketch(xp);
+// }

@@ -1,0 +1,36 @@
+void fast (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements pbe_fast
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}

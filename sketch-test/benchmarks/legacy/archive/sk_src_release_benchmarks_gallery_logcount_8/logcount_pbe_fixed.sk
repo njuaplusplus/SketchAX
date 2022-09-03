@@ -1,0 +1,217 @@
+//@Description Counts the number of ones in a bit-vector in logn steps.
+pragma options "--bnd-unroll-amnt 100";
+int W=8;
+
+bit[W] countSketch1(bit[W] in)
+{
+    bit[W] tmp=in;
+    int cnt=0;
+    repeat(??)
+    {
+        bit[W] m = ??;
+        tmp=(tmp & m) + (tmp>>?? & m);
+        assert cnt++ < 5;
+    }
+    return tmp;
+}
+
+bit[W] countBits(bit[W] in)
+{
+    bit[W] ret=0;
+    bit[W] one = 0;
+    one[0] = 1;
+    for(int i=0;i<W;i++){
+        if(in[i])
+            ret=ret+one;
+    }
+    return ret;
+}
+
+harness void constraints(int[W] ind) {
+
+assert countSketch1({1,1,0,0,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,0,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,1,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,1,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,1,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,1,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,1,0,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,0,1,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,0,1,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,0,1,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,0,1,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,0,1,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,0,1,1,0}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,0,0,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,0,0,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,0,0,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,0,0,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,0,0,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,0,1,0,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,0,0,1,1}) == (bit[W]){0,1,0,0,0,0,0,0};
+assert countSketch1({1,1,1,1,0,0,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,1,0,1,0,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,1,1,0,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,1,1,0,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,1,1,0,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,1,0,0,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,1,0,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,1,0,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,1,0,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,0,1,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,0,1,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,0,1,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,1,1,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,1,1,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,1,1,1,0,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,1,0,0,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,1,0,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,1,0,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,1,0,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,0,1,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,0,1,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,0,1,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,1,1,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,1,1,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,1,1,0,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,0,0,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,1,1,0}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,1,0,0,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,1,0,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,1,0,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,1,0,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,0,1,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,0,1,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,0,1,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,1,1,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,1,1,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,1,1,0,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,0,0,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,1,0,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,0,0,0,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,0,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,1,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,1,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,1,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,1,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,1,1,1}) == (bit[W]){0,0,1,0,0,0,0,0};
+assert countSketch1({1,1,1,0,0,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,1,0,1,0,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,1,1,0,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,1,1,0,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,1,0,0,1,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,1,0,1,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,1,0,1,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,1,1,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,1,1,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,1,1,0,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,1,0,0,0,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,1,0,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,1,0,0,0,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,0,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,1,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,1,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,1,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,1,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,1,1,0}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,1,0,0,0,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,1,0,0,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,1,0,0,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,1,0,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,1,0,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,1,0,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,1,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,1,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,1,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,1,0,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,1,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,1,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,1,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,1,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,1,0,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({1,0,0,0,0,0,1,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,1,0,0,0,0,1,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,1,0,0,0,1,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,1,0,0,1,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,1,0,1,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+assert countSketch1({0,0,0,0,0,1,1,1}) == (bit[W]){1,1,0,0,0,0,0,0};
+
+
+//     assert_one_permutation({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, (bit[W])0,     ind);
+//     assert_one_permutation({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, (bit[W])1,     ind);
+//     assert_one_permutation({1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, (bit[W]){0,1}, ind);
+}
+
+void assert_one_permutation(bit[W] x, bit[W] o, int[W] ind) {
+    if (!is_permutation(W, ind)) return;
+    bit[W] xp = permute(W, x, ind);
+    assert countSketch1(xp) == o;
+}
+
+bit is_permutation(int N, int[N] ind) {
+    bit[N] res = 0;
+    for (int i=0; i<N; ++i) {
+        if (ind[i]<0 || ind[i]>=N || res[ind[i]] == 1) {
+            return 0;
+        } else {
+            res[ind[i]] = 1;
+        }
+    }
+    return 1;
+}
+
+bit[N] permute(int N, bit[N]x, int[N] ind){
+    bit[N] res = 0;
+    for(int i=0; i<N; ++i){
+        res[i]= x[ind[i]];
+    }
+    return res;
+}

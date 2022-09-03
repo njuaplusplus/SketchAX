@@ -1,0 +1,17 @@
+int moo(int i){
+	
+	return i;	
+}
+
+
+
+int pbe_foo(int i) {
+	int t = ??;
+	
+	if(?? - ?? + 2*i == (i+1)-i ){
+		assert t == 3 + ??; 	
+	}
+	
+	return i + t;	
+}
+

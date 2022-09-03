@@ -1,0 +1,15 @@
+void countSketch3 (bit[8] in, ref bit[8] _out)  implements pbe_countSketch3
+{
+  _out = ((bit[8])0);
+  bit[8] in_0 = in;
+  bit[8] m = {1,0,1,0,1,0,1,0};
+  in_0 = (in & m) + ((in >> 1) & m);
+  bit[8] in_1 = in_0;
+  bit[8] m_0 = {1,1,0,0,1,1,0,0};
+  in_1 = (in_0 & m_0) + ((in_0 >> 2) & m_0);
+  bit[8] in_2 = in_1;
+  bit[8] m_1 = {1,1,1,0,0,0,0,0};
+  in_2 = (in_1 & m_1) + ((in_1 >> 4) & m_1);
+  _out = in_2;
+  return;
+}

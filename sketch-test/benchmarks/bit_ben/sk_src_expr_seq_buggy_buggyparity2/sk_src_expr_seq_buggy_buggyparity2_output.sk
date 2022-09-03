@@ -1,0 +1,36 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..arity2.sk:22*/
+
+void fasterparity (bit[8] in, ref bit _out)  implements pbe_fasterparity
+{
+  _out = 0;
+  bit[8] z = {1,0,0,0,1,0,0,0};
+  bit[8] x = in ^ (in >> 1);
+  x = x ^ (x >> 2);
+  x = x & z;
+  bit[8] in1 = x;
+  bit[8] y_s1 = ((bit[8])0);
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    if((z[i]) == 1)/*sk_src_..arity2.sk:6*/
+    {
+      y_s1 = y_s1 + in1;
+    }
+    in1 = in1 << 1;
+  }
+  _out = y_s1[4];
+  return;
+}
+/*sk_src_..arity2.sk:14*/
+
+void parity (bit[8] in, ref bit _out)/*sk_src_..arity2.sk:14*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 8; i = i + 1)/*Canonical*/
+  {
+    _out = _out ^ (in[i]);
+  }
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

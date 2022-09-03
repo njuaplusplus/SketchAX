@@ -1,0 +1,20 @@
+int N=3;
+int maxSpec(int[N] a) {
+  int max = a[0];
+  for (int i=0;i<N;i++) {
+    if (max < a[i]) {
+      max = a[i];
+    }
+  }
+  return max;
+}
+
+int maxSketch(int[N] a) implements maxSpec {
+  int max = a[??];
+  for (int i=??; i<N; i++) {
+    if ({| (i | N | a[i] | max) (<|<=) (i | N | a[i] | max) |}) {
+      max = {| i | N | a[i] |};
+    }
+  }
+  return max;
+}

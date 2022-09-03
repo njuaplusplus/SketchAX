@@ -1,0 +1,6 @@
+void sk (int in, ref int _out)  implements pbe_sk
+{
+  _out = 0;
+  _out = in * 2;
+  return;
+}

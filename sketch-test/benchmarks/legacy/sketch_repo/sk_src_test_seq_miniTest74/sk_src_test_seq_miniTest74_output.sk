@@ -1,0 +1,9 @@
+void sk1 (bit[4] in, ref bit _out)  implements pbe_sk1
+{
+  _out = 0;
+  _out = 0 | ((in[3]) & 1);
+  bit tmp_s1 = 0;
+  sk2(in, tmp_s1);
+  _out = _out ^ tmp_s1;
+  return;
+}

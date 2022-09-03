@@ -1,0 +1,6 @@
+void foo (int x, ref int _out, ref global int y__ANONYMOUS_s3, ref global int z__ANONYMOUS_s2)  implements pbe_foo
+{
+  _out = 0;
+  _out = x;
+  return;
+}

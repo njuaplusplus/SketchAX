@@ -1,0 +1,8 @@
+void miniTestSK (bit[3] x, ref bit[3] _out)  implements pbe_miniTestSK
+{
+  _out = ((bit[3])0);
+  bit[3] __sa0 = {0,1,0};
+  bit[3] __sa1 = {1,1,0};
+  _out = ((((x << 1) & __sa0) | ((x >> 1) & (~(__sa0)))) & __sa1) | (x & (~(__sa1)));
+  return;
+}

@@ -1,0 +1,77 @@
+======= Begin Example ======
+int
+int
+7 => 7
+9 => 9
+5 => 5
+======= End Example ======
+======= Begin Example ======
+int
+int
+7 => 7
+4 => 4
+10 => 10
+======= End Example ======
+======= Begin Example ======
+int
+int
+5 => 5
+0 => 0
+1 => 1
+======= End Example ======
+======= Begin Example ======
+int
+int
+3 => 3
+1 => 1
+5 => 5
+======= End Example ======
+======= Begin Example ======
+int
+int
+4 => 4
+1 => 1
+2 => 2
+======= End Example ======
+======= Begin Example ======
+int
+int
+2 => 2
+5 => 5
+1 => 1
+======= End Example ======
+======= Begin Example ======
+int
+int
+6 => 6
+4 => 4
+5 => 5
+======= End Example ======
+======= Begin Example ======
+int
+int
+0 => 0
+2 => 2
+8 => 8
+======= End Example ======
+======= Begin Example ======
+int
+int
+4 => 4
+2 => 2
+7 => 7
+======= End Example ======
+======= Begin Example ======
+int
+int
+8 => 8
+3 => 3
+10 => 10
+======= End Example ======
+======= Begin Example ======
+int
+int
+10 => 10
+2 => 2
+5 => 5
+======= End Example ======

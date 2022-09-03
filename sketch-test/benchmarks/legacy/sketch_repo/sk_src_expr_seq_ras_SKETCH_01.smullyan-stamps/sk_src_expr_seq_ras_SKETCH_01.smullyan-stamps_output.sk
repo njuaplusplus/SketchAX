@@ -1,0 +1,89 @@
+void foo (int a, int b, int c, ref bit _out)  implements pbe_foo
+{
+  _out = 0;
+  bit _pac_sc_s1_s3 = ((a == 0) | (a == 1)) | (a == 2);
+  bit _pac_sc_s1;
+  _pac_sc_s1 = _pac_sc_s1_s3;
+  if(_pac_sc_s1_s3)/*sk_src_..stamps.sk:39*/
+  {
+    _pac_sc_s1 = ((b == 0) | (b == 1)) | (b == 2);
+  }
+  bit _pac_sc_s0 = _pac_sc_s1;
+  if(_pac_sc_s1)/*sk_src_..stamps.sk:39*/
+  {
+    _pac_sc_s0 = ((c == 0) | (c == 1)) | (c == 2);
+  }
+  if(!(_pac_sc_s0))/*sk_src_..stamps.sk:39*/
+  {
+    _out = 1;
+    return;
+  }
+  bit _pac_sc_s21_s23 = ((1 & (((b == 0) | (b == 1)) | (b == 2))) & (((c == 0) | (c == 1)) | (c == 2))) & (((((1 + (b == 0)) + (c == 0)) <= 2) & (((b == 1) + (c == 1)) <= 2)) & (((b == 2) + (c == 2)) <= 3));
+  bit _pac_sc_s21;
+  _pac_sc_s21 = _pac_sc_s21_s23;
+  if(_pac_sc_s21_s23)/*sk_src_..stamps.sk:26*/
+  {
+    _pac_sc_s21 = ((1 & (((b == 0) | (b == 1)) | (b == 2))) & (((c == 0) | (c == 1)) | (c == 2))) & (((((b == 0) + (c == 0)) <= 2) & (((1 + (b == 1)) + (c == 1)) <= 2)) & (((b == 2) + (c == 2)) <= 3));
+  }
+  bit _pac_sc_s20 = _pac_sc_s21;
+  if(_pac_sc_s21)/*sk_src_..stamps.sk:26*/
+  {
+    _pac_sc_s20 = ((1 & (((b == 0) | (b == 1)) | (b == 2))) & (((c == 0) | (c == 1)) | (c == 2))) & (((((b == 0) + (c == 0)) <= 2) & (((b == 1) + (c == 1)) <= 2)) & (((1 + (b == 2)) + (c == 2)) <= 3));
+  }
+  if(!(_pac_sc_s20))/*sk_src_..stamps.sk:42*/
+  {
+    _out = 1;
+    return;
+  }
+  bit _pac_sc_s21_s23_0 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((2 + (c == 0)) <= 2) & ((c == 1) <= 2)) & ((c == 2) <= 3));
+  bit _pac_sc_s21_0 = _pac_sc_s21_s23_0;
+  if(_pac_sc_s21_s23_0)/*sk_src_..stamps.sk:26*/
+  {
+    _pac_sc_s21_0 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((1 + (c == 0)) <= 2) & ((1 + (c == 1)) <= 2)) & ((c == 2) <= 3));
+  }
+  bit _pac_sc_s20_0 = _pac_sc_s21_0;
+  if(_pac_sc_s21_0)/*sk_src_..stamps.sk:26*/
+  {
+    _pac_sc_s20_0 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((1 + (c == 0)) <= 2) & ((c == 1) <= 2)) & ((1 + (c == 2)) <= 3));
+  }
+  bit _pac_sc_s13 = _pac_sc_s20_0;
+  if(_pac_sc_s20_0)/*sk_src_..stamps.sk:30*/
+  {
+    bit _pac_sc_s21_s23_1 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((1 + (c == 0)) <= 2) & ((1 + (c == 1)) <= 2)) & ((c == 2) <= 3));
+    bit _pac_sc_s21_1 = _pac_sc_s21_s23_1;
+    if(_pac_sc_s21_s23_1)/*sk_src_..stamps.sk:26*/
+    {
+      _pac_sc_s21_1 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((c == 0) <= 2) & ((2 + (c == 1)) <= 2)) & ((c == 2) <= 3));
+    }
+    bit _pac_sc_s20_1 = _pac_sc_s21_1;
+    if(_pac_sc_s21_1)/*sk_src_..stamps.sk:26*/
+    {
+      _pac_sc_s20_1 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((c == 0) <= 2) & ((1 + (c == 1)) <= 2)) & ((1 + (c == 2)) <= 3));
+    }
+    _pac_sc_s13 = _pac_sc_s20_1;
+  }
+  bit _pac_sc_s12 = _pac_sc_s13;
+  if(_pac_sc_s13)/*sk_src_..stamps.sk:30*/
+  {
+    bit _pac_sc_s21_s23_2 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((1 + (c == 0)) <= 2) & ((c == 1) <= 2)) & ((1 + (c == 2)) <= 3));
+    bit _pac_sc_s21_2 = _pac_sc_s21_s23_2;
+    if(_pac_sc_s21_s23_2)/*sk_src_..stamps.sk:26*/
+    {
+      _pac_sc_s21_2 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((c == 0) <= 2) & ((1 + (c == 1)) <= 2)) & ((1 + (c == 2)) <= 3));
+    }
+    bit _pac_sc_s20_2 = _pac_sc_s21_2;
+    if(_pac_sc_s21_2)/*sk_src_..stamps.sk:26*/
+    {
+      _pac_sc_s20_2 = (1 & (((c == 0) | (c == 1)) | (c == 2))) & ((((c == 0) <= 2) & ((c == 1) <= 2)) & ((2 + (c == 2)) <= 3));
+    }
+    _pac_sc_s12 = _pac_sc_s20_2;
+  }
+  if(!(_pac_sc_s12))/*sk_src_..stamps.sk:49*/
+  {
+    _out = 1;
+    return;
+  }
+  assert (c == 2); //Assert at sk_src_..stamps.sk:55 (2)
+  _out = 1;
+  return;
+}

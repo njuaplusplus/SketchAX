@@ -1,0 +1,19 @@
+pragma options "--bnd-inbits 5";
+
+struct foo{
+	int[3] x;	
+}
+
+int pbe_test(int x) {
+	
+	foo far = new foo();
+	for(int i=0; i<3; ++i){
+		far.x[i] = i;
+	}
+	
+	return far.x[??];	
+}
+
+int spec(int x){
+	return 2;	
+}

@@ -1,0 +1,3953 @@
+Last login: Sat Oct  7 10:56:09 on ttys000
+ ~  ssh 172.16.163.163
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.10.0-35-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+81 packages can be updated.
+0 updates are security updates.
+
+Last login: Fri Oct  6 16:30:32 2017 from 172.16.163.1
+ aplusplus@ubuntu  ~  j test
+/mnt/hgfs/sketch-test
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test  ll
+total 14K
+drwxr-xr-x 1 501 dialout   96 Oct  6 16:23 benchmarks
+-rw-rw-r-- 1 501 dialout  168 Sep  8 14:45 example_16.sk
+-rw-rw-r-- 1 501 dialout  440 Sep  8 13:56 isolateRightmost0.sk
+-rw-rw-r-- 1 501 dialout  250 Sep  8 13:49 isolateRightmost.sk
+-rw-r--r-- 1 501 dialout  659 Oct  6 13:37 k_rotation.sk
+-rw-rw-r-- 1 501 dialout  344 Sep  8 22:49 loop_holes_bug.sk
+-rw-rw-r-- 1 501 dialout 2.8K Sep 18 15:32 max_3.sk
+-rw-rw-r-- 1 501 dialout  361 Sep 14 16:16 max_3_spec.sk
+-rw-rw-r-- 1 501 dialout 4.4K Sep 21 16:03 max_n.sk
+-rw-rw-r-- 1 501 dialout  491 Sep 14 16:22 max_n_spec.sk
+-rw-rw-r-- 1 501 dialout  387 Sep  7 22:44 max.sk
+-rw-rw-r-- 1 501 dialout 1.2K Sep 21 15:23 reverse.sk
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test  cd benchmarks
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks  ll
+total 512
+drwxr-xr-x 1 501 dialout 224 Oct  6 16:24 compress
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks  cd compress
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  ll
+total 13K
+-rw-r--r-- 1 501 dialout 4.9K Oct  6 15:23 cmp_compress.sk
+-rw-r--r-- 1 501 dialout 2.8K Oct  6 00:07 compress.output
+-rw-r--r-- 1 501 dialout 2.7K Oct  6 14:38 compress_pbe.sk
+-rw-r--r-- 1 501 dialout 1.2K Oct  6 15:13 compress.sk
+-rw-r--r-- 1 501 dialout    0 Oct  6 16:24 README.md
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress 
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  l
+total 14K
+drwxr-xr-x 1 501 dialout  224 Oct  7 14:51 .
+drwxr-xr-x 1 501 dialout   96 Oct  6 16:23 ..
+-rw-r--r-- 1 501 dialout 4.9K Oct  6 15:23 cmp_compress.sk
+-rw-r--r-- 1 501 dialout 2.8K Oct  6 00:07 compress.output
+-rw-r--r-- 1 501 dialout 2.7K Oct  6 14:38 compress_pbe.sk
+-rw-r--r-- 1 501 dialout 1.2K Oct  6 15:13 compress.sk
+-rw-r--r-- 1 501 dialout    0 Oct  6 16:24 README.md
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+Assert at compress_pbe.sk:52 (0)
+
+*** Rejected
+    [1507402597.3930 - ERROR] [SKETCH] Sketch Not Resolved Error: Assert at compress_pbe.sk:52 (0)
+
+*** Rejected
+The sketch could not be resolved.
+    [1507402597.4000 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507402597.4010 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/compress_pbe.sk/input0.tmp
+Total time = 1266
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress.sk
+SKETCH version 1.7.4
+Benchmark = compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress.sk:5*/
+
+void compress (bit[16] x, bit[16] m, ref bit[16] _out)/*compress.sk:5*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  int i = 0;
+  for(int j = 0; j < 16; j = j + 1)/*Canonical*/
+  {
+    if(m[j])/*compress.sk:9*/
+    {
+      _out[i] = x[j];
+      i = i + 1;
+    }
+  }
+  return;
+}
+/*compress.sk:39*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements compress/*compress.sk:39*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress.sk:17*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*compress.sk:17*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress.sk:26*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*compress.sk:26*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 120644
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 6353
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s1);
+  assert (_out_s1 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})); //Assert at compress_pbe.sk:6 (0)
+  bit[16] _out_s3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s3);
+  assert (_out_s3 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})); //Assert at compress_pbe.sk:7 (0)
+  bit[16] _out_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s5);
+  assert (_out_s5 == ({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})); //Assert at compress_pbe.sk:8 (0)
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mp_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1((!(m_1)) << 0, mp_s7);
+  bit[16] t = x & (mp_s7 & m_1);
+  _out = (x ^ t) | (t >> 1);
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 3230
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  >....
+  fast1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s1);
+  assert (_out_s1 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})); //Assert at compress_pbe.sk:6 (0)
+  bit[16] _out_s3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s3);
+  assert (_out_s3 == ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})); //Assert at compress_pbe.sk:7 (0)
+  bit[16] _out_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, _out_s5);
+  assert (_out_s5 == ({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})); //Assert at compress_pbe.sk:8 (0)
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mp_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1((!(m_1)) << 0, mp_s7);
+  bit[16] t = x & (mp_s7 & m_1);
+  _out = (x ^ t) | (t >> 1);
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 3230
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507434317.2980 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507434317.3070 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507434317.3080 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 719
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4285
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+    [1507434639.6900 - ERROR] [SKETCH] Type Error: Using non-final variable k for an array size expression (at cmp_compress.sk:118)
+    [1507434639.6920 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507434639.7030 - DEBUG] [SKETCH] Last good program, from before stage PreprocessStage, dumped to:  /home/aplusplus/.sketch/tmp/error-last-program.txt
+Total time = 225
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507434676.1020 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507434676.1080 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507434676.1081 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 839
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507434705.8530 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507434705.8560 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507434705.8561 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 856
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress 
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 5154
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 9981
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+    [1507434852.6240 - ERROR] [SKETCH] Type Error: Using non-final variable k for an array size expression (at cmp_compress.sk:118)
+    [1507434852.6280 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507434852.6350 - DEBUG] [SKETCH] Last good program, from before stage PreprocessStage, dumped to:  /home/aplusplus/.sketch/tmp/error-last-program.txt
+Total time = 223
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507434888.6410 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507434888.6430 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507434888.6431 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 706
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:65*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:65*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:40*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:40*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:142*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:142*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:155*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*cmp_compress.sk:155*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1310
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 16) & ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 3656
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507435042.2590 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507435042.2620 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507435042.2621 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 711
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4860
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507435118.9810 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507435118.9840 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507435118.9841 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 652
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast0_ANONYMOUS
+
+*** Rejected
+    [1507435186.8210 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast0_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507435186.8240 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507435186.8241 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 665
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:65*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:65*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:40*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:40*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 682
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4628
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:66*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:66*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:40*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:40*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:104*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:104*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:117*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*cmp_compress.sk:117*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1105
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4297
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 5146
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:66*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:66*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:40*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:40*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:104*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:104*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:117*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*cmp_compress.sk:117*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1023
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 5079
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507435731.9030 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507435731.9060 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507435731.9070 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 803
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4163
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507435816.4620 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507435816.4670 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507435816.4671 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 944
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4419
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507435953.2200 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507435953.2220 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507435953.2221 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 937
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:66*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:66*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:40*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:40*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:104*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:104*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:117*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*cmp_compress.sk:117*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1041
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:66*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:66*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:40*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:40*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:104*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:104*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:117*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*cmp_compress.sk:117*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1055
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress.sk
+SKETCH version 1.7.4
+Benchmark = compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress.sk:5*/
+
+void compress (bit[16] x, bit[16] m, ref bit[16] _out)/*compress.sk:5*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  int i = 0;
+  for(int j = 0; j < 16; j = j + 1)/*Canonical*/
+  {
+    if(m[j])/*compress.sk:9*/
+    {
+      _out[i] = x[j];
+      i = i + 1;
+    }
+  }
+  return;
+}
+/*compress.sk:39*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements compress/*compress.sk:39*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress.sk:17*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*compress.sk:17*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress.sk:26*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*compress.sk:26*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 63899
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 2);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 4377
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507471778.3930 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507471778.3970 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507471778.3971 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 762
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507471864.2570 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507471864.2630 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507471864.2631 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 784
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress.sk
+SKETCH version 1.7.4
+Benchmark = compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress.sk:5*/
+
+void compress (bit[16] x, bit[16] m, ref bit[16] _out)/*compress.sk:5*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  int i = 0;
+  for(int j = 0; j < 16; j = j + 1)/*Canonical*/
+  {
+    if(m[j])/*compress.sk:9*/
+    {
+      _out[i] = x[j];
+      i = i + 1;
+    }
+  }
+  return;
+}
+/*compress.sk:39*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements compress/*compress.sk:39*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress.sk:17*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*compress.sk:17*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress.sk:26*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*compress.sk:26*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 62534
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress.sk
+SKETCH version 1.7.4
+Benchmark = compress.sk
+^C%
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+    [1507473831.4120 - ERROR] [SKETCH] Error at node: Function xor_reduce1, the spec of xor_reduceFast1 is can not be found. Did you put the wrong name? (at cmp_compress.sk:89)
+    [1507473831.4140 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+Total time = 171
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507473856.5800 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507473856.5830 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507473856.5831 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 1532
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+  UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+    [1507473909.2190 - ERROR] [SKETCH] Sketch Not Resolved Error:   UNSATISFIABLE ASSERTION The spec and sketch can not be made to be equal. _p_out_fast1_ANONYMOUS
+
+*** Rejected
+The sketch could not be resolved.
+    [1507473909.2210 - DEBUG] [SKETCH] stack trace written to file: /home/aplusplus/.sketch/tmp/stacktrace.txt
+    [1507473909.2211 - DEBUG] Backend solver input file at /home/aplusplus/.sketch/tmp/cmp_compress.sk/input0.tmp
+Total time = 1610
+ ✘ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduceFast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:14*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:14*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 1442
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduceFast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:14*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduceFast0/*cmp_compress.sk:14*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 2273
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress.sk
+SKETCH version 1.7.4
+Benchmark = compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress.sk:5*/
+
+void compress (bit[16] x, bit[16] m, ref bit[16] _out)/*compress.sk:5*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  int i = 0;
+  for(int j = 0; j < 16; j = j + 1)/*Canonical*/
+  {
+    if(m[j])/*compress.sk:9*/
+    {
+      _out[i] = x[j];
+      i = i + 1;
+    }
+  }
+  return;
+}
+/*compress.sk:39*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements compress/*compress.sk:39*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress.sk:17*/
+
+void xor_reduce0 (bit[16] in, ref bit[16] _out)/*compress.sk:17*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress.sk:26*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduce0/*compress.sk:26*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 3) & ({0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 3) & ({0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,0,1,1,1,1,1,1,1,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,0}));
+  _out = ((_out << 2) & ({0,0,1,0,1,1,0,1,1,1,1,1,1,1,0,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 34696
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduceFast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 3) & ({0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 3) & ({0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,0,1,1,1,1,1,1,1,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,0}));
+  _out = ((_out << 2) & ({0,0,1,0,1,1,0,1,1,1,1,1,1,1,0,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:17*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:17*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 558
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 compress_pbe.sk
+SKETCH version 1.7.4
+Benchmark = compress_pbe.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*compress_pbe.sk:42*/
+
+void assert_all_rotations (bit[16] x_0, bit[16] m_1, bit[16] o)/*compress_pbe.sk:42*/
+{
+  bit[16] m = m_1;
+  bit[16] x = x_0;
+  bit[16] _out_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  fast1(x_0, m_1, _out_s1);
+  assert (_out_s1 == o); //Assert at compress_pbe.sk:43 (0)
+  int s_s3 = 0;
+  num_of_ones_in_mask(m_1, s_s3);
+  int s;
+  s = s_s3;
+  bit[s] t = o[0::s_s3];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    bit[16] x_s5 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, x, 1, x_s5);
+    x = x_s5;
+    bit[16] m_s7 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    k_rotation(16, m, 1, m_s7);
+    m = m_s7;
+    if((m_s7[0]) == 1)/*compress_pbe.sk:49*/
+    {
+      bit[s] t_s9;
+      k_rotation(s_s3, t, 1, t_s9);
+      t = t_s9;
+    }
+    bit[16] _out_s11 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fast1(x_s5, m_s7, _out_s11);
+    assert (_out_s11 == (((bit[16])t))); //Assert at compress_pbe.sk:52 (0)
+  }
+}
+/*compress_pbe.sk:5*/
+
+void constraints ()/*compress_pbe.sk:5*/
+{
+  assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+/*compress_pbe.sk:5*/
+
+void constraints__Wrapper ()  implements constraints__WrapperNospec/*compress_pbe.sk:5*/
+{
+  constraints();
+}
+/*compress_pbe.sk:5*/
+
+void constraints__WrapperNospec ()/*compress_pbe.sk:5*/
+{ }
+/*compress_pbe.sk:78*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*compress_pbe.sk:78*/
+{
+  _out = ((bit[16])0);
+  bit[16] x = x_0;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*compress_pbe.sk:25*/
+
+void k_rotation (int N, bit[N] x_0, int k_1, ref bit[N] _out)/*compress_pbe.sk:25*/
+{
+  _out = ((bit[N])0);
+  int k = k_1;
+  bit[N] x = x_0;
+  if((k_1 == 0) || (N == 0))/*compress_pbe.sk:26*/
+  {
+    _out = x_0;
+    return;
+  }
+  k = k_1 % N;
+  if(k < 0)/*compress_pbe.sk:30*/
+  {
+    k = N + k;
+  }
+  bit[k] tmp = x_0[N - k::k];
+  x[k::N - k] = x_0[0::N - k];
+  x[0::k] = tmp;
+  _out = x;
+  return;
+}
+/*compress_pbe.sk:15*/
+
+void num_of_ones_in_mask (bit[16] mask, ref int _out)/*compress_pbe.sk:15*/
+{
+  _out = 0;
+  _out = 0;
+  for(int i = 0; i < 16; i = i + 1)/*Canonical*/
+  {
+    if(mask[i])/*compress_pbe.sk:18*/
+    {
+      _out = _out + 1;
+    }
+  }
+  return;
+}
+/*compress_pbe.sk:56*/
+
+void xor_reduce1 (bit[16] in, ref bit[16] _out)/*compress_pbe.sk:56*/
+{
+  _out = ((bit[16])0);
+  _out = ((bit[16])0);
+  _out[0] = in[0];
+  for(int i = 1; i < 16; i = i + 1)/*Canonical*/
+  {
+    _out[i] = (in[i]) ^ (_out[i - 1]);
+  }
+  return;
+}
+/*compress_pbe.sk:65*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)  implements xor_reduce1/*compress_pbe.sk:65*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 5303
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress  sketch --bnd-unroll-amnt 100 cmp_compress.sk
+SKETCH version 1.7.4
+Benchmark = cmp_compress.sk
+/* BEGIN PACKAGE ANONYMOUS*/
+/*cmp_compress.sk:2*/
+
+void fast0 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)  implements fast1/*cmp_compress.sk:2*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 1;
+  bit[16] mp_s1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1);
+  bit[16] mv = mp_s1 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s3 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s5 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s1));
+  bit[16] mp_s1_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_0);
+  mv = mp_s1_0 & m_s3;
+  bit[16] t_1 = m_s3 & mv;
+  bit[16] m_s3_0 = (m_s3 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s5 & mv;
+  bit[16] x_s5_0 = (x_s5 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s1_0));
+  bit[16] mp_s1_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_1);
+  mv = mp_s1_1 & m_s3_0;
+  bit[16] t_3 = m_s3_0 & mv;
+  bit[16] t_4 = x_s5_0 & mv;
+  bit[16] x_s5_1 = (x_s5_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s1_1));
+  bit[16] mp_s1_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast0(mk, mp_s1_2);
+  mv = mp_s1_2 & ((m_s3_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s5_1 & mv;
+  _out = (x_s5_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:53*/
+
+void fast1 (bit[16] x_0, bit[16] m_1, ref bit[16] _out)/*cmp_compress.sk:53*/
+{
+  _out = ((bit[16])0);
+  bit[16] x;
+  x = x_0 & m_1;
+  bit[16] mk = (!(m_1)) << 0;
+  bit[16] mp_s13 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13);
+  bit[16] mv = mp_s13 & m_1;
+  bit[16] t = m_1 & mv;
+  bit[16] m_s15 = (m_1 ^ t) | (t >> 1);
+  bit[16] t_0 = x & mv;
+  bit[16] x_s17 = (x ^ t_0) | (t_0 >> 1);
+  mk = mk & (!(mp_s13));
+  bit[16] mp_s13_0 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_0);
+  mv = mp_s13_0 & m_s15;
+  bit[16] t_1 = m_s15 & mv;
+  bit[16] m_s15_0 = (m_s15 ^ t_1) | (t_1 >> 2);
+  bit[16] t_2 = x_s17 & mv;
+  bit[16] x_s17_0 = (x_s17 ^ t_2) | (t_2 >> 2);
+  mk = mk & (!(mp_s13_0));
+  bit[16] mp_s13_1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_1);
+  mv = mp_s13_1 & m_s15_0;
+  bit[16] t_3 = m_s15_0 & mv;
+  bit[16] t_4 = x_s17_0 & mv;
+  bit[16] x_s17_1 = (x_s17_0 ^ t_4) | (t_4 >> 4);
+  mk = mk & (!(mp_s13_1));
+  bit[16] mp_s13_2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  xor_reduceFast1(mk, mp_s13_2);
+  mv = mp_s13_2 & ((m_s15_0 ^ t_3) | (t_3 >> 4));
+  bit[16] t_5 = x_s17_1 & mv;
+  _out = (x_s17_1 ^ t_5) | (t_5 >> 8);
+  return;
+}
+/*cmp_compress.sk:38*/
+
+void xor_reduceFast0 (bit[16] in, ref bit[16] _out)  implements xor_reduceFast1/*cmp_compress.sk:38*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 3) & ({0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0})) ^ ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 3) & ({0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 4) & ({0,0,0,0,1,1,0,1,1,1,1,1,1,1,0,0}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 8) & ({0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,0}));
+  _out = ((_out << 2) & ({0,0,1,0,1,1,0,1,1,1,1,1,1,1,0,0})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 2) & ({0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/*cmp_compress.sk:89*/
+
+void xor_reduceFast1 (bit[16] in, ref bit[16] _out)/*cmp_compress.sk:89*/
+{
+  _out = ((bit[16])0);
+  _out = in;
+  _out = ((in << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((in << 8) & ({0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 4) & ({0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 2) & ({0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  _out = ((_out << 0) & ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})) ^ ((_out << 1) & ({0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/
+[SKETCH] DONE
+Total time = 7272
+ aplusplus@ubuntu  /mnt/hgfs/sketch-test/benchmarks/compress 

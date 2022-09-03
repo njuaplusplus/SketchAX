@@ -1,0 +1,18 @@
+pragma options "--bnd-unroll-amnt 40 --bnd-cbits 8";
+int maxSketch1(int N, int[N] a) {
+    assume N > 0;
+    int max = {| ?? | N | a[??] |};
+    for (int i=??; i<N; i++) {
+        if ({| (i | N | a[i] | max) (<|<=) (i | N | a[i] | max) |}) {
+            max = {| i | N | a[i] |};
+        }
+    }
+    return max;
+}
+
+// harness void constraints(){
+//     assert maxSketch1(3, {0,10,2}) == 10;
+//     assert maxSketch1(3, {-1,10,20}) == 20;
+//     assert maxSketch1(1, {-1}) == -1;
+//     assert maxSketch1(3, {-1,-2,-3}) == -1;
+// }

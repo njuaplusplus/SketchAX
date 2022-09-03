@@ -1,0 +1,8 @@
+int spec (int in) {
+    return in * 2;
+}
+
+int pbe_sk (int in)  {
+    return {| in (+|-|*|/|%) ?? |};
+}
+

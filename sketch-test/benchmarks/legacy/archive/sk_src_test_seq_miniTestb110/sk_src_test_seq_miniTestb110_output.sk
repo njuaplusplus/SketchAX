@@ -1,0 +1,20 @@
+void testSK (bit[5] in, ref bit _out)  implements pbe_testSK
+{
+  _out = 0;
+  int[5] fa = {-1,-1,-1,-1,-1};
+  if(in[0])/*sk_src_..stb110.sk:13*/
+  {
+    fa[0] = 2;
+  }
+  else
+  {
+    fa[0] = 3;
+  }
+  int p = fa[0];
+  if(p >= 0)/*sk_src_..stb110.sk:20*/
+  {
+    fa[p] = 2;
+  }
+  _out = ((fa[2]) == 2) || ((fa[3]) == 2);
+  return;
+}

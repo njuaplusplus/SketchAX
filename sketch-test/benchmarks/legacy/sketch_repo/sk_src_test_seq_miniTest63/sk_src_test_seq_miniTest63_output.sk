@@ -1,0 +1,31 @@
+void tableSum (bit[4] in1_0, ref bit _out)  implements pbe_tableSum
+{
+  _out = 0;
+  bit[4] in1 = in1_0;
+  int k = 0;
+  if(in1_0[0])/*sk_src_..Test63.sk:3*/
+  {
+    if(in1_0[1])/*sk_src_..Test63.sk:4*/
+    {
+      k = 1;
+    }
+    else
+    {
+      k = 2;
+    }
+  }
+  else
+  {
+    if(in1_0[1])/*sk_src_..Test63.sk:10*/
+    {
+      k = 0;
+    }
+    else
+    {
+      k = 1;
+    }
+  }
+  in1[1] = in1_0[3];
+  _out = in1[k];
+  return;
+}

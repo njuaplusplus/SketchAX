@@ -1,0 +1,15 @@
+void maxSketch0 (int[3] a, ref int _out)  implements maxSketch1
+{
+  _out = 0;
+  _out = a[0];
+  if(_out < (a[1]))/*max.sk:19*/
+  {
+    _out = a[1];
+  }
+  if(_out < (a[2]))/*max.sk:19*/
+  {
+    _out = a[2];
+  }
+  return;
+}
+

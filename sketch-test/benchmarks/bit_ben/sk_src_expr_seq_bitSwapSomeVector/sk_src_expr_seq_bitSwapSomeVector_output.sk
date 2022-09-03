@@ -1,0 +1,29 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..Vector.sk:1*/
+
+void debug (bit[3] in, ref bit[3] _out)  implements pbe_debug
+{
+  _out = ((bit[3])0);
+  bit[3] tmp1 = {0,0,0};
+  tmp1[0] = 0;
+  tmp1[1] = in[0];
+  tmp1[2] = in[1];
+  bit[3] tmp3 = (tmp1 ^ in) & ({0,0,1});
+  bit[3] tmp4 = {0,0,0};
+  tmp4[0] = tmp3[1];
+  tmp4[1] = tmp3[2];
+  tmp4[2] = 0;
+  _out = (tmp4 ^ tmp3) ^ in;
+  return;
+}
+/*sk_src_..Vector.sk:20*/
+
+void swap (bit[3] in, ref bit[3] _out)/*sk_src_..Vector.sk:20*/
+{
+  _out = ((bit[3])0);
+  _out[0] = in[0];
+  _out[1] = in[2];
+  _out[2] = in[1];
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

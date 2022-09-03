@@ -1,0 +1,13 @@
+void swapSK0 (bit[8] x_0, bit[8] y_1, ref bit[16] _out)  implements swapSK1
+{
+  _out = ((bit[16])0);
+  bit[8] y = y_1;
+  bit[8] x = x_0;
+  x = x_0 ^ y_1;
+  y = x ^ y_1;
+  x = x ^ y;
+  _out = ((bit[16])0);
+  _out[0::8] = x;
+  _out[8::8] = y;
+  return;
+}

@@ -1,0 +1,22 @@
+void sumGreaterSK0 (int[4] in, int v, ref int _out)  implements pbe_sumGreaterSK0
+{
+  _out = 0;
+  _out = 0;
+  if((in[0]) > v)/*my_sum4Greater.sk:19*/
+  {
+    _out = in[0];
+  }
+  if((in[2]) > v)/*my_sum4Greater.sk:19*/
+  {
+    _out = _out + (in[2]);
+  }
+  if((in[1]) > v)/*my_sum4Greater.sk:19*/
+  {
+    _out = _out + (in[1]);
+  }
+  if((in[3]) > v)/*my_sum4Greater.sk:19*/
+  {
+    _out = _out + (in[3]);
+  }
+  return;
+}

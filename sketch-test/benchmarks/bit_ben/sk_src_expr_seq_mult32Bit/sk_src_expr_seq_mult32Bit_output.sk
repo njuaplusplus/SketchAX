@@ -1,0 +1,36 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..t32Bit.sk:19*/
+
+void reverse (bit[32] in, ref bit[32] _out)/*sk_src_..t32Bit.sk:19*/
+{
+  _out = ((bit[32])0);
+  _out = ((bit[32])0);
+  _out = _out + in;
+  _out = _out + in;
+  _out = _out + in;
+  _out = _out + in;
+  _out = _out + in;
+  _out = _out + in;
+  _out = _out + in;
+  return;
+}
+/*sk_src_..t32Bit.sk:13*/
+
+void reverseSketch (bit[32] in, ref bit[32] _out)  implements pbe_reverseSketch
+{
+  _out = ((bit[32])0);
+  bit[32] tmp = {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  bit[32] in1 = in;
+  bit[32] _out_s1 = ((bit[32])0);
+  for(int i = 0; i < 32; i = i + 1)/*Canonical*/
+  {
+    if((tmp[i]) == 1)/*sk_src_..t32Bit.sk:5*/
+    {
+      _out_s1 = _out_s1 + in1;
+    }
+    in1 = in1 << 1;
+  }
+  _out = _out_s1;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

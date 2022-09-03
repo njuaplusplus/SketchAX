@@ -1,0 +1,44 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb164.sk:13*/
+
+void spec (int x, ref int _out)  implements pbe_spec
+{
+  _out = 0;
+  if(x > 5)/*sk_src_..stb164.sk:14*/
+  {
+    _out = x;
+    return;
+  }
+  if(x < 3)/*sk_src_..stb164.sk:15*/
+  {
+    _out = x - 1;
+    return;
+  }
+  _out = 2;
+  return;
+}
+/*sk_src_..stb164.sk:3*/
+
+void test (int x_0, ref int _out)/*sk_src_..stb164.sk:3*/
+{
+  _out = 0;
+  int x = x_0;
+  while(x < 6)
+  {
+    {
+      {
+        {
+          x = x - 1;
+          if(x < 3)/*sk_src_..stb164.sk:7*/
+          {
+            _out = x;
+            return;
+          }
+        }
+      }
+    }
+  }
+  _out = x;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

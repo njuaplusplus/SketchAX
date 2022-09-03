@@ -1,0 +1,194 @@
+//@Description Sketch that computes the xor of all the bits in a bit-vector using a strategy similar to log-shifting.
+pragma options "--bnd-unroll-amnt 20";
+
+int W=16;
+
+bit parity(bit[W] in)
+{
+    bit ret=0;
+    for(int i=0;i<W;i++)
+        ret=ret^in[i];
+    return ret;
+}
+
+bit fastparity1(bit[W] in)
+{
+    bit[W] y=in;
+    int x = ??;
+    repeat(??) {
+        y=y^(y << ??);
+    }
+    return y[??];
+}
+
+harness void constraints(int[W] ind) {
+
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0}) == 1;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}) == 1;
+assert fastparity1({1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0}) == 0;
+assert fastparity1({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1}) == 0;
+assert fastparity1({0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1}) == 0;
+
+
+//     assert_one_permutation({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 0, ind);
+//     assert_one_permutation({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 1, ind);
+//     assert_one_permutation({1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, 0, ind);
+}
+
+void assert_one_permutation(bit[W] x, bit o, int[W] ind) {
+    if (!is_permutation(W, ind)) return;
+    bit[W] xp = permute(W, x, ind);
+    assert fastparity1(xp) == o;
+}
+
+bit is_permutation(int N, int[N] ind) {
+    bit[N] res = 0;
+    for (int i=0; i<N; ++i) {
+        if (ind[i]<0 || ind[i]>=N || res[ind[i]] == 1) {
+            return 0;
+        } else {
+            res[ind[i]] = 1;
+        }
+    }
+    return 1;
+}
+
+bit[N] permute(int N, bit[N]x, int[N] ind){
+    bit[N] res = 0;
+    for(int i=0; i<N; ++i){
+        res[i]= x[ind[i]];
+    }
+    return res;
+}

@@ -1,0 +1,27 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..esSwap.sk:5*/
+
+void swap (bit[32] x, bit[32] y, ref bit[64] _out)/*sk_src_..esSwap.sk:5*/
+{
+  _out = ((bit[64])0);
+  _out = ((bit[64])0);
+  _out[0::32] = y;
+  _out[32::32] = x;
+  return;
+}
+/*sk_src_..esSwap.sk:13*/
+
+void swapSK (bit[32] x_0, bit[32] y_1, ref bit[64] _out)  implements pbe_swapSK
+{
+  _out = ((bit[64])0);
+  bit[32] y = y_1;
+  bit[32] x = x_0;
+  y = x_0 ^ y_1;
+  x = x_0 ^ y;
+  y = x ^ y;
+  _out = ((bit[64])0);
+  _out[0::32] = x;
+  _out[32::32] = y;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

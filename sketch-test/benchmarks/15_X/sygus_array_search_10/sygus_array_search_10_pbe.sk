@@ -1,0 +1,38 @@
+int N = 10;
+
+int select(int[N] input, int k){
+    if (check_sorted(input) == 0) return 0;
+    int i = 0;
+    for (i = 0; i < N; i += 1) {
+        if (k < input[i]) return i;
+    }
+    return i;
+}
+
+int pbe_selectSK0 (int[N] input, int k)  {
+    // assume input[0] < input[1];
+    if (check_sorted(input) == 0) return 0;
+    int i = 0;
+    // repeat(N) {
+    //     if (k < input[i]) return i;
+    //     i += ??;
+    // }
+    for (i = 0; i < ??; i += ??) {
+        if (k < input[i]) return i+??;
+    }
+    return i;
+}
+
+
+int check_sorted(int[N] a) {
+    for (int i = 0; i < N; i++) {
+        for (int j = i+1; j < N; j++) {
+            if (a[i] >= a[j]) {
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+

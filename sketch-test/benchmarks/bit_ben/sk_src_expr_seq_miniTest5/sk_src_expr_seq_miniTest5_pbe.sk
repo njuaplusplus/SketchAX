@@ -1,0 +1,12 @@
+generator bit foo(bit[4] in){ /* automatically rewritten */
+	return in[{*}];
+}
+
+bit pbe_reverseSketch(bit[4] in)  {	
+
+	return 	foo(in) ^ foo(in);
+}
+
+bit reverse (bit[4] in) {
+	return in[2] ^ in[3];
+}

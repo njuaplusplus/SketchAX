@@ -1,0 +1,9 @@
+void Sk (int[4] a, ref bit _out)  implements pbe_Sk
+{
+  _out = 0;
+  int[4] tmp = {3,7,0,1};
+  bit _out_s1 = 0;
+  StrEquals(4, a, 16, tmp, _out_s1);
+  _out = _out_s1;
+  return;
+}

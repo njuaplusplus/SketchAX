@@ -1,0 +1,70 @@
+======= Begin Example ======
+int,int
+int
+2 | 2 => 120
+1 | 1 => 20
+10 | 1 => 600
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+7 | 3 => 540
+8 | 6 => 780
+5 | 3 => 420
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+7 | 2 => 480
+8 | 1 => 480
+9 | 9 => 1020
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+4 | 5 => 480
+9 | 9 => 1020
+1 | 8 => 480
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+10 | 9 => 1080
+4 | 2 => 300
+6 | 9 => 840
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+0 | 4 => 120
+4 | 3 => 360
+7 | 6 => 720
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+2 | 5 => 360
+0 | 7 => 360
+1 | 5 => 300
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+3 | 0 => 120
+10 | 0 => 540
+0 | 10 => 540
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+9 | 8 => 960
+1 | 5 => 300
+3 | 10 => 720
+======= End Example ======
+======= Begin Example ======
+int,int
+int
+9 | 1 => 540
+10 | 10 => 1140
+9 | 5 => 780
+======= End Example ======

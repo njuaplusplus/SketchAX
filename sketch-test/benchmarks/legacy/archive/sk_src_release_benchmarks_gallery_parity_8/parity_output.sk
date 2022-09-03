@@ -1,0 +1,10 @@
+void fastparity0 (bit[8] in, ref bit _out)  implements fastparity1
+{
+  _out = 0;
+  bit[8] y = in ^ (in << 1);
+  y = y ^ (y << 2);
+  y = y ^ (y << 4);
+  _out = y[7];
+  return;
+}
+

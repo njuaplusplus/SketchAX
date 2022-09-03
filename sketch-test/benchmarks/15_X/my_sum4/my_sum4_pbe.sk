@@ -1,0 +1,22 @@
+int W=4;
+
+int sum(int[W] in)
+{
+    int ret = 0;
+    for(int i=0;i<W;i++){
+        ret = ret + in[i];
+    }
+    return ret;
+}
+
+int pbe_sumSK0(int[W] in) 
+{
+    int cnt=??;
+    repeat(W)
+    {
+        cnt += {| in[??] | ?? |};
+    }
+    return cnt;
+}
+
+

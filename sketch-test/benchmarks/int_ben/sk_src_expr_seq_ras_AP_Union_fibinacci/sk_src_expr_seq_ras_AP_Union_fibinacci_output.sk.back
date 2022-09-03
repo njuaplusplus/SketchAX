@@ -1,0 +1,9 @@
+void _main (int x, ref int _out)  implements pbe__main
+{
+  _out = 0;
+  int _out_s1 = 0;
+  fib(12, _out_s1);
+  assert (_out_s1 == 233); //Assert at sk_src_..inacci.sk:7 (0)
+  _out = 1;
+  return;
+}

@@ -1,0 +1,11 @@
+bit miniTest(bit[4] in) {
+	return in[2];
+}
+
+
+bit pbe_miniTestSK (bit[4] in) {
+	int[3] fu = {0, 1, 3};
+	fu[??] = ??;
+    return in[fu[2]];
+}
+

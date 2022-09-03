@@ -1,0 +1,10 @@
+void miniTestSK (bit[4] in_0, bit[2] in2, ref bit[4] _out)  implements pbe_miniTestSK
+{
+  _out = ((bit[4])0);
+  bit[4] in = in_0;
+  int i;
+  i = ((int)in2);
+  in[i] = 1;
+  _out = in;
+  return;
+}

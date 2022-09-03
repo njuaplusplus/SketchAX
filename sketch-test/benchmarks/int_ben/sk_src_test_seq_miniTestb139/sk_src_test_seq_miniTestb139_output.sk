@@ -1,0 +1,19 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..stb139.sk:8*/
+
+void foo (int i, ref int _out)  implements pbe_foo
+{
+  _out = 0;
+  assert (!((2 * i) == ((i + 1) - i))); //ASSERTION CAN NOT BE SATISFIED: sk_src_..stb139.sk:12 Assert at sk_src_..stb139.sk:12 (2)
+  _out = i;
+  return;
+}
+/*sk_src_..stb139.sk:1*/
+
+void moo (int i, ref int _out)/*sk_src_..stb139.sk:1*/
+{
+  _out = 0;
+  _out = i;
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

@@ -1,0 +1,25 @@
+/* BEGIN PACKAGE ANONYMOUS*/
+/*sk_src_..htmost.sk:4*/
+
+void isolate0 (bit[32] x, ref bit[32] _out)/*sk_src_..htmost.sk:4*/
+{
+  _out = ((bit[32])0);
+  _out = ((bit[32])0);
+  for(int i = 0; i < 32; i = i + 1)/*Canonical*/
+  {
+    if(x[i])/*sk_src_..htmost.sk:7*/
+    {
+      _out[i] = 1;
+      return;
+    }
+  }
+}
+/*sk_src_..htmost.sk:11*/
+
+void isolate0sk (bit[32] x, ref bit[32] _out)  implements pbe_isolate0sk
+{
+  _out = ((bit[32])0);
+  _out = (!(x + ({1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}))) & (x + ({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}));
+  return;
+}
+/* END PACKAGE ANONYMOUS*/

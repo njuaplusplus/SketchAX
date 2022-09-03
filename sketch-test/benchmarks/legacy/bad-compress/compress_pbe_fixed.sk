@@ -1,0 +1,92 @@
+//@Description Given a bit-vector and a bit-mask, the task is select from the bit-vector all the bits selected by the bit-mask and pack them in the beginning of the word.
+pragma options "--bnd-unroll-amnt 100";
+
+int W = 16;
+
+harness void constraints() {
+    assert_all_rotations({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+    assert_all_rotations({1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+    assert_all_rotations({0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, {0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0}, {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+}
+
+int num_of_ones_in_mask(bit[W] mask) {
+    int n = 0;
+    for (int i=0; i<W; ++i) {
+        if(mask[i]) {
+            n += 1;
+        }
+    }
+    return n;
+}
+
+bit[N] k_rotation(int N, bit[N] x, int k) {
+    if (k == 0 || N == 0) {
+        return x;
+    }
+    k = k % N;
+    if (k < 0) {
+        // rotate k elements leftwards
+        // it is equal to rotate N-k elements rightwards.
+        k = N+k;
+    }
+    int l = k;
+    bit[l] tmp = x[N-l::l];
+    x[l::N-l] = x[0::N-l];
+    x[0::l] = tmp;
+    return x;
+}
+
+void assert_all_rotations(bit[W] x, bit[W] m, bit[W] o) {
+    assert fast1(x,m) == o;
+    int s = num_of_ones_in_mask(m);
+    bit[s] t = o[0::s];
+    for (int i=1; i<W; ++i) {
+        x = k_rotation(W, x, 1);
+        m = k_rotation(W, m, 1);
+        if (m[0] == 1) {
+            t = k_rotation(s, t, 1);
+        }
+        assert fast1(x,m) == (bit[W])t;
+    }
+}
+
+bit[W] xor_reduce1(bit[W] in){
+  bit[W] out = 0;
+  out[0] = in[0];
+  for(int i=1; i<W; ++i){
+      out[i] = in[i] ^ out[i-1];
+  }
+  return out;
+}
+
+bit[W] xor_reduceFast1(bit[W] in) implements xor_reduce1{
+    bit[W] out = in;
+    repeat(??){
+        out = (out<<?? & ??) ^ (out<<?? & ??);
+    }
+    return out;
+  }
+
+generator bit[W] maskedShift(bit[W] in, bit[W] mask, int s){ /* automatically rewritten */
+    bit[W] t = in & mask;
+    return (in ^ t) | t >> s;
+}
+
+bit[W] fast1(bit[W] x, bit[W] m){
+    bit[W] mk=0;
+    bit[W] mp=0;
+    bit[W] mv=0;
+    bit[W] t=0;
+    int i=0;
+    x = x & m;
+    mk = (!m) << ??;
+    repeat(??){
+      mp = xor_reduceFast1(mk);
+      mv = mp & m;
+      m = maskedShift(m, mv, ??);
+      x = maskedShift(x, mv, ??);
+      mk = mk & !mp;
+    }
+    return x;
+}
+

@@ -1,0 +1,8 @@
+void _main (int x, ref int _out)  implements pbe__main
+{
+  _out = 0;
+  _out = x;
+  check1(x, x);
+  checkEven(x * 2);
+  return;
+}

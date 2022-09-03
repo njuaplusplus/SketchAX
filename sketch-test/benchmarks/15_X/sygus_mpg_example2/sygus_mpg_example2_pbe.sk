@@ -1,0 +1,54 @@
+int N = 3;
+
+int maxSpec(int[N] a) {
+    int max = a[0];
+    for (int i=1;i<N;i++) {
+        if (max < a[i]) {
+            max = a[i];
+        }
+    }
+    return max;
+}
+
+int minSpec(int[N] a) {
+    int min = a[0];
+    for (int i=1;i<N;i++) {
+        if (min > a[i]) {
+            min = a[i];
+        }
+    }
+    return min;
+}
+
+int select(int[N] input) {
+    if (2*input[0]-3 <= -2*input[1]+input[2]+4) {
+        return minSpec(input);
+    } else {
+        return maxSpec(input);
+    }
+}
+
+generator int maxSketch0(int[N] a) {
+    int max = a[??];
+    repeat(N-1) {
+        if ({| ( a[??] | max ) (<|<=|>) ( a[??] | max ) |}) {
+            max = {| ?? | N | a[??] |};
+        }
+    }
+//     for (int i=??; i<N; i++) {
+//         if ({| (i | N | a[i] | max) (<|<=) (i | N | a[i] | max) |}) {
+//             max = {| i | N | a[i] |};
+//         }
+//     }
+    return max;
+}
+
+int pbe_selectSK0 (int[N] a)  {
+    if (2*a[0]-3 <= -2*a[1]+a[2]+4) {
+        return maxSketch0(a);
+    } else {
+        return maxSketch0(a);
+    }
+}
+
+
