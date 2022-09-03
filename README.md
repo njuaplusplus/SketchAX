@@ -1,5 +1,5 @@
 # Sketch_notes
-This repo keeps our official implementation of SketchAX and benchmarks used in our POPL 2020 paper "Augmented Example-Based Synthesis using Relational Perturbation Properties".
+This repo keeps our official implementation of SketchAX and benchmarks used in our POPL 2020 paper ["Augmented Example-Based Synthesis using Relational Perturbation Properties"](https://dl.acm.org/doi/10.1145/3371124).
 
 # Demo
 The following video shows the execution of Sketch AXI for [`my_max3`](sketch-test/benchmarks/15_X/my_max3) benchmark.
